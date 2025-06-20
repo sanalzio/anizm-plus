@@ -3,11 +3,11 @@
 # Anizm+
 Anzim sitesini konfor ve işlevsellik açısından iyileştirir.
 
-> [!IMPORTANT] Dikkat
-> Bu eklentiyi kullanmanız durumunda Anizm sitesinin sahiplerine ve emekçilerine destekte bulunmanız için yerleştirilen reklamların bir kısmı engellenir. Bu nedenle bu eklentiyi kullanacak kişilerin Anizm sitesine bağış yapmanızı rica ediyorum.
+> [!IMPORTANT]
+> **Dikkat!** Bu eklentiyi kullanmanız durumunda Anizm sitesinin sahiplerine ve emekçilerine destekte bulunmanız için yerleştirilen reklamların bir kısmı engellenir. Bu nedenle bu eklentiyi kullanacak kişilerin Anizm sitesine bağış yapmanızı rica ediyorum.
 
-> [!TIP] Tavsiye
-> Bu eklentiyi yanında güçlü bir reklam engelleyicisi ile kullanmanızı tavsiye ederim. `uBlock origin` gibi eklentiler ile deneyiminizi bir üst seviyeye çıkarabilirsiniz.
+> [!TIP]
+> **Tavsiye** Bu eklentiyi yanında güçlü bir reklam engelleyicisi ile kullanmanızı tavsiye ederim. `uBlock origin` gibi eklentiler ile deneyiminizi bir üst seviyeye çıkarabilirsiniz.
 
 - [Anizm+](#anizm)
 - [✔ Kurulum](#-kurulum)
