@@ -1,0 +1,29 @@
+:root {
+    --themeBgColor: rgb(30, 30, 30);
+    --themeSecondaryBgColor: rgb(20, 20, 20);
+    --themeDarkerBgColor: rgb(10, 10, 10);
+}
+
+body {
+    background: none var(--themeBgColor) repeat-x;
+    color: white;
+    overflow: hidden;
+}
+
+a {
+    color: var(--primaryColor) !important;
+}
+
+a img {
+    filter: var(--chatangoFilter);
+}
+
+a:visited,
+a:hover {
+    color: var(--primaryColorDarker) !important;
+}
+
+::selection {
+    background-color: var(--primaryColor);
+    color: white;
+}

@@ -1,0 +1,5 @@
+.divider,
+header .cover,
+header[data-menutype="homepage"]::before {
+    display: none;
+}

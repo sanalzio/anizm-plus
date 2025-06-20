@@ -1,0 +1,164 @@
+/* --- İstenmeyenler --- */
+
+a[title^="Anizm MC"],
+a[title^="AnizmMC"],
+
+.duyuruContainer,
+
+div[id^="discordInviteBox"],
+
+/* div.menu:has(ul)>ul>li:not(
+    li:has(a[title="TAKVİM"]),
+    li:has(a[title="ARAMA"]),
+    li:has(a[title="Tavsiye Robotu"]),
+    li:has(a[title="Fansublar"]),
+    li.headerSearchContainer
+) */
+div.menu:has(ul)>ul>li:has(a[href^="https://discord"])
+
+{ display: none; }
+
+/* --- İstenmeyenler --- */
+
+
+
+
+main {
+    /* box-shadow: 0px 50vh 0px 0px var(--themeBgColor); */
+    position: relative;
+}
+
+
+
+
+
+html{
+    zoom: 0.98;
+}
+
+
+
+
+.playerTranslator {
+    margin-bottom: .5rem;
+}
+
+
+
+
+
+#deleteWatched[style="display: inherit;"], #addWatched[style="display: inherit;"] {
+    display: inline-block !important;
+}
+#deleteWatched, #addWatched {
+    float: left;
+    padding: 6px 16px;
+    line-height: 24px;
+}
+
+
+
+
+.anizm_alignRight{
+    display: inline-block;
+    width: 100%
+}
+
+
+
+
+.info_downArrow:after {
+    border-top: none;
+}
+
+
+
+
+::-webkit-scrollbar, #searchOverlay::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track, #searchOverlay::-webkit-scrollbar-track {
+    border-radius: 0;
+}
+
+@-moz-document url-prefix() { /* Firefox için */
+    :root {
+        scrollbar-width: thin;
+    }
+}
+
+
+
+
+.translatorBox .flagsContainer {
+    right: 20px;
+    top: 12.5px;
+}
+
+
+
+
+
+footer {
+    overflow: hidden;
+    height: 0;
+}
+.donateContainer {
+    display: none !important;
+}
+
+
+
+
+.ui.grid > .column:not(.row) {
+    padding-top: .25rem;
+}
+
+
+
+
+/* Follow button */
+
+.anizm_button.favorite {
+    margin-top: 10px !important;
+}
+
+/* anime page */
+.infoActions > div:first-child {
+    margin-top: 10px;
+}
+.infoActions > div:first-child > .follow-btn {
+    width: 100%;
+    height: 40px;
+    margin-bottom: -15px;
+}
+
+/* episode page */
+.animeIzleBolumListesi > .animeDetayKutu {
+    margin: 0;
+    top: -55px;
+}
+.animeIzleBolumListesi .follow-btn {
+    margin-right: 0;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+/* Follow button */
+
+
+
+
+@media only screen and (min-width: 992px) {
+    .ui.container.menuHeader {
+        top: 0;
+        left: 40px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .anizm_alignRight {
+        text-align: right;
+    }
+}

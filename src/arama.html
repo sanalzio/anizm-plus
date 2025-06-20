@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anizm arama</title>
+
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/colors/orange_theme.css">
+    <link id="theme-link" rel="stylesheet" href="">
+
+    <link id="favicon" rel="shortcut icon" href="./assets/favicon/orange.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+    <div id="main">
+
+        <header>
+            <a id="logo-btn" href="https://anizm.pro/" title="Anizm">
+                <img id="logo" src="./assets/logo/orange.webp" alt="anizm logo">
+                <img id="logo-small" src="./assets/icon/orange.png" alt="anizm logo küçük">
+            </a>
+
+
+            <div id="search-form">
+
+                <input title="Anime ara..." type="text" name="query" id="query" placeholder="Anime ara..." spellcheck="false" autocomplete="off">
+
+                <button id="clear-query" title="Temizle">
+                    <svg fill="currentColor" height="16px" width="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m 3 2 c -0.265625 0 -0.519531 0.105469 -0.707031 0.292969 c -0.390625 0.390625 -0.390625 1.023437 0 1.414062 l 4.292969 4.292969 l -4.292969 4.292969 c -0.390625 0.390625 -0.390625 1.023437 0 1.414062 s 1.023437 0.390625 1.414062 0 l 4.292969 -4.292969 l 4.292969 4.292969 c 0.390625 0.390625 1.023437 0.390625 1.414062 0 s 0.390625 -1.023437 0 -1.414062 l -4.292969 -4.292969 l 4.292969 -4.292969 c 0.390625 -0.390625 0.390625 -1.023437 0 -1.414062 c -0.1875 -0.1875 -0.441406 -0.292969 -0.707031 -0.292969 s -0.519531 0.105469 -0.707031 0.292969 l -4.292969 4.292969 l -4.292969 -4.292969 c -0.1875 -0.1875 -0.441406 -0.292969 -0.707031 -0.292969 z m 0 0"/>
+                    </svg>
+                </button>
+
+                <button id="search-btn" title="Ara">
+
+                    <svg id="search-btn-ico" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                        width="24px" fill="currentColor">
+                        <path
+                            d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+                    </svg>
+
+                </button>
+
+            </div>
+
+            <div id="links-container">
+
+                <a class="page-link" title="Takvim" data-page-id="/takvim" href="https://anizm.pro/takvim">Takvim</a>
+                <a class="page-link" title="Tavsiye Robotu" data-page-id="/tavsiyeRobotu" href="https://anizm.pro/tavsiyeRobotu">Tavsiye Robotu</a>
+                <span class="page-link" title="Arama">Arama</span>
+
+            </div>
+
+        </header>
+
+        <p id="results-count-p"><span id="results-count">0</span> sonuç</p>
+
+        <div id="message-container">
+            <div class="loader" id="main-loader"></div><p id="message">Yükleniyor...</p>
+        </div>
+
+        <div id="results-container"></div>
+
+        <button id="scroll-to-top" title="Başa dön">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path
+                    d="m3.695 1.258-.039.025zm8.625.012q.077.047.153.097zm-9.53.662-.052.045zm-.813.806-.045.051zm12.656.79q.05.075.097.152zm-13.35.128-.025.04zM8 4.293 2.646 9.646l.708.708L8 5.707l4.646 4.647.708-.708zm-6.742 8.012.025.039zm13.484 0-.025.039zm-12.81.906.045.05zm12.136 0-.045.05zm-11.33.812.051.045zm10.524 0-.051.045zm-9.606.694.04.025zm8.688 0-.04.025z"
+                    fill="var(--themeBgColor)" />
+                <path fill="currentColor"
+                    d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8m13.354 1.646-.707.707L8 5.707l-4.646 4.647-.707-.707L8 4.293Z" />
+            </svg>
+        </button>
+
+    </div>
+
+    <script src="./scripts/arama.js"></script>
+    <!-- <script src="./scripts/applyTheme.js"></script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+:root{
+    --themeBgColor: rgb(30, 30, 30);
+    --themeSecondaryBgColor: rgb(20, 20, 20);
+    --themeDarkerBgColor: rgb(10, 10, 10);
+}
+
+*{
+    color-scheme: dark !important;
+}
+#CV_BG,
+#SGBG{
+    background-color: var(--primaryColor) !important;
+}
+.msg,
+[class|="ubdr"],
+#SGBG
+{
+    border-color: var(--primaryColor) !important;
+}
+*[class*='cbdr']{
+    border-color: var(--primaryColorLighter) !important;
+}
+
+
+
+
+p.msg-date {
+    color: var(--primaryColorLighter) !important;
+}
+
+#IW #input-field,
+*[class*='cpbg'],
+#OWBG
+{
+    background-color: var(--themeBgColor) !important;
+}
+
+#IWW #input-field,
+.mockgroup .input-field:empty:not(:focus)::before,
+.input-field[contenteditable="true"]:empty:not(:focus)::before,
+#GTL,
+#UTL,
+[style*="color: rgb(0, 0, 0);"]:not(.chatango-button),
+[style*="color:rgb(0, 0, 0);"]:not(.chatango-button),
+[style*="color:rgb(0,0,0);"]:not(.chatango-button),
+[style*="color: rgb(0,0,0);"]:not(.chatango-button),
+DIV[class^="sdlg-title"],
+.msg-fg,
+.ownmsg
+{
+    color: white !important;
+}
+
+.goog-link-button{
+    color: var(--dunEklendiColor) !important;
+}
+
+.icon path,
+.icon svg *:not(circle),
+.ib-icon path,
+.ib-icon svg *:not(circle)
+{
+    stroke: white !important;
+    fill: white !important;
+    color: white !important;
+}
+
+.icon circle{
+    stroke: white !important;
+}
+
+::selection {
+    background-color: var(--primaryColor);
+    color: white;
+}

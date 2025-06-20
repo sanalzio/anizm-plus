@@ -1,0 +1,447 @@
+/* --- Sabitler --- */
+
+:root{
+    --suAnIzlediklerim: #8CBF94;
+    --tamaladiklarim: #7FA6E0;
+    --izleyeceklerim: #E8B17D;
+    --araVerdiklerim: #D3D3D3;
+
+    --warning: #ff392f;
+    --warningDark: #ff2116;
+}
+
+/* --- Sabitler --- */
+
+
+
+
+
+
+#deleteWatched, #addWatched {
+    font-family: "Merriweather Sans", sans-serif;
+    font-size: 100%;
+    font-weight: 100 !important;
+}
+
+#deleteWatched {
+    background-color: var(--primaryColorDarker);
+}
+
+.anizm_themeBackground,
+.posterBlock .posterAlt,
+.slideAnimeEpisodeInfo,
+.ui.button,
+.searchBarButton,
+.anizm_button.favorite,
+::-webkit-scrollbar-thumb,
+#searchOverlay::-webkit-scrollbar-thumb {
+    background: var(--primaryColor);
+}
+.anizm_themeHover:hover,
+.anizm_button.list,
+::-webkit-scrollbar-thumb:hover,
+#searchOverlay::-webkit-scrollbar-thumb:hover {
+    background: var(--primaryColorDarker);
+}
+.ui.active.button:active, .ui.button:active,
+.ui.button:focus,
+::selection {
+    background-color: var(--primaryColorDarker);
+}
+
+.ui.orange.button {
+    background: var(--primaryColor) !important;
+}
+
+
+
+.ui.selection.active.dropdown,
+.ui.selection.active.dropdown:hover {
+    border-color: var(--primaryColor);
+}
+.ui.warning.message,
+.ui.info.message {
+    background-color: var(--themeDarkerBgColor);
+    box-shadow: none;
+}
+.ui.warning.message .header, .ui.warning.message,
+.ui.info.message .header, .ui.info.message {
+    color: #dddddd;
+}
+.ui.vertical.menu .item.active {
+    background: var(--primaryColor) !important;
+    border-left: 3px solid var(--primaryColorDarker) !important;
+}
+.ui.card>.content>a.header, .ui.cards>.card>.content>a.header,
+.anizm_themeColor {
+    color: var(--primaryColor);
+}
+.ui.card>.content>a.header:hover, .ui.cards>.card>.content>a.header:hover {
+    color: var(--primaryColorDarker);
+}
+.anime-card .view-details,
+.anime-card .anime-year,
+.custom-pagination span.page-link {
+    background: var(--primaryColor);
+}
+.anime-card .tag.label:hover {
+    background-color: var(--primaryColor);
+    color: white;
+}
+.custom-pagination a.page-link:hover {
+    background: var(--primaryColorDarker);
+}
+
+
+
+
+.ui.popup{
+    border-color: var(--primaryColorDarker);
+}
+
+
+
+
+.logo{
+    filter: var(--logoFilter);
+}
+img[src*="/upload/assets/defaultavatar.jpg"]{
+    filter: invert(0.8) contrast(1.4);
+}
+
+
+
+
+
+.ui.primary.button, .ui.primary.buttons .button,
+.ui.blue.button, .ui.blue.buttons .button,
+
+#custom-comment-system .ui.primary.button,
+.anizm_button[style*="background-color:#5c6bc0"],
+.anizm_button[style*="background-color: #5c6bc0"] {
+    background-color: var(--primaryColor) !important;
+}
+#custom-comment-system .ui.primary.button:hover,
+.anizm_button[style*="background-color:#5c6bc0"]:hover,
+.anizm_button[style*="background-color: #5c6bc0"]:hover,
+.ui.active.button,
+.ui.button:hover {
+    background-color: var(--primaryColorDarker) !important;
+}
+
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"] {
+    background-color: var(--warning) !important;
+}
+.anizm_button[style*="background-color:red"]:hover,
+.anizm_button[style*="background-color: red"]:hover {
+    background-color: var(--warningDark) !important;
+}
+
+
+
+.anizm_button.default,
+#disquis,
+.gelismisSecimDropdown .item:hover {
+    background: var(--primaryColorDarker) !important;
+}
+.anizm_sectionTitle span {
+    border-bottom-color: var(--primaryColorDarker);
+}
+.anizm_sectionTitle .span {
+    color: white;
+    text-decoration: none;
+    border-bottom: 3px solid var(--primaryColorDarker);
+    padding-bottom: 5px;
+}
+.selectionOption{
+    box-shadow: 4px 4px 0 var(--primaryColorDarker);
+}
+
+/* -- yorum bölmümü -- */
+
+
+
+
+
+.bugunYuklenenAnime{
+    box-shadow: 0 0 20px 0px var(--primaryColorLighter);
+}
+.maviRenkBugun::before{
+    background: var(--primaryColorLighter);
+    box-shadow: 0 0 4px 1px var(--primaryColorLighter);
+}
+.bugunYuklenenAnime .posterAlt {
+    background: var(--primaryColor) !important;
+}
+
+.dunYuklenenAnime {
+    box-shadow: 0 0 16px 0px var(--dunEklendiColor);
+}
+.turuncuRenkDun::before {
+    background: var(--dunEklendiColor);
+    box-shadow: 0 0 4px 1px var(--dunEklendiColor);
+}
+.dunYuklenenAnime .posterAlt {
+    background: var(--dunEklendiColor) !important;
+}
+
+
+
+
+
+.lastWatchNextButton, .lastWatchPrevButton, .popularAnimePrevButton, .popularAnimeNextButton {
+    background-image: var(--scrollButton);
+}
+
+
+
+
+.episodeLine>span[style^="color: yellow"], .episodeLine>span[style^="color:yellow"],
+.ui.inverted.mini.statistic .value {
+    color: var(--primaryColorLighter) !important;
+}
+
+.ui.active.button:hover {
+    filter: brightness(.9);
+}
+
+
+
+
+#addWatched{
+    background-color: var(--themeBgColor) !important;
+    box-shadow: 0px 0px 0px 1px var(--primaryColor) inset;
+}
+
+
+
+
+.watching {
+    color: var(--suAnIzlediklerim) !important;
+}
+.finished {
+    color: var(--tamaladiklarim) !important;
+}
+.plantowatch {
+    color: var(--izleyeceklerim) !important;
+}
+.dropped {
+    color: var(--araVerdiklerim) !important;
+}
+
+.watching .listHover {
+    border-color: var(--suAnIzlediklerim) !important;
+}
+.watching .listHover:hover, .watching .listHoverActive:hover, .watching .listBack {
+    background: var(--suAnIzlediklerim) !important;
+    color: var(--themeBgColor);
+}
+
+.finished .listHover {
+    border-color: var(--tamaladiklarim) !important;
+}
+.finished .listHover:hover, .finished .listHoverActive:hover, .finished .listBack {
+    background: var(--tamaladiklarim) !important;
+    color: var(--themeBgColor);
+}
+
+.plantowatch .listHover {
+    border-color: var(--izleyeceklerim) !important;
+}
+.plantowatch .listHover:hover, .plantowatch .listHoverActive:hover, .plantowatch .listBack {
+    background: var(--izleyeceklerim) !important;
+    color: var(--themeBgColor);
+}
+
+.dropped .listHover {
+    border-color: var(--araVerdiklerim) !important;
+}
+.dropped .listHover:hover, .dropped .listHoverActive:hover, .dropped .listBack {
+    background: var(--araVerdiklerim) !important;
+    color: var(--themeBgColor);
+}
+
+
+
+
+
+
+
+.info_downArrow{
+    border-color: var(--primaryColor);
+}
+
+.ircle-chart__circle {
+    stroke: var(--primaryColor);
+}
+
+
+
+
+
+.ui.dropdown .menu>.header {
+    color: var(--primaryColorLighter);
+}
+
+@-moz-document url-prefix() { /* Firefox için */
+    :root {
+        scrollbar-color: var(--primaryColor) var(--themeSecondaryBgColor);
+    }
+}
+
+
+
+
+.ui.inverted.info.message {
+    background-color: var(--primaryColorDarker) !important;
+    box-shadow: 0 0 0 1px var(--primaryColorDarker) inset, 0 0 0 0 transparent !important;
+}
+.ui.raised.card, .ui.raised.cards>.card {
+    -webkit-box-shadow: 0 0 0 1px var(--primaryColor), 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+    box-shadow: 0 0 0 1px var(--primaryColor), 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+}
+
+
+.ui.small.label, .ui.small.labels .label {
+    background-color: var(--primaryColor) !important;
+}
+.ui.small.label[style*="border:"]{
+    border: 1px solid var(--primaryColorDarker)!important;
+}
+
+.ui.inverted.list .item a:not(.ui):hover {
+    color: var(--primaryColor) !important;
+}
+
+
+
+.ui.label,
+.anime-card .tag.label {
+    background-color: var(--themeDarkerBgColor);
+    color: white;
+}
+.anime-card .tag.label {
+    background-color: var(--primaryColorDarker);
+}
+.ui.label:hover, .ui.labels .label:hover {
+    background-color: var(--primaryColorDarker);
+    border-color: var(--primaryColorDarker);
+    background-image: none;
+    color: white;
+}
+.ui.teal.label, .ui.teal.labels .label{
+    background-color: var(--primaryColorDarker) !important;
+    border-color: var(--primaryColorDarker) !important;
+}
+
+
+
+
+#fansite>span>a[style^="color:#db2828"], #fansite>span>a[style^="color: #db2828"] {
+    color: var(--primaryColor) !important;
+}
+
+.episodeTranslatorNote>div:nth-child(2) {
+    background-color: var(--primaryColor) !important;
+}
+
+
+
+.ui.inverted.orange.button, .ui.inverted.orange.buttons .button {
+    -webkit-box-shadow: 0 0 0 2px var(--primaryColor) inset !important;
+    box-shadow: 0 0 0 2px var(--primaryColor) inset !important;
+    color: white;
+}
+
+
+
+.calendarTitle,
+.dateHeader {
+    background-color: var(--themeDarkerBgColor);
+}
+.watchedAnimeCard {
+    background-color: var(--themeBgColor);
+}
+
+
+
+.ui.form input:not([type]),
+.ui.form input[type="date"],
+.ui.form input[type="datetime-local"],
+.ui.form input[type="email"],
+.ui.form input[type="file"],
+.ui.form input[type="number"],
+.ui.form input[type="password"],
+.ui.form input[type="search"],
+.ui.form input[type="tel"],
+.ui.form input[type="text"],
+.ui.form input[type="time"],
+.ui.form input[type="url"],
+.ui.input>input,
+.ui.form textarea {
+    border: 1px solid var(--primaryColor);
+}
+.ui.form ::-webkit-input-placeholder,
+.ui.form :focus::-webkit-input-placeholder {
+    color: #757575;
+}
+form[action="/izlemeGecmisim"] button {
+    margin-left: .5rem!important;
+}
+
+
+
+/* dünden daha önce eklenen bölümler */
+.poster:not(.dunYuklenenAnime,.bugunYuklenenAnime) .posterAlt{
+    /* background: var(--themeDarkerBgColor); */
+    background: transparent;
+    box-shadow: inset 0px 0px 50px 50px rgba(0, 0, 0, 0.64);
+    backdrop-filter: blur(10px);
+}
+
+
+
+.gelismisSecimDropdown .label{
+    background: var(--primaryColorDarker) !important;
+}
+
+
+
+header.puf01 {
+    background: transparent;
+}
+
+
+
+input[data-episodefilter] {
+    color: white !important;
+}
+
+
+#hamburger-bar, #hamburger-bar::after, #hamburger-bar::before {
+    background-color: var(--primaryColor);
+}
+
+.resultContent .animeTitleLink:hover, .higlightedMatch {
+    color: var(--primaryColorLighter);
+}
+
+.anizm_button.list.active {
+    border: 1px solid var(--primaryColorLighter);
+}
+.anizm_button.active {
+    box-shadow: 0 0 10px 0px var(--primaryColor);
+}
+
+
+.ui.button {
+    color: #f5f5f5;
+}
+.ui.button:hover {
+    color: white;
+}
+
+.popularAnimeSlideSection::before {
+    background: rgba(120, 120, 120, 0.05);
+}

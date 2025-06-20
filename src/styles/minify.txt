@@ -1,0 +1,3 @@
+css-minify -d ./styles/ -o ./build/styles/
+
+css-minify -d ./ -f ./file

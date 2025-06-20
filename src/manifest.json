@@ -1,0 +1,147 @@
+{
+    "manifest_version": 2,
+    "name": "Anizm+",
+    "version": "1.2.0",
+    "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
+
+
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "anizmplus_base@sanalzio.github.io",
+            "strict_min_version": "89.0"
+        },
+        "gecko_android": {
+            "strict_min_version": "113.0"
+        }
+    },
+
+
+
+    "permissions": [
+
+        "webRequest",
+        "webRequestBlocking",
+        "storage",
+        // "<all_urls>"
+
+
+        "https://anizm.pro/*",
+        "https://anizm.net/*",
+        "https://anizle.com/*",
+        "https://puffytr.com/*",
+
+        "https://anizmplayer.com/*",
+
+        "https://cdn.jsdelivr.net/npm/devtools-detector/",
+
+        "https://ugloubeehun.com/*",
+        "*://ugloubeehun.com/*",
+        "http://ugloubeehun.com/*"
+    ],
+
+
+
+    "web_accessible_resources": [
+        "replace_scripts/searchOverlayOnce.js",
+        "replace_scripts/custom.js",
+        "replace_scripts/episodea.js",
+
+        "styles/*",
+        "assets/*",
+
+        "arama.html",
+        "options.html"
+    ],
+
+
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+    },
+
+
+
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": "assets/icon128.png"
+    },
+
+
+
+    "options_page": "options.html",
+
+
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://anizm.pro/*",
+                "https://anizm.net/*",
+                "https://puffytr.com/*",
+                "https://anizle.com/*"
+            ],
+            "js": ["inject_scripts/document_start.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "https://anizm.pro/*",
+                "https://anizm.net/*",
+                "https://puffytr.com/*",
+                "https://anizle.com/*"
+            ],
+            "js": ["inject_scripts/document_end.js"],
+            "run_at": "document_end"
+        },
+        {
+            "matches": [
+                "https://st.chatango.com/*"
+            ],
+            "all_frames": true,
+            "js": ["inject_scripts/chat_window_inject.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "https://anizmnet.chatango.com/"
+            ],
+            "all_frames": true,
+            "js": ["inject_scripts/chatango.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "https://youtube.googleapis.com/embed/*",
+                "https://sistenn.uns.bio/*",
+                "https://anizm.rpmvid.com/*",
+                "https://video.sibnet.ru/shell.php?videoid=*",
+                "https://optraco.top/explorer/*",
+                "https://anizmplayer.com/*",
+                "https://anizm.strp2p.com/*",
+                "https://vidmoly.to/embed-*"
+            ],
+            "all_frames": true,
+            "js": ["inject_scripts/player_inject_css.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "https://anizmplayer.com/*"
+            ],
+            "all_frames": true,
+            "js": ["inject_scripts/aincrad_inject.js"],
+            "run_at": "document_idle"
+        }
+    ],
+
+
+
+    "icons": {
+        "16": "./assets/icon16.png",
+        "32": "./assets/icon32.png",
+        "48": "./assets/icon48.png",
+        "128": "./assets/icon128.png"
+    }
+}
