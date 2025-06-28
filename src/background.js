@@ -83,7 +83,7 @@ browserObj.webRequest.onBeforeRequest.addListener(
         if (details.url.includes("/upload/assets/logo.webp") && settings.applyColor)
             return { redirectUrl: getURL("assets/logo/"+ settings.themeId +".webp") };
 
-        if (details.url.includes("/upload/assets/favicon.ico") && settings.applyColor)
+        if ((details.url.includes("/favicon.ico") || details.url.includes("/images/logo_")) && settings.applyColor)
             return { redirectUrl: getURL("assets/favicon/" + settings.themeId + ".png") };
 
 
