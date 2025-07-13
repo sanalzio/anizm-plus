@@ -23,3 +23,29 @@
 }
 
 /* Arama için MyAnimeList linki entegrasyonu */
+
+
+/* Arama için bölüm sayısı entegrasyonu */
+
+.animeEpisodeCount {
+    background: var(--primaryColorDarker);
+    top: 1.5px;
+    left: 1.5px;
+    position: absolute;
+    padding: 0 5px;
+    border-radius: 7px;
+    color: #eee;
+    font-weight: bold !important;
+    box-sizing: border-box;
+    border-style: solid;
+    border-width: thin;
+    border-color: var(--primaryColor);
+}
+
+.resultImgDate > a {
+    margin-left: 5px;
+    width: fit-content;
+    position: relative;
+}
+
+/* Arama için bölüm sayısı entegrasyonu */

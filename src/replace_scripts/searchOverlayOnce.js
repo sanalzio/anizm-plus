@@ -1053,6 +1053,8 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
     </p>`;
     }
 
+    let episodeCount = animeInfo.lastEpisode && animeInfo.lastEpisode.length > 0 ? getEpisodeCount(animeInfo.lastEpisode) : null;
+
     return `<div class="searchResultItem">
 <div class="aramaPuanCircle">
 <div class="circleProgressBar anizm_alignCenter">
@@ -1082,6 +1084,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
  <img src="images/loading.gif" data-src="/storage/pcovers/${
      animeInfo.info_poster
  }" class="animeImg lazyload" />
+ ${episodeCount ? '<span class="animeEpisodeCount">' + episodeCount + "</span>" : ""}
 </a>
 <span class="animeDate">Yapım Yılı: ${animeInfo.info_year}</span>
 </div>

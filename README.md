@@ -58,7 +58,9 @@ Belirlediğiniz önem sıralamasına göre videoyu çevirmiş olan fansublardan 
 Arayüzü sadeleştirip daha **rahat ve modern bir görünüm** elde etmenize, sitede sağ üstte bulunan **linkleri düzenlemenize**, **renk teması** uygulamanıza, **arka planlar**ı düzenlemenize ve siteye **kendi CSS kodunuz**u enjekte etmenize olanak sağlar.
 
 ## ▶ Oynatıcı iyileştirmeleri
-Oynatıcılarda **istenmeyen logolar**ı kaldırır, farenizi ekranın alt köşelerine getirdiğinizde kontrollerin gizlenmesini sağlar ve bazı oynatıcılara **renk düzenlemeleri** uygular.
+Oynatıcılarda **istenmeyen logolar**ı kaldırır, farenizi ekranın alt köşelerine getirdiğinizde kontrollerin gizlenmesini sağlar ve bazı oynatıcılara **renk düzenlemeleri** uygular. Ayrıca Aincrad oynatıcısında; "ç" tuşu ile **bir kare geriye**, "." tuşu ile **bir kare ileriye atlamanıza** olanak sağlar.
+
+**Mobil cihazlarda** ise, Aincrad oynatıcısında ekranın sağ/sol bölmelerine çift tıklayınca 5 saniye atlamanıza, orta bölmesine çift tıklayınca ana ekrandan çıkıp girmenize olanak sağlar.
 
 # Lisans
 <h3>GPL V3</h3>
