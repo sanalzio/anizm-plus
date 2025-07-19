@@ -444,6 +444,12 @@ document.addEventListener("change", function (event) {
                 });
                 break;
 
+            case "last-seen":
+                browserObj.storage.local.set({
+                    lastSeen: el.checked
+                });
+                break;
+
             default:
                 break;
         }
@@ -618,6 +624,8 @@ function applySettings(result) {
             selectedFileElement.style.display = "none";
         }
     }
+
+    document.getElementById("last-seen").checked = result.lastSeen == undefined ? false : result.lastSeen;
 }
 
 
@@ -659,7 +667,8 @@ const dataKeys = [
     "changeBgs",
     "homeBg",
     "homeSliderBg",
-    "episodeBg"
+    "episodeBg",
+    "lastSeen"
 ];
 
 const defaultSettings = {
@@ -681,7 +690,8 @@ const defaultSettings = {
     changeBgs: false,
     homeBg: null,
     homeSliderBg: null,
-    episodeBg: null
+    episodeBg: null,
+    lastSeen: false
 }
 
 function exportSettings() {

@@ -54,7 +54,7 @@ injectStyle("styles/design/necessary.css");
 
 
 
-browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg"], function (result) {
+browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen"], function (result) {
 
     if (result.minCssActive !== false)
         injectStyle("styles/design/min_theme.css");
@@ -102,11 +102,37 @@ browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColo
 
         scripts.forEach(script => {
             if (script.innerText.includes("firstFansubLink.dispatchEvent")) {
-                console.log("Fansub auto-click scripti bloklandı.");
                 script.remove();
+                console.log("Fansub auto-click scripti bloklandı.");
             }
         });
     });
+
+    if (result.lastSeen)
+        (function onScriptReady(callback) {
+            if (document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen")).length>0) {
+                callback();
+            } else {
+                new MutationObserver((_, obs) => {
+                    if (document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen")).length>0) {
+                        obs.disconnect();
+                        callback();
+                    }
+                }).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        })(() => {
+            const scripts = document.body.querySelectorAll("script");
+
+            scripts.forEach(script => {
+                if (script.innerText.includes("api/update-last-seen")) {
+                    script.remove();
+                    console.log("Son görülme verisi gönderimi engellendi.");
+                }
+            });
+        });
 
     if (result.fansubsActive && result.fansubs)
         document.documentElement.insertAdjacentHTML("afterbegin", '<data id="$" content="' + result.fansubs.replaceAll('"', "&quot;") + '">');

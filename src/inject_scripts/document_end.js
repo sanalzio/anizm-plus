@@ -124,7 +124,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
     if (result.minCssActive !== false) {
 
         // bölümü "izledim/izlemedim" tuşları için grafik arayüzü düzenlemesi
-        try {
+        /* try {
             const cont = document.getElementsByClassName("animeIzleInnerContainer")[0];
             const es = document.getElementsByClassName("anizm_alignRight")[0];
             // const fs = document.getElementsByClassName("episodeTranslators")[0];
@@ -141,10 +141,28 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
             es.insertBefore(dWED, es.childNodes[0]);
             es.insertBefore(aWED, dWED);
+        } catch {} */
+
+        // player seçenekleri için grafik arayüzü düzenlemesi
+        try {
+            const cont = document.getElementById("videoFrame");
+            const vidContainer = document.getElementsByClassName("episodePlayerContent")[0];
+            // const fs = document.getElementsByClassName("episodeTranslators")[0];
+            const fl = document.getElementById("fanList");
+
+            cont.insertBefore(fl, vidContainer);
+
+            fl.classList.remove("mt-5");
+
+            /* const aWED = document.getElementById("addWatched");
+            const dWED = document.getElementById("deleteWatched");
+
+            es.insertBefore(dWED, es.childNodes[0]);
+            es.insertBefore(aWED, dWED); */
         } catch {}
 
         // animeyi "takip et" tuşları için grafik arayüzü düzenlemesi
-        try {
+        /* try {
             const episodeListContainer = document.getElementsByClassName("animeIzleBolumListesi")[0];
             const followBtn = document.getElementsByClassName("follow-btn")[0];
             const followBtnContainer = followBtn.parentNode;
@@ -152,52 +170,10 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
             episodeListContainer.insertBefore(followBtnContainer, episodeList);
         }
-        catch {}
+        catch {} */
     }
     
     /* -- "izledim/izlemedim" düğmesi yer düzenlemesi -- */
-
-
-
-
-    // Eğer öncelikli fansub seçimi aktifse öncelikli fansub'ı seç.
-    /* if (result.fansubsActive && result.fansubs) {
-        try {
-            const bluRayRegExp = /(?<!\w)bd(?!\w)/i;
-
-            const fansubBtns = Array.from(document.querySelectorAll("[data-translatorclick]"));
-
-            if (fansubBtns.length > 1) {
-                const sortedBtns = fansubBtns
-                .filter(btn => result.fansubs.some(f => btn.getElementsByClassName("title")[0].innerText.toLocaleLowerCase("tr").includes(f)))
-                .map(btn => {
-                    const titleText = btn.getElementsByClassName("title")[0].innerText.toLocaleLowerCase("tr");
-
-                    let priority = result.fansubs.length;
-                    for (let i = 0; i < result.fansubs.length; i++) {
-                        if (titleText.includes(result.fansubs[i])) {
-                            priority = i;
-                            break;
-                        }
-                    }
-
-                    if (bluRayRegExp.test(titleText)) priority -= 1;
-
-                    return { btn, priority };
-                })
-                .sort((a, b) => a.priority - b.priority);
-
-                if (sortedBtns.length > 0) {
-                    if (!sortedBtns[0].btn.classList.contains("active"))
-                        sortedBtns[0].btn.click();
-                } else {
-                    fansubBtns[0].click();
-                }
-            } else {
-                fansubBtns[0].click();
-            }
-        } catch {}
-    } */
 
 
 

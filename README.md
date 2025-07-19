@@ -49,7 +49,7 @@ Bu nedenle bu eklentiyi kullanmak için; **Firefox ve forkları (Zen Browser vb.
 Sağ altta çıkan bildirim gibi gösterilmeye çalışılmış küçük reklam pencerelerinin açılmasını ve site içerisindeki bazı eylemlerinizi izleyip bilgi toplayan sistemleri engeller.
 
 ## 🔎 Arama sistemi iyileştirme
-Arama sistemini iyileştirir ve daha güçlü bir arama sistemi sağlar. Aradığınız sonucu daha kapsamlı arayarak yazdığınız kelimeler hatalı olsa bile size sonuç göstermeye çalışır. Stüdyolarda arama yapmanızı sağlar. Ayrıca aramanıza filtre ekleme özelliği sunar. [(Filtreler hakkında daha fazla detay için tıklayın.)](https://github.com/sanalzio/anizm-arama?tab=readme-ov-file#filtreler)
+Arama sistemini iyileştirir ve daha güçlü bir arama sistemi sağlar. Aradığınız sonucu daha kapsamlı arayarak yazdığınız kelimeler hatalı olsa bile size sonuç göstermeye çalışır. Stüdyolarda arama yapmanızı sağlar. Ayrıca aramanıza filtre ekleme özelliği sunar. [(Filtreler hakkında daha fazla detay için tıklayın.)](./filtreler.md)
 
 ## Önem sırasına göre otomatik fansub ve player seçimi
 Belirlediğiniz önem sıralamasına göre videoyu çevirmiş olan fansublardan ve playerlerden en önemlisini **otomatik olarak seçer**.

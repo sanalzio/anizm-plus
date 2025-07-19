@@ -124,3 +124,7 @@ Anizm sitesine kendi css kodunuzu eklemenizi sağlar. Web geliştiricileri için
 Video oynatıcılarında ki istenmeyen logoları kaldırır. Ve farenizi ekranın alt köşesine götürüp beklediğinizde kontrolleri gizler. (Takıntılı kişiler içindir.)
 
 **Not:** Google drive oynatıcısının sadece sol alt köşesi için geçerlidir.
+
+### Son görülme bilgisini devre dışı bırak
+
+Cihazınızdan, her 2 saniyede bir Anizm sunucularına gönderilen "Son görülme" bilgisini göndermeyi engeller.

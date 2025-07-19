@@ -23,9 +23,33 @@
     font-weight: 100 !important;
 }
 
-#deleteWatched {
+#deleteWatched, .ui.button.follow-btn:not(.basic) {
     background-color: var(--primaryColorDarker);
 }
+
+.ui.basic.button.follow-btn {
+    background-color: var(--primaryColorDarker) !important;
+    color: #fff !important;
+    font-family: "Merriweather Sans", sans-serif;
+    font-size: 100%;
+    box-shadow: none !important;
+}
+.ui.button.follow-btn:not(.basic) {
+    font-family: "Merriweather Sans", sans-serif;
+    font-size: 100%;
+    font-weight: 100 !important;
+}
+
+#addWatched, .follow-btn.red{
+    background-color: var(--themeBgColor) !important;
+    box-shadow: 0px 0px 0px 1px var(--primaryColor) inset !important;
+    font-family: "Merriweather Sans", sans-serif;
+    font-size: 100%;
+}
+
+
+
+
 
 .anizm_themeBackground,
 .posterBlock .posterAlt,
@@ -209,14 +233,6 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 
 
 
-#addWatched{
-    background-color: var(--themeBgColor) !important;
-    box-shadow: 0px 0px 0px 1px var(--primaryColor) inset;
-}
-
-
-
-
 .watching {
     color: var(--suAnIzlediklerim) !important;
 }
@@ -344,6 +360,12 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 
 .episodeTranslatorNote>div:nth-child(2) {
     background-color: var(--primaryColor) !important;
+}
+
+[data-translatorclick].active .translatorCompactBox {
+    background-color: var(--primaryColor) !important;
+    border-color: var(--primaryColorLighter) !important;
+    box-shadow: 0 0 10px var(--primaryColorDarker);
 }
 
 

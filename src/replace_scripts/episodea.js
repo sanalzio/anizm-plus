@@ -15,26 +15,46 @@ site_js.controller.register("episodepage", {
         if (translators.length == 1) {
             // $(".episodePlayer").html("");
             // Array.from(document.getElementsByClassName("episodePlayer")).forEach(el => el.innerHTML = "");
-            document.getElementById("videoFrame").innerHTML = "";
-            site_js.loader.set(".episodePlayer ");
+            document.getElementsByClassName("episodePlayerContent")[0].innerHTML = "";
+            site_js.loader.set(".episodePlayerContent ");
         }
     },
 
     loadTranslator: function (e) {
-        $(".episodePlayers").html("");
-        $(".episodePlayer").html("");
-        site_js.loader.set(".episodePlayer ");
-        var self = this;
         e.preventDefault();
 
-        $("[data-translatorclick].active").removeClass("active");
+        // .episodePlayers ve .episodePlayerContent alanlarını temizle
+        document.querySelector(".episodePlayers").innerHTML = '';
+        document.querySelector(".episodePlayerContent").innerHTML = '';
 
-        var elem = $(e.currentTarget);
+        // Yükleyici göster
+        site_js.loader.set(".episodePlayerContent");
 
-        elem.addClass("active");
+        var self = this;
 
-        site_js.request.send(elem.attr("translator"), function (result) {
-            $(".episodePlayers").html(result.data);
+        // Tüm aktif çevirmenlerin "active" sınıfını kaldır
+        document.querySelectorAll("[data-translatorclick]").forEach(function (el) {
+            el.classList.remove("active");
+        });
+        document.querySelectorAll(".translatorCompactBox").forEach(function (el) {
+            el.classList.remove("active");
+        });
+
+        // Tıklanan öğeyi al
+        var elem = e.currentTarget;
+
+        // Linke ve kutuya "active" sınıfını ekle
+        elem.classList.add("active");
+        var compactBox = elem.querySelector(".translatorCompactBox");
+        if (compactBox) {
+            compactBox.classList.add("active");
+        }
+
+        // "translator" attribute'unu al
+        var translatorAttr = elem.getAttribute("translator");
+
+        site_js.request.send(translatorAttr, function (result) {
+            document.querySelector(".episodePlayers").innerHTML = result.data;
             self.autoSelectVideo();
         });
     },
@@ -42,44 +62,80 @@ site_js.controller.register("episodepage", {
     loadPlayer: function (e) {
         e.preventDefault();
 
-        $("[data-playerclick].active").each(function () {
-            var elem = $(this);
+        // Aktif olan tüm [data-playerclick] öğelerinden "active" ve içindeki "i" etiketinden "check" sınıfını kaldır
+        document.querySelectorAll("[data-playerclick].active").forEach(function (el) {
+            el.classList.remove("active");
 
-            elem.removeClass("active");
-
-            elem.find("i").removeClass("check");
+            var icon = el.querySelector("i");
+            if (icon) {
+                icon.classList.remove("check");
+            }
         });
 
-        var elem = $(e.currentTarget);
+        var elem = e.currentTarget;
 
-        $("#players span").text(elem.find("span").text());
+        // #players span içeriğini tıklanan öğedeki span içeriğiyle değiştir
+        var playersSpan = document.querySelector("#players span");
+        var clickedSpan = elem.querySelector("span");
+        if (playersSpan && clickedSpan) {
+            playersSpan.textContent = clickedSpan.textContent;
+        }
 
-        elem.addClass("active").find("i").addClass("check");
-        $(".episodePlayer").html("");
-        site_js.loader.set(".episodePlayer"); // Noktalı virgülü kaldırdım
+        // Tıklanan elemana "active", içindeki <i> öğesine "check" sınıfı ekle
+        elem.classList.add("active");
+        var icon = elem.querySelector("i");
+        if (icon) {
+            icon.classList.add("check");
+        }
 
-        site_js.request.send(elem.attr("video"), function (result) {
-            $(".episodePlayer").html(result.player);
-            $(".playerTranslator").html(result.translator);
-            $(".playerUploader").html(result.staff);
-            $(".playerActions, .playerTranslator").removeClass("passive");
+        // .episodePlayerContent içeriğini temizle ve loader göster
+        var contentContainer = document.querySelector(".episodePlayerContent");
+        if (contentContainer) {
+            contentContainer.innerHTML = '';
+            site_js.loader.set(".episodePlayerContent");
+        }
 
-            var reportLink = $("[data-playerreport]");
+        // "video" attribute’unu al
+        var videoAttr = elem.getAttribute("video");
 
-            reportLink.attr(
-                "href",
-                reportLink
-                    .attr("href")
-                    .replace(
-                        /video\/\d+/g,
-                        "video/" + elem.attr("video").match(/video\/(\d+)/)[1]
-                    )
-            );
+        site_js.request.send(videoAttr, function (result) {
+            if (contentContainer) {
+                contentContainer.innerHTML = result.player;
+            }
 
-            site_js.loader.remove(".playerPanel ");
+            var translatorContainer = document.querySelector(".playerTranslator");
+            if (translatorContainer) {
+                translatorContainer.innerHTML = result.translator;
+            }
+
+            var uploaderContainer = document.querySelector(".playerUploader");
+            if (uploaderContainer) {
+                uploaderContainer.innerHTML = result.staff;
+            }
+
+            document.querySelectorAll(".playerActions, .playerTranslator").forEach(function (el) {
+                el.classList.remove("passive");
+            });
+
+            // Report link güncelle
+            var reportLink = document.querySelector("[data-playerreport]");
+            if (reportLink) {
+                var currentHref = reportLink.getAttribute("href");
+                var match = videoAttr.match(/video\/(\d+)/);
+                if (match) {
+                    var newHref = currentHref.replace(/video\/\d+/g, "video/" + match[1]);
+                    reportLink.setAttribute("href", newHref);
+                }
+            }
+
+            site_js.loader.remove(".playerPanel");
         });
 
-        $("#players").trigger("click");
+        // jQuery'deki .trigger("click") işlevinin yerine tıklama olayını tetikle
+        var playersElem = document.querySelector("#players");
+        if (playersElem) {
+            playersElem.dispatchEvent(new Event("click"));
+        }
     },
 
     autoSelectFansub: function () {
@@ -175,41 +231,71 @@ site_js.controller.register("episodepage", {
             return;
         }
 
-        var players = $("[data-playerclick]");
-
         document.querySelector("[data-playerclick]").click();
         // players.parent().find("[data-playerclick]:first-child").click();
     },
 
     filteredText: "",
 
-    filterEpisodes: site_js.helpers.delay(function (e) {
-        var self = this;
-        var text = $(e.currentTarget).val().trim();
-        var searched = false;
+    filterEpisodes: site_js.helpers.delay(function () {
+        try {
+            var self = this;
 
-        if (self.filteredText != text) {
-            $(".info_episodeList .episodeLine").hide();
+            var filterInput = document.getElementById('episodeFilterInput');
+            var text = filterInput ? filterInput.value.trim() : "";
 
-            $(
-                ".info_episodeList .episodeLine .title:contains(" + text + ")"
-            ).each(function () {
-                searched = true;
+            var searched = false;
 
-                $(this).closest(".episodeLine").show();
-            });
+            if (self.filteredText !== text) {
+                var episodeLines = document.querySelectorAll(".info_episodeList .episodeLine");
 
-            $(".episodeLine.created").remove();
+                // Tüm bölümleri gizle
+                episodeLines.forEach(function (el) {
+                    el.style.display = "none";
+                });
 
-            if (searched == false) {
-                $(".info_episodeList .anizm_boxContent ").append(
-                    '<div class="episodeLine created pfull anizm_textUpper anizm_textBold">' +
-                        "<span>Bölüm bulunamadı.</span>" +
-                        "</div>"
-                );
+                if (text) {
+                    // Uyan başlığa sahip bölümleri göster
+                    var titles = document.querySelectorAll(".info_episodeList .episodeLine .title");
+                    titles.forEach(function (title) {
+                        if (title.textContent.toLowerCase().includes(text.toLowerCase())) {
+                            var episodeLine = title.closest(".episodeLine");
+                            if (episodeLine) {
+                                episodeLine.style.display = "";
+                                searched = true;
+                            }
+                        }
+                    });
+                } else {
+                    // Metin boşsa tüm bölümleri göster
+                    episodeLines.forEach(function (el) {
+                        el.style.display = "";
+                    });
+                    searched = true;
+                }
+
+                // Daha önce oluşturulmuş "Bölüm bulunamadı" mesajlarını kaldır
+                document.querySelectorAll(".episodeLine.created").forEach(function (el) {
+                    el.remove();
+                });
+
+                if (!searched) {
+                    var container = document.querySelector(".info_episodeList .anizm_boxContent");
+                    if (container) {
+                        var message = document.createElement("div");
+                        message.className = "episodeLine created pfull anizm_textUpper anizm_textBold";
+                        message.innerHTML = "<span>Bölüm bulunamadı.</span>";
+                        container.appendChild(message);
+                    }
+                }
+
+                self.filteredText = text;
             }
-
-            self.filteredText = text;
+        } catch (err) {
+            // Hata durumunda tüm bölümleri göster
+            document.querySelectorAll(".info_episodeList .episodeLine").forEach(function (el) {
+                el.style.display = "";
+            });
         }
-    }, 500),
+    }, 500)
 });

@@ -287,7 +287,7 @@ Object.prototype.isEmpty = function () {
 function search(rawQuery, messageFunc, noFoundMsg) {
 
     const options = new Object();
-    const optionsRegexp = /#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):(\d+|[\w,!]+)/gi;
+    const optionsRegexp = /(["'])(#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,! \-]+))\1|#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,!\-]+)/gi;
     const optionsRegexpMatches = [...rawQuery.matchAll(optionsRegexp)];
 
     const controllOptions = (title, year, malpoint, lastEpisode, categoriesObj) => {
@@ -363,33 +363,35 @@ function search(rawQuery, messageFunc, noFoundMsg) {
     if (optionsRegexpMatches)
         optionsRegexpMatches.forEach(optionMatch => {
 
-            const key = optionMatch[1].toLowerCase();
+            if (optionMatch[5]) optionMatch[3] = optionMatch[5], optionMatch[4] = optionMatch[6];
+
+            const key = optionMatch[3].toLowerCase();
 
             switch(key) {
 
                 case "sort":
                 case "orderby":
                 case "tagmode":
-                    options[key] = optionMatch[2].toLowerCase();
+                    options[key] = optionMatch[4].toLowerCase();
                     break;
 
                 case "year":
-                    options[key] = optionMatch[2];
+                    options[key] = optionMatch[4];
                     break;
 
                 case "tags":
-                    optionMatch[2].toLocaleLowerCase("tr").split(",").forEach(tag => {
+                    optionMatch[4].toLocaleLowerCase("tr").split(",").forEach(tag => {
                         if (tag.startsWith("!"))
                             options["excludeTags"] = [...(options["excludeTags"] ?? []), tag.slice(1)]
                         else
                             options[key] = [...(options[key] ?? []), tag]
                             // options[key].push(tag);
                     })
-                    // options[key] = [...(options[key] ?? []), ...(optionMatch[2].toLocaleLowerCase("tr").split(","))];
+                    // options[key] = [...(options[key] ?? []), ...(optionMatch[4].toLocaleLowerCase("tr").split(","))];
                     break;
 
                 default:
-                    options[key] = Number(optionMatch[2]);
+                    options[key] = Number(optionMatch[4]);
                     break;
             }
         });
@@ -1091,7 +1093,7 @@ searchBtn.addEventListener("click", () => {
     if (params.get("theme"))
         parameters += "theme=" + params.get("theme") + "&";
 
-    location.search = "?" + parameters + "q=" + encodeURI(queryInput.value);
+    location.search = "?" + parameters + "q=" + encodeURIComponent(queryInput.value).replaceAll();
 
 });
 
@@ -1217,7 +1219,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     } else {
         
-        const query = decodeURI(params.get("q"));
+        const query = decodeURIComponent(params.get("q"));
 
         document.title = query + " - Anizm arama";
 

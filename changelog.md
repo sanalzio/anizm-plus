@@ -1,3 +1,7 @@
+# 1.2.4
+- Yeni ara yüze uyum sağlandı.
+- "Son görülme" bilgisini devre dışı bırakma özelliği eklendi.
+
 # 1.2.3
 - Detaylı arama için bölüm sayısı göstergesi eklendi. (Deneysel)
 - Aincrad oynatıcısı için; bilgisayarlarda "ç" tuşu ile bir kare geriye, "." tuşu ile bir kare ileriye atlama desteği, telefon ve tabletlerde ise ekranın sağ /sol bölgelerine çift tıklayınca 5 saniye atlama, ortaya çift tıklanınca tam ekrana girme/çıkma özellikleri getirildi.

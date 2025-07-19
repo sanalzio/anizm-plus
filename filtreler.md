@@ -28,6 +28,10 @@ tantei #maxmalp:7 #minmalp:6 #sort:malp #orderby:asc
   - Değer: 1 - Sonsuz arası bir sayı.
 - `eps`: Bölüm sayısı filtresi.
   - Değer: 1 - Sonsuz arası bir sayı.
+- `mineps`: Minimum bölüm sayısı filtresi.
+  - Değer: 1 - Sonsuz arası bir sayı.
+- `maxeps`: Maximum bölüm sayısı filtresi.
+  - Değer: 1 - Sonsuz arası bir sayı.
 - `minwords`: Minimum bölüm sayısı filtresi.
   - Değer: 1 - Sonsuz arası bir sayı.
 - `maxwords`: Maximum bölüm sayısı filtresi.
@@ -49,6 +53,15 @@ tantei #maxmalp:7 #minmalp:6 #sort:malp #orderby:asc
   - Değerler:
     - `asc`: Düşükten yükseğe sıralar.
     - `desc`: Yüksekten düşüğe sıralar.
+- `tags`: Etiketler için filtreleme.
+  - Örenk kullanım: `"#tags:kızların aşkı,komedi,!aksiyon"`
+  - **Dikkat!** Eğer içerisinde boşluk içeren bir etiket arıyorsanız ifadeyi tırnak içine almanız gerekir. Ve eğer etiketin başına ünlem (`!`) koyarsanız o etikete sahip olmayan animeleri arar.
+  - Değerler:
+    `Aksiyon`, `Arabalar`, `Askeri`, `Bilim-Kurgu`, `Bunama`, `Büyü`, `Çocuklar`, `Dedektif`, `Dementia`, `Doğaüstü-Güçler`, `Dövüş`, `Dövüş Sanatları`, `Dram`, `Ecchi`, `Erkeklerin Aşkı`, `Fantastik`, `Gerilim`, `Gizem`, `Harem`, `Hazine-Avcılığı`, `Josei`, `Kızların Aşkı`, `Komedi`, `Korku`, `Live Action`, `Macera`, `Mecha`, `Movie`, `Müzik`, `Ninja`, `OAD - ONA - OVA`, `Okul`, `Oyun`, `Parodi`, `Polisiye`, `Politik`, `Psikolojik`, `Romantizm`, `Samuray`, `Savaş`, `Seinen`, `Şeytanlar`, `Shoujo`, `Shoujo-Ai`, `Shounen`, `Shounen-Ai`, `Spor`, `Süper-Güç`, `Tarihi`, `Tuhaf`, `Uzay`, `Vampir`, `Yaoi`, `Yaşamdan Kesitler`, `Yuri`
+- `tagmode`: Etiketlerin filtrelenme biçimini belirler.
+  - Değerler:
+    - "or": girilen herhangi bir etikete sahipse.
+    - "and" (varsayılan): girilen tüm etiketlere sahipse.
 
 > [!NOTE]
 > **Eklenme tarihine ve bölüm sayısında göre yapılan filtrelemeler hatalı sonuçlar gösterebilir bunun nedeni genellikle veri setinin hatalı olmasıdır. Bu Anizm yetkililerinden kaynaklı bir durum kodla alakalı değil.**
