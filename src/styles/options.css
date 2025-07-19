@@ -405,3 +405,18 @@ option[value="gray"] { color: var(--grayThemeColor); }
 .bg-select-container, #color-theme-select-container {
     padding-left: 1rem;
 }
+
+
+@media only screen and (max-width: 600px) {
+    #main{
+        width: 100%;
+        height: fit-content;
+        min-height: fit-content;
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    header, footer {
+        border-radius: 0;
+    }
+}

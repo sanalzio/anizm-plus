@@ -1,3 +1,7 @@
+# 1.2.5
+- Mobil için ara yüz düzenlemeleri yapıldı.
+- Yeni versiyon bilgilendirme sistemi eklendi.
+
 # 1.2.4
 - Yeni ara yüze uyum sağlandı.
 - "Son görülme" bilgisini devre dışı bırakma özelliği eklendi.

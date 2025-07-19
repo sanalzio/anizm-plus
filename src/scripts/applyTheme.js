@@ -20,6 +20,7 @@ themeIds.forEach(themeId => {
 
 let themeLink = document.getElementById("theme-link");
 let logoImg = document.getElementById("logo");
+let faviconLink = document.getElementById("favicon");
 
 
 function switchTheme(themeId) {
@@ -38,6 +39,7 @@ function switchTheme(themeId) {
 
 document.addEventListener("DOMContentLoaded", () => {
     browserObj.storage.local.get(["themeId", "applyColor"], function (result) {
-        if (result.applyColor) switchTheme(result.themeId || "orange");
+        if (result.applyColor && result.themeId)
+            switchTheme(result.themeId || "orange");
     });
 });

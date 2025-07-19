@@ -5,7 +5,7 @@ bun minify_manifest.js
 #### Minify Javascript ####
 
 # scripts/
-bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/scripts/ ./scripts/applyTheme.js ./scripts/arama.js ./scripts/options.js ./scripts/popup.js
+bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/scripts/ ./scripts/applyTheme.js ./scripts/arama.js ./scripts/options.js ./scripts/popup.js ./scripts/newversion.js
 # inject_scripts/
 bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/inject_scripts/ ./inject_scripts/aincrad_inject.js ./inject_scripts/chatango.js ./inject_scripts/document_start.js ./inject_scripts/document_end.js ./inject_scripts/player_inject_css.js ./inject_scripts/chat_window_inject.js
 # replace_scripts/
@@ -24,6 +24,7 @@ css-minify -d ./styles/
 mv ./css-dist/main.min.css ./build/styles/main.css
 mv ./css-dist/options.min.css ./build/styles/options.css
 mv ./css-dist/popup.min.css ./build/styles/popup.css
+mv ./css-dist/newversion.min.css ./build/styles/newversion.css
 rm -rf css-dist
 # minify ./styles/main.css > ./build/styles/main.css
 # minify ./styles/options.css > ./build/styles/options.css
@@ -59,6 +60,7 @@ minify ./docs/assets/css/pilcrow.css > ./build/docs/assets/css/pilcrow.css
 minify arama.html > ./build/arama.html
 minify options.html > ./build/options.html
 minify popup.html > ./build/popup.html
+minify newversion.html > ./build/newversion.html
 
 #### Minify HTML ####
 

@@ -5,9 +5,6 @@
     --tamaladiklarim: #7FA6E0;
     --izleyeceklerim: #E8B17D;
     --araVerdiklerim: #D3D3D3;
-
-    --warning: #ff392f;
-    --warningDark: #ff2116;
 }
 
 /* --- Sabitler --- */
@@ -142,24 +139,19 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 
 #custom-comment-system .ui.primary.button,
 .anizm_button[style*="background-color:#5c6bc0"],
-.anizm_button[style*="background-color: #5c6bc0"] {
+.anizm_button[style*="background-color: #5c6bc0"],
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"] {
     background-color: var(--primaryColor) !important;
 }
 #custom-comment-system .ui.primary.button:hover,
 .anizm_button[style*="background-color:#5c6bc0"]:hover,
 .anizm_button[style*="background-color: #5c6bc0"]:hover,
 .ui.active.button,
-.ui.button:hover {
-    background-color: var(--primaryColorDarker) !important;
-}
-
-.anizm_button[style*="background-color:red"],
-.anizm_button[style*="background-color: red"] {
-    background-color: var(--warning) !important;
-}
+.ui.button:hover,
 .anizm_button[style*="background-color:red"]:hover,
 .anizm_button[style*="background-color: red"]:hover {
-    background-color: var(--warningDark) !important;
+    background-color: var(--primaryColorDarker) !important;
 }
 
 

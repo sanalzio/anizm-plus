@@ -13,9 +13,6 @@ document.getElementById("version").textContent = browserObj.runtime.getManifest(
 
 
 
-
-const faviconLink = document.getElementById("favicon");
-
 const themeSelect = document.getElementById("theme-select");
 themeSelect.addEventListener("change", () => {
     switchTheme(themeSelect.value);

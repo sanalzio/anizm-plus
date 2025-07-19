@@ -137,10 +137,10 @@ footer {
 
 /* episode page */
 
-.animeIzleBolumListesi > .animeDetayKutu {
+/* .animeIzleBolumListesi > .animeDetayKutu {
     margin: 0;
     top: -55px;
-}
+} */
 /* .animeIzleBolumListesi .follow-btn {
     margin-right: 0;
     margin-bottom: 5px;
@@ -161,7 +161,7 @@ footer {
     line-height: 1rem !important;
 }
 
-.episodeTranslatorNote {
+/* .episodeTranslatorNote {
     padding: 0px 16px 12px 16px !important;
 }
 .playerTranslator {
@@ -170,6 +170,15 @@ footer {
 .episodeTranslatorNote > .ui.icon.button {
     position: relative;
     right: -16px !important;
+} */
+
+@media only screen and (max-width: 360px) {
+    .playerUploader {
+        min-width: 100%;
+    }
+    #pageContent > h3 {
+        margin-top: 50px !important;
+    }
 }
 
 /* episode page */

@@ -1,5 +1,17 @@
 // Tarayıcı uyumluluğu için
 const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+
+browserObj.runtime.onStartup.addListener(() => {
+    fetch(
+        "https://raw.githubusercontent.com/sanalzio/anizm-plus/refs/heads/master/src/manifest.json"
+    ).then(res => res.text())
+    .then(data => {
+        const newVersion = data.match(/(["'])version\1\s*?:\s*?(["'])([\d.]+)\2/i)[3];
+        if (newVersion && newVersion > browserObj.runtime.getManifest().version)
+            browserObj.tabs.create({ url: "newversion.html#" + newVersion });
+    });
+});
+
 const getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 

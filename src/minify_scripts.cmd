@@ -1,6 +1,6 @@
 @ECHO OFF
 
-bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/scripts/ ./scripts/applyTheme.js ./scripts/arama.js ./scripts/options.js ./scripts/popup.js
+bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/scripts/ ./scripts/applyTheme.js ./scripts/arama.js ./scripts/options.js ./scripts/popup.js ./scripts/newversion.js
 
 bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/inject_scripts/ ./inject_scripts/aincrad_inject.js ./inject_scripts/chatango.js ./inject_scripts/document_start.js ./inject_scripts/document_end.js ./inject_scripts/player_inject_css.js ./inject_scripts/chat_window_inject.js
 
