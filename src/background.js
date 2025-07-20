@@ -99,11 +99,11 @@ browserObj.webRequest.onBeforeRequest.addListener(
             return { redirectUrl: getURL("assets/favicon/" + settings.themeId + ".png") };
 
 
-        if (details.url.includes("anizm.pro/mal.svg"))
+        if (details.url.split("#")[0].split("?")[0].endsWith("/mal.svg"))
             return { redirectUrl: getURL("assets/mal.svg") };
 
 
-        if (settings.searchActive !== false && (details.url.includes("anizm.pro/arama") || details.url.includes("anizle.com/arama"))) {
+        if (settings.searchActive !== false && (details.url.split("#")[0].split("?")[0].endsWith("/arama"))) {
 
             if (settings.applyColor !== true) {
                 return { redirectUrl: getURL("arama.html?hostname=" + details.url.split("/")[2]) };

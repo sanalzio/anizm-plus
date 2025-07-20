@@ -55,12 +55,27 @@ catch {} */
 
 // Anime detayı sayfalarındaki kategoriler başlığına link ekleme
 try {
-    (async () => {
+    // burada DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+    (function onDomReady(callback) {
+        if (document.querySelector(".anizm_sectionTitle span")) {
+            callback();
+        } else {
+            new MutationObserver((_, obs) => {
+                if (document.querySelector(".anizm_sectionTitle span")) {
+                    obs.disconnect();
+                    callback();
+                }
+            }).observe(document.documentElement, {
+                childList: true,
+                subtree: true,
+            });
+        }
+    })(() => {
         Array.from(
             document.querySelectorAll(".anizm_sectionTitle span")
         ).filter(el => el.textContent.toLowerCase() == "kategoriler")[0]
         .outerHTML = "<a href=\"/kategoriler\" class=\"span\">Kategoriler</a>";
-    })();
+    });
 }
 catch {}
 
@@ -75,25 +90,42 @@ catch {}
  */
 
 try {
-
-    const episodeButtons = Array.from(document.querySelectorAll(".anizm_alignRight>a:not(a[href*=\"raporver\"])"));
-    
-    if (episodeButtons[0].textContent.trim().toLocaleLowerCase("tr").startsWith("sonraki"))
-        document.addEventListener("keydown", function (event) {
-            if (event.ctrlKey && event.key == "ArrowRight") { event.preventDefault();document.querySelector(".anizm_alignRight>a:not(a[href*=\"raporver\"])").click(); }
-        });
-    else {
-        if (episodeButtons.length == 1)
-            document.addEventListener("keydown", function (event) {
-                if (event.ctrlKey && event.key == "ArrowLeft") { event.preventDefault();document.querySelector(".anizm_alignRight>a:not(a[href*=\"raporver\"])").click(); }
+    // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+    (function onDomReady(callback) {
+        if (document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])")) {
+            callback();
+        } else {
+            new MutationObserver((_, obs) => {
+                if (document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])")) {
+                    obs.disconnect();
+                    callback();
+                }
+            }).observe(document.documentElement, {
+                childList: true,
+                subtree: true,
             });
-        else
-            document.addEventListener("keydown", function (event) {
-                if (event.ctrlKey && event.key == "ArrowLeft") { event.preventDefault();document.querySelector(".anizm_alignRight>a:not(a[href*=\"raporver\"])").click(); }
-                if (event.ctrlKey && event.key == "ArrowRight") { event.preventDefault();document.querySelectorAll(".anizm_alignRight>a:not(a[href*=\"raporver\"])")[1].click(); }
-            });
-    }
+        }
+    })(() => {
 
+        const episodeButtons = Array.from(document.querySelectorAll("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])>a:not(a[href*=\"raporver\"])"));
+        
+        if (episodeButtons[0].textContent.trim().toLocaleLowerCase("tr").startsWith("sonraki"))
+            document.addEventListener("keydown", function (event) {
+                if (event.ctrlKey && event.key == "ArrowRight") { event.preventDefault();document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])>a:not(a[href*=\"raporver\"])").click(); }
+            });
+        else {
+            if (episodeButtons.length == 1)
+                document.addEventListener("keydown", function (event) {
+                    if (event.ctrlKey && event.key == "ArrowLeft") { event.preventDefault();document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])>a:not(a[href*=\"raporver\"])").click(); }
+                });
+            else
+                document.addEventListener("keydown", function (event) {
+                    if (event.ctrlKey && event.key == "ArrowLeft") { event.preventDefault();document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])>a:not(a[href*=\"raporver\"])").click(); }
+                    if (event.ctrlKey && event.key == "ArrowRight") { event.preventDefault();document.querySelectorAll("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])>a:not(a[href*=\"raporver\"])")[1].click(); }
+                });
+        }
+
+    });
 } catch {
     console.log("Bilgilendirme: Bölüm geçme tuşlarına klavye kısayolları atanamadı.");
 }
@@ -123,54 +155,34 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
     
     if (result.minCssActive !== false) {
 
-        // bölümü "izledim/izlemedim" tuşları için grafik arayüzü düzenlemesi
-        /* try {
-            const cont = document.getElementsByClassName("animeIzleInnerContainer")[0];
-            const es = document.getElementsByClassName("anizm_alignRight")[0];
-            // const fs = document.getElementsByClassName("episodeTranslators")[0];
-            const fl = document.getElementById("fanList");
-
-
-            cont.insertBefore(fl, es);
-
-            fl.className = "playerActions mb-3 anizm_displayTable anizm_fullWidth";
-
-
-            const aWED = document.getElementById("addWatched");
-            const dWED = document.getElementById("deleteWatched");
-
-            es.insertBefore(dWED, es.childNodes[0]);
-            es.insertBefore(aWED, dWED);
-        } catch {} */
-
         // player seçenekleri için grafik arayüzü düzenlemesi
         try {
-            const cont = document.getElementById("videoFrame");
-            const vidContainer = document.getElementsByClassName("episodePlayerContent")[0];
-            // const fs = document.getElementsByClassName("episodeTranslators")[0];
-            const fl = document.getElementById("fanList");
+            // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+            (function onDomReady(callback) {
+                if (document.getElementById("fanList")) {
+                    callback();
+                } else {
+                    new MutationObserver((_, obs) => {
+                        if (document.getElementById("fanList")) {
+                            obs.disconnect();
+                            callback();
+                        }
+                    }).observe(document.documentElement, {
+                        childList: true,
+                        subtree: true,
+                    });
+                }
+            })(() => {
+                const cont = document.getElementById("videoFrame");
+                const vidContainer = document.getElementsByClassName("episodePlayerContent")[0];
+                const fl = document.getElementById("fanList");
 
-            cont.insertBefore(fl, vidContainer);
+                cont.insertBefore(fl, vidContainer);
 
-            fl.classList.remove("mt-5");
-
-            /* const aWED = document.getElementById("addWatched");
-            const dWED = document.getElementById("deleteWatched");
-
-            es.insertBefore(dWED, es.childNodes[0]);
-            es.insertBefore(aWED, dWED); */
+                fl.classList.remove("mt-5");
+            });
+            
         } catch {}
-
-        // animeyi "takip et" tuşları için grafik arayüzü düzenlemesi
-        /* try {
-            const episodeListContainer = document.getElementsByClassName("animeIzleBolumListesi")[0];
-            const followBtn = document.getElementsByClassName("follow-btn")[0];
-            const followBtnContainer = followBtn.parentNode;
-            const episodeList = document.getElementsByClassName("info_episodeList")[0];
-
-            episodeListContainer.insertBefore(followBtnContainer, episodeList);
-        }
-        catch {} */
     }
     
     /* -- "izledim/izlemedim" düğmesi yer düzenlemesi -- */
@@ -179,41 +191,67 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
 
 
-    // Arama sayfası için başlığa düğme ekle
-    /* if (result.searchActive !== false) {
-        try {
-            document.querySelector("div.menu:has(ul)>ul>li:nth-child(5)")
-                .insertAdjacentHTML("afterend", '<li><a title="ARAMA" href="/arama">ARAMA</a></li>')
-        } catch {}
-    } */
-
         
     // Ana sayfadaki sağ üstteki linkleri düzenle
     try {
-        const linkItems = result.links ?? ["takvim", "tavsiye-robotu", "fansublar", "arama"];
-
-        if (result.links.length > 0) {
-
-            const listsList = document.querySelector("#scale0id > ul");
-
-            [...listsList.children]
-                .filter(el => !el.classList.contains("headerSearchContainer"))
-                .forEach(el => el.remove());
+        // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+        (function onDomReady(callback) {
+            if (document.querySelector("#menuContent ul")) {
+                callback();
+            } else {
+                new MutationObserver((_, obs) => {
+                    if (document.querySelector("#menuContent ul")) {
+                        obs.disconnect();
+                        callback();
+                    }
+                }).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        })(() => {
+            const linkItems = result.links ?? ["takvim", "tavsiye-robotu", "fansublar", "arama"];
     
-                const listHTML = linkItems.map(link => {
-                const linkTitle = link.replace(/-/g, " ");
-                return `<li><a title="${linkTitle.toLocaleUpperCase("tr")}" href="${links[link]}">${linkTitle}</a></li>`;
-            }).join("");
-
-            listsList.insertAdjacentHTML("afterbegin", listHTML);
-        }/*  else {
-
-            document.body.insertAdjacentHTML("beforeend", "<style>div.menu:has(ul)>ul>li:not(li:has(a[title=\"TAKVİM\"]),li:has(a[title=\"ARAMA\"]),li:has(a[title=\"Tavsiye Robotu\"]),li:has(a[title=\"Fansublar\"]),li.headerSearchContainer){display:none}</style>");
-        } */
+            if (result.links.length > 0) {
+    
+                const listsList = document.querySelector("#menuContent ul");
+    
+                [...listsList.children]
+                    .filter(el => !el.classList.contains("headerSearchContainer"))
+                    .forEach(el => el.remove());
+        
+                    const listHTML = linkItems.map(link => {
+                    const linkTitle = link.replace(/-/g, " ");
+                    return `<li><a title="${linkTitle.toLocaleUpperCase("tr")}" href="${links[link]}">${linkTitle}</a></li>`;
+                }).join("");
+    
+                listsList.insertAdjacentHTML("afterbegin", listHTML);
+            }/*  else {
+    
+                document.body.insertAdjacentHTML("beforeend", "<style>div.menu:has(ul)>ul>li:not(li:has(a[title=\"TAKVİM\"]),li:has(a[title=\"ARAMA\"]),li:has(a[title=\"Tavsiye Robotu\"]),li:has(a[title=\"Fansublar\"]),li.headerSearchContainer){display:none}</style>");
+            } */
+        });
     } catch {}
 
 
     if (result.detailedSearch !== false)
-        document.querySelector(".searchTypeSelection .searchTypeOption[data-type=\"detailed\"]").click();
+        // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+        (function onDomReady(callback) {
+            if (document.querySelector(".searchTypeSelection .searchTypeOption")) {
+                callback();
+            } else {
+                new MutationObserver((_, obs) => {
+                    if (document.querySelector(".searchTypeSelection .searchTypeOption")) {
+                        obs.disconnect();
+                        callback();
+                    }
+                }).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        })(() => {
+            document.querySelector(".searchTypeSelection .searchTypeOption[data-type=\"detailed\"]").click();
+        });
 
 });

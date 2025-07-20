@@ -13,6 +13,11 @@ const SearchTypes = {
 let selectedSearchType = SearchTypes.FAST;
 
 
+// Mobil cihaz kontrolü için fonksiyon
+const isMobile = () => {
+    return window.innerWidth <= 992 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
 String.prototype.differenceCountForSearch = function (target) {
     let strA = this.toLowerCase().replace(/[,.:;\-]/g, " ").replace(/\s\s+/g, " ").replace(/[^a-z\d\s]/g, "").trim();
     if (strA.length === 0) return target.length;
@@ -108,10 +113,29 @@ $(() => {
     });
 
     // searchOverlay aç/kapa işlemleri.
-    $("#searching, .searchingIcon, .searchBarButton, .headerSearchIcon").click(
+    $("#searching, .searchingIcon, .searchBarButton, .headerSearchIcon, #homeSearchTrigger, #homeSearchInput, #mobileSearchTrigger",).click(
         function () {
+            const isCurrentlyShown = $("#searchOverlay").hasClass("searchShown");
             $("#searchOverlay, body").toggleClass("searchShown");
-            document.getElementById("fullViewSearchInput").focus();
+
+            if (isCurrentlyShown) {
+                // Overlay kapatılıyorsa keyboard'ı kapat
+                const searchInput = document.getElementById("fullViewSearchInput");
+                searchInput.blur();
+
+                // Mobil cihazlarda klavyeyi kapatmak için ek yöntem
+                if (isMobile()) {
+                    searchInput.setAttribute('readonly', 'readonly');
+                    setTimeout(() => {
+                        searchInput.removeAttribute('readonly');
+                    }, 100);
+                }
+            } else {
+                // Overlay açılıyorsa focus ver
+                setTimeout(() => {
+                    document.getElementById("fullViewSearchInput").focus();
+                }, 100);
+            }
             // It is already fetched in the current page.
             if (animeList.length > 0) return;
             fetch("getAnimeListForSearch")
@@ -121,6 +145,34 @@ $(() => {
                 });
         }
     );
+
+    // ESC tuşu ile overlay'ı kapatma
+    $(document).keyup(function (e) {
+        if (e.key === "Escape" && $("#searchOverlay").hasClass("searchShown")) {
+            $("#searchOverlay, body").removeClass("searchShown");
+            // ESC ile kapatıldığında da keyboard'ı kapat
+            const searchInput = document.getElementById("fullViewSearchInput");
+            searchInput.blur();
+
+            // Mobil cihazlarda klavyeyi kapatmak için ek yöntem
+            if (isMobile()) {
+                searchInput.setAttribute('readonly', 'readonly');
+                setTimeout(() => {
+                    searchInput.removeAttribute('readonly');
+                }, 100);
+            }
+        }
+    });
+
+    // Enter tuşu ile ilk sonuca gitme
+    $(".searchBarInput").keypress(function (e) {
+        if (e.which == 13 && matchedAnimes.length > 0) {
+            const firstResult = matchedAnimes[0];
+            if (firstResult && firstResult.info_slug) {
+                window.location.href = firstResult.info_slug;
+            }
+        }
+    });
 });
 
 const parseYear = (year) => {

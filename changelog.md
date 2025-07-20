@@ -1,3 +1,7 @@
+# 1.2.6
+- Yeni arama sistemine uyum sağlandı.
+- Bazen çalışmama sorunu çözüldü.
+
 # 1.2.5
 - Mobil için ara yüz düzenlemeleri yapıldı.
 - Yeni versiyon bilgilendirme sistemi eklendi.

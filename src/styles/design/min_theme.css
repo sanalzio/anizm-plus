@@ -39,9 +39,9 @@ html{
 
 
 
-/* .playerTranslator {
-    margin-bottom: .5rem;
-} */
+.playerTranslator {
+    margin-bottom: 20px;
+}
 
 
 
@@ -79,7 +79,7 @@ html{
 }
 
 ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track, #searchOverlay::-webkit-scrollbar-track {
-    border-radius: 0;
+    border-radius: 0 !important;
 }
 
 @-moz-document url-prefix() { /* Firefox için */
@@ -127,11 +127,12 @@ footer {
 .infoActions > div[info-addlist-button] {
     margin-top: 15px;
 }
-/* .infoActions > div:first-child > .follow-btn {
+.infoActions > div:first-child > .follow-btn {
     width: 100%;
+    margin-top: 15px;
     height: 40px;
     margin-bottom: -15px;
-} */
+}
 
 /* anime page */
 
@@ -172,12 +173,16 @@ footer {
     right: -16px !important;
 } */
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 992px) {
     .playerUploader {
         min-width: 100%;
     }
     #pageContent > h3 {
         margin-top: 50px !important;
+    }
+    #ham-toggler:checked ~ #menuContent #scale0id.userIcons:nth-last-of-type(1) {
+        top: 0 !important;
+        margin-top: 90vh;
     }
 }
 
@@ -186,15 +191,9 @@ footer {
 
 
 
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
     .ui.container.menuHeader {
         top: 0;
         left: 40px;
     }
-}
-
-@media only screen and (max-width: 768px) {
-    .anizm_alignRight {
-        text-align: right;
-    }
-}
+} */
