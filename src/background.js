@@ -22,8 +22,7 @@ let blockList = [
     "/js/pund.js",
     "/js/avgrtbdasdwsawqs.js",
     "https://cdn.jsdelivr.net/npm/devtools-detector",
-    "/metrics",
-    "ugloubeehun.com"
+    "/metrics"
 ];
 
 (async function () {
@@ -120,11 +119,7 @@ browserObj.webRequest.onBeforeRequest.addListener(
             "https://anizm.net/*",
 
             "https://cdn.jsdelivr.net/npm/devtools-detector",
-            "https://cdn.jsdelivr.net/npm/devtools-detector/",
-
-            "https://ugloubeehun.com/",
-            "*://ugloubeehun.com/*",
-            "http://ugloubeehun.com/*"
+            "https://cdn.jsdelivr.net/npm/devtools-detector/"
         ]
     },
     ["blocking"]

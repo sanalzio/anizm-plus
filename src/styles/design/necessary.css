@@ -22,6 +22,10 @@
     width: 3rem!important;
 }
 
+div.searchResultItem:has(img.mal-img) div.resultContent .animeSummary {
+    padding-right: 4rem;
+}
+
 /* Arama için MyAnimeList linki entegrasyonu */
 
 

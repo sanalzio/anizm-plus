@@ -154,9 +154,9 @@ site_js.controller.register("episodepage", {
 
                 if (fansubBtns.length > 1) {
                     const sortedBtns = fansubBtns
-                        .filter(btn => priorityFansubs.some(f => btn.getElementsByClassName("title")[0].innerText.toLocaleLowerCase("tr").includes(f)))
+                        .filter(btn => priorityFansubs.some(f => btn.innerText.toLocaleLowerCase("tr").includes(f)))
                         .map(btn => {
-                            const titleText = btn.getElementsByClassName("title")[0].innerText.toLocaleLowerCase("tr");
+                            const titleText = btn.innerText.toLocaleLowerCase("tr");
 
                             let priority = priorityFansubs.length;
                             for (let i = 0; i < priorityFansubs.length; i++) {

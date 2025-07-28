@@ -190,6 +190,39 @@ footer {
 
 
 
+/* notification menu */
+
+span.notification-icon > span.notification-badge {
+    padding: 0.3em!important;
+}
+
+div.menu.notification-menu {
+    overflow-x: hidden;
+    padding: .5rem!important;
+}
+
+div.notification-tab > span.episode-count,
+div.notification-tab > span.comment-count {
+    font-size: 110%;
+    padding: 0 0 0 3px !important;
+}
+
+
+.mobile-notification-wrapper {
+    position: static;
+}
+
+.mobile-notification-dropdown {
+    padding: .5rem!important;
+    right: 3px!important;
+    width: 100vw;
+}
+
+/* notification menu */
+
+
+
+
 
 /* @media only screen and (min-width: 992px) {
     .ui.container.menuHeader {

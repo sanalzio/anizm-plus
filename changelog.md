@@ -1,3 +1,7 @@
+# 1.2.7
+- Bildirimler menüsü için tema düzeltmeleri uygulandı.
+- Otomatik fansub seçme işlemi düzeltildi.
+
 # 1.2.6
 - Yeni arama sistemine uyum sağlandı.
 - Bazen çalışmama sorunu çözüldü.

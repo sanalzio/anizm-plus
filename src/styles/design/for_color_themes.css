@@ -459,3 +459,43 @@ input[data-episodefilter] {
 .popularAnimeSlideSection::before {
     background: rgba(120, 120, 120, 0.05);
 }
+
+
+
+#mobile-fixed-menu {
+    border-bottom: 2px solid var(--primaryColor);
+}
+.mobile-profile-item i {
+    color: var(--primaryColor);
+}
+
+
+
+
+/* notification menu */
+
+span.notification-icon > span.notification-badge {
+    background: var(--primaryColor) !important;
+}
+
+div.notification-item > div[style*="color:#ff9800"] {
+    color: var(--primaryColorLighter) !important;
+}
+div.notification-item[style*="background:#403000"] {
+    background: rgba(255,255,255,0.1) !important;
+}
+
+div.notification-tab > span.episode-count,
+div.notification-tab > span.comment-count {
+    color: var(--primaryColorLighter);
+}
+
+.mobile-mark-all-read {
+    background: var(--primaryColor);
+}
+.mobile-notification-badge {
+    background: var(--primaryColorLighter) !important;
+}
+
+
+/* notification menu */
