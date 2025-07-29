@@ -1,3 +1,6 @@
+# 1.2.8
+- Yeni reklam engelleme filtresi eklendi.
+
 # 1.2.7
 - Bildirimler menüsü için tema düzeltmeleri uygulandı.
 - Otomatik fansub seçme işlemi düzeltildi.

@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Anizm+",
-    "version": "1.2.7",
+    "version": "1.2.8",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
 
@@ -36,9 +36,7 @@
 
         "https://cdn.jsdelivr.net/npm/devtools-detector/",
 
-        "https://ugloubeehun.com/*",
-        "*://ugloubeehun.com/*",
-        "http://ugloubeehun.com/*"
+        "https://information-qot.com/code-process/*"
     ],
 
 
