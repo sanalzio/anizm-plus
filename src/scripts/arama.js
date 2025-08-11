@@ -1093,7 +1093,7 @@ searchBtn.addEventListener("click", () => {
     if (params.get("theme"))
         parameters += "theme=" + params.get("theme") + "&";
 
-    location.search = "?" + parameters + "q=" + encodeURIComponent(queryInput.value).replaceAll();
+    location.search = "?" + parameters + "q=" + encodeURIComponent(queryInput.value);
 
 });
 

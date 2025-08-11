@@ -1,3 +1,6 @@
+# 1.2.9
+- Yeni ara yüze uyum sağlandı.
+
 # 1.2.8
 - Yeni reklam engelleme filtresi eklendi.
 

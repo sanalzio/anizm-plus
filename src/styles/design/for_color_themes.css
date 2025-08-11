@@ -206,7 +206,7 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 
 
 
-.lastWatchNextButton, .lastWatchPrevButton, .popularAnimePrevButton, .popularAnimeNextButton {
+.lastWatchNextButton, .lastWatchPrevButton, .popularAnimePrevButton, .popularAnimeNextButton, .latestAddedNextButton, .latestAddedPrevButton {
     background-image: var(--scrollButton);
 }
 
