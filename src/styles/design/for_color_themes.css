@@ -499,3 +499,11 @@ div.notification-tab > span.comment-count {
 
 
 /* notification menu */
+
+
+
+
+
+.anizmEpisodeButton {
+    color: var(--primaryColorLighter);
+}

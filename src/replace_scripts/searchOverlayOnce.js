@@ -1097,7 +1097,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
         studiosSection = `<p class="animeOtherTitle">Stüdyolar: ${studiosHighlighted}</p>`;
     }
 
-    let tagsSection = animeInfo.categories ? `<p class="animeOtherTitle">Etiketler: ${animeInfo.categories.map(tagObj => tagObj.tag_title).join(", ")}</p>` : "";
+    // let tagsSection = animeInfo.categories ? `<p class="animeOtherTitle">Etiketler: ${animeInfo.categories.map(tagObj => tagObj.tag_title).join(", ")}</p>` : "";
 
     let otherNameSection = "";
     if (subtitleHighlighted) {
@@ -1108,6 +1108,64 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
     }
 
     let episodeCount = animeInfo.lastEpisode && animeInfo.lastEpisode.length > 0 ? getEpisodeCount(animeInfo.lastEpisode) : null;
+
+    // Kategorileri hazırla
+    let categoriesHTML = "";
+    if (animeInfo.categories && animeInfo.categories.length > 0) {
+        categoriesHTML = animeInfo.categories.map(category =>
+            `<a href="/kategoriler/${category.tag_id}" class="ui label small">${category.tag_title}</a>`
+        ).join('');
+    }
+
+    // Son eklenen bölümleri hazırla
+    const hasAnyEpisode =
+        animeInfo && animeInfo.lastEpisode && animeInfo.lastEpisode.length > 0;
+
+    // Mobil cihazlarda "Son eklenen bölüm" olarak göster ve sadece 1 bölüm listele
+    let latestEpisodeArea = "";
+
+    if (hasAnyEpisode) {
+        if (isMobile()) {
+            // Mobil için sadece 1 bölüm göster
+            if (animeInfo.lastEpisode && animeInfo.lastEpisode.length > 0) {
+                const episode = animeInfo.lastEpisode[0]; // İlk bölümü al
+                latestEpisodeArea = `<div class="latestEpisodesContainer">
+                    <span class="episodesText">Son eklenen bölüm:</span>
+                    <div class="buttonsInnerWrapper">
+                        <a class="anizmLinkWrapper" href="${episode.episode_slug}" target="_blank">
+                            <button class="anizmEpisodeButton">
+                                <p>
+                                    <span class="bg"></span>
+                                    <span class="text">${episode.episode_title}</span>
+                                </p>
+                            </button>
+                        </a>
+                    </div>
+                </div>`;
+            }
+        } else {
+            // Masaüstü için tüm bölümleri göster
+            latestEpisodeArea = `<div class="latestEpisodesContainer" style="display: flex;align-items: center;">
+                <span style="margin-right: 10px;" class="episodesText">Son eklenen bölümler:</span>
+                <div class="buttonsInnerWrapper">
+                ${(animeInfo.lastEpisode || [])
+                    .map((episode) => {
+                        return `
+                        <a class="anizmLinkWrapper" href="${episode.episode_slug}" target="_blank">
+                            <button class="anizmEpisodeButton">
+                                <p>
+                                    <span class="bg"></span>
+                                    <span class="text">${episode.episode_title}</span>
+                                </p>
+                            </button>
+                        </a>
+                `;
+                    })
+                    .join("")}
+                </div>
+            </div>`;
+        }
+    }
 
     return `<div class="searchResultItem">
 <div class="aramaPuanCircle">
@@ -1150,14 +1208,15 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
   </h5>
   ${otherNameSection}
   ${studiosSection}
-  ${tagsSection}
  </div>
  <p class="animeSummary">${synopsis}</p>
+ <!-- Kategori etiketlerini animeSummary'nin altına taşıdık -->
+ <div class="ui tag labels tiny gelismisAramaLabelWrapper">
+   ${categoriesHTML}
+ </div>
+ ${latestEpisodeArea}
 </div>
-<div class="resultTags">
- <span class="ui tag labels tiny gelismisAramaLabelWrapper">
- </span>
-</div>
+<!-- Boş resultTags div'ini kaldırdık -->
 </div>
 </div>`;
 };

@@ -1,3 +1,7 @@
+# 1.2.10
+- Yeni arama arayüzü uyarlandı.
+- Daha doğru bir yeni sürüm algılama sistemi yazıldı.
+
 # 1.2.9
 - Yeni ara yüze uyum sağlandı.
 

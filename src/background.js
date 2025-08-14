@@ -1,16 +1,35 @@
 // Tarayıcı uyumluluğu için
 const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
 
-browserObj.runtime.onStartup.addListener(() => {
+
+
+
+
+function versionCheck() {
     fetch(
         "https://raw.githubusercontent.com/sanalzio/anizm-plus/refs/heads/master/src/manifest.json"
     ).then(res => res.text())
     .then(data => {
-        const newVersion = data.match(/(["'])version\1\s*?:\s*?(["'])([\d.]+)\2/i)[3];
-        if (newVersion && newVersion > browserObj.runtime.getManifest().version)
-            browserObj.tabs.create({ url: "newversion.html#" + newVersion });
+        const versionMatch = data.match(/(["'])version\1\s*?:\s*?(["'])((\d+)\.(\d+)\.(\d+))\2/i).slice(3);
+        const newVersion = versionMatch.shift();
+        const currentVersion = browserObj.runtime.getManifest().version.split(".");
+        for (let i = 0; i < 4; i++) {
+            if (parseInt(versionMatch[i]) > parseInt(currentVersion[i])) {
+                browserObj.tabs.create({ url: "newversion.html#" + newVersion });
+
+                console.log("Yeni sürüm bulundu!");
+            }
+        }
+
+        console.log("Yeni sürüm bulunamadı.");
     });
-});
+}
+
+// Açılışta internet ile yeni sürüm taraması yap.
+browserObj.runtime.onStartup.addListener(versionCheck);
+
+
+
 
 const getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
