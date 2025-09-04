@@ -1,3 +1,12 @@
+# 1.3.0
+- Arama sonuçlarına AniList düğmesi eklendi.
+- Gereksiz "Sekmelere erişim" izni kaldırıldı.
+- Arama ara yüzüne iyileştirmeler uygulandı.
+- Genel ara yüz iyileştirmeleri uygulandı.
+- Daha doğru bir yeni sürüm algılama sistemi yazıldı.
+- Arkaplan düzenleme sistemi iyileştirildi.
+- Bazı reklamlar için gizleme uygulandı.
+
 # 1.2.10
 - Yeni arama arayüzü uyarlandı.
 - Daha doğru bir yeni sürüm algılama sistemi yazıldı.

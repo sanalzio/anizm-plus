@@ -13,6 +13,49 @@ const SearchTypes = {
 let selectedSearchType = SearchTypes.FAST;
 
 
+async function getAnilistUrl(malId) {
+    const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
+    const data = JSON.stringify({
+        query,
+        variables: { id: malId, type: "ANIME" },
+    });
+
+    try {
+        const response = await fetch("https://graphql.anilist.co", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: data,
+        });
+
+        const responseData = await response.json();
+        return responseData.data.Media.siteUrl || null;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    }
+}
+
+// aratılan url'leri kaydetmek için'
+window.anilistUrls = new Object();
+
+window.mal2anilistOpen = function (malIdInp) {
+
+    // eğer daha önceden kaydedildiyse direkt oradan alıyor
+    if (window.anilistUrls[malIdInp]) {
+        window.open(window.anilistUrls[malIdInp], "_blank");
+        return;
+    }
+
+    getAnilistUrl(parseInt(malIdInp))
+        .then(url => {
+            window.anilistUrls[malIdInp] = url;
+            window.open(url, "_blank");
+        });
+}
+
+
 // Mobil cihaz kontrolü için fonksiyon
 const isMobile = () => {
     return window.innerWidth <= 992 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -1189,6 +1232,9 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
  <a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${animeInfo.info_malid.toString()}">
   <img class="card-poster mal-img" src="/mal.svg" alt="MAL sayfası">
  </a>
+ <span target="_blank" class="anilist-link" onclick="mal2anilistOpen(${animeInfo.info_malid.toString()})">
+  <img class="card-poster anilist-img" src="/anilist.svg" alt="anilist sayfası">
+ </span>
 </div>
 </div>
 <div class="resultImgDate">

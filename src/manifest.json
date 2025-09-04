@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Anizm+",
-    "version": "1.2.10",
+    "version": "1.3.0",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
 
@@ -23,7 +23,6 @@
         "webRequest",
         "webRequestBlocking",
         "storage",
-        "tabs",
         // "<all_urls>"
 
 
@@ -119,7 +118,8 @@
                 "https://optraco.top/explorer/*",
                 "https://anizmplayer.com/*",
                 "https://anizm.strp2p.com/*",
-                "https://vidmoly.to/embed-*"
+                "https://vidmoly.to/embed-*",
+                "https://l455o.com/bkg/*"
             ],
             "all_frames": true,
             "js": ["inject_scripts/player_inject_css.js"],

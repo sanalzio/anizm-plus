@@ -7,26 +7,36 @@
     cursor: pointer;
 }
 
-/* Arama için MyAnimeList linki entegrasyonu */
+/* Arama için MyAnimeList ve Anilist linki entegrasyonu */
 
-.mal-link{
+.mal-link, .anilist-link {
     height: fit-content;
-    height: fit-content;
+    cursor: pointer;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.mal-img{
+.anilist-link {
+    margin-top: .5rem;
+}
+
+img.mal-img {
     height: auto;
-    width: 3rem!important;
+    width: 80%;
+}
+img.anilist-img {
+    height: auto;
+    width: 50%;
 }
 
-div.searchResultItem:has(img.mal-img) div.resultContent .animeSummary {
-    padding-right: 4rem;
+@media only screen and (min-width: 577px) {
+    div.searchResultItem:has(img.mal-img) div.resultContent .animeSummary {
+        margin-right: 70px;
+    }
 }
 
-/* Arama için MyAnimeList linki entegrasyonu */
+/* Arama için MyAnimeList ve Anilist linki entegrasyonu */
 
 
 /* Arama için bölüm sayısı entegrasyonu */
@@ -53,3 +63,16 @@ div.searchResultItem:has(img.mal-img) div.resultContent .animeSummary {
 }
 
 /* Arama için bölüm sayısı entegrasyonu */
+
+
+
+/* Bazı reklam elementleri */
+
+#searchBoxTop > div:not(#searchBoxTop > div:nth-child(2)) {
+    display: none !important;
+}
+#searchBoxTop {
+    display: flex !important;
+    justify-content: center;
+}
+

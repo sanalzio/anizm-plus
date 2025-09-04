@@ -73,6 +73,26 @@ html{
 
 
 
+/* Mobil düzenlemeler */
+
+@media only screen and (max-width: 480px) {
+    .latestAddedAnimesSlideSection {
+        margin-top: 10rem;
+    }
+    .ui.container.alfabeContainer {
+        margin-top: 2rem;
+    }
+    .latestAddedAnimesSlideSection>.selectionContainer {
+        margin-top: -1rem
+    }
+}
+
+
+
+/* Mobil düzenlemeler */
+
+
+
 
 ::-webkit-scrollbar, #searchOverlay::-webkit-scrollbar {
     width: 9px;
@@ -230,3 +250,28 @@ div.notification-tab > span.comment-count {
         left: 40px;
     }
 } */
+
+
+
+
+/* Arama ara yüzü */
+
+.searchResultItem {
+    background: hsl(from var(--primaryColor) h calc(s / 4) 8%);
+}
+
+@media only screen and (min-width: 577px) {
+    .searchResultItem {
+        height: 300px;
+    }
+}
+
+.searchResultItem:hover {
+    background: hsl(from var(--primaryColor) h calc(s / 4) 13%);
+}
+
+.resultContent .animeSummary {
+    height: 120px;
+}
+
+/* Arama ara yüzü */

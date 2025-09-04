@@ -7,17 +7,26 @@ const browserObj = (typeof browser !== "undefined" && browser.runtime && browser
 
 function versionCheck() {
     fetch(
+        // github'daki deponun manifest.json dosyası
         "https://raw.githubusercontent.com/sanalzio/anizm-plus/refs/heads/master/src/manifest.json"
     ).then(res => res.text())
     .then(data => {
         const versionMatch = data.match(/(["'])version\1\s*?:\s*?(["'])((\d+)\.(\d+)\.(\d+))\2/i).slice(3);
         const newVersion = versionMatch.shift();
         const currentVersion = browserObj.runtime.getManifest().version.split(".");
+
         for (let i = 0; i < 4; i++) {
-            if (parseInt(versionMatch[i]) > parseInt(currentVersion[i])) {
+
+            const client = parseInt(currentVersion[i]), cloud = parseInt(versionMatch[i]);
+
+            if (cloud < client) break;
+            if (cloud === client) continue;
+            if (cloud > client) {
+
                 browserObj.tabs.create({ url: "newversion.html#" + newVersion });
 
                 console.log("Yeni sürüm bulundu!");
+                return;
             }
         }
 
@@ -120,6 +129,8 @@ browserObj.webRequest.onBeforeRequest.addListener(
 
         if (details.url.split("#")[0].split("?")[0].endsWith("/mal.svg"))
             return { redirectUrl: getURL("assets/mal.svg") };
+        if (details.url.split("#")[0].split("?")[0].endsWith("/anilist.svg"))
+            return { redirectUrl: getURL("assets/anilist.svg") };
 
 
         if (settings.searchActive !== false && (details.url.split("#")[0].split("?")[0].endsWith("/arama"))) {

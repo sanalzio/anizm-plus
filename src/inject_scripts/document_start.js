@@ -150,9 +150,9 @@ browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColo
                 if (result.homeBg.startsWith("#")) {
                     data += "body{background:transparent;background-color:transparent!important}html{background:" + result.homeBg + "!important}";
                 } else if (result.homeBg.startsWith("file:")){
-                    data += "body{background:transparent;background-color:transparent!important}::-webkit-scrollbar{background:var(--themeBgColor)}html{background:url(" + result.homeBg.split(":").slice(2).join(":") + ") no-repeat center center fixed!important}";
+                    data += "body{background:transparent;background-color:transparent!important}::-webkit-scrollbar{background:var(--themeBgColor)}html{background:url(" + result.homeBg.split(":").slice(2).join(":") + ") no-repeat center center fixed;background-size:cover;background-color:#000}";
                 } else {
-                    data += "body{background:transparent;background-color:transparent!important}::-webkit-scrollbar{background:var(--themeBgColor)}html{background:url(" + result.homeBg + ") no-repeat center center fixed!important}";
+                    data += "body{background:transparent;background-color:transparent!important}::-webkit-scrollbar{background:var(--themeBgColor)}html{background:url(" + result.homeBg + ") no-repeat center center fixed;background-size:cover;background-color:#000}";
                 }
             }
 
@@ -178,11 +178,11 @@ browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColo
                 if (result.episodeBg.startsWith("#")) {
                     data += "header .cover{opacity:1;background:" + result.episodeBg + "!important}";
                 } else if (result.episodeBg.startsWith("file:")){
-                    data += "header .cover{opacity:1;background:url(" + result.episodeBg.split(":").slice(2).join(":") + ") no-repeat center center!important}";
+                    data += "header .cover{opacity:1;background:url(" + result.episodeBg.split(":").slice(2).join(":") + ") no-repeat center center!important;background-size:cover;background-color:#000}";
                 } else if (result.episodeBg == "none") {
                     data += "header .cover,.divider{display:none}";
                 } else {
-                    data += "header .cover{opacity:1;background:url(" + result.episodeBg + ") no-repeat center center!important}";
+                    data += "header .cover{opacity:1;background:url(" + result.episodeBg + ") no-repeat center center!important;background-size:cover;background-color:#000}";
                 }
             }
 
