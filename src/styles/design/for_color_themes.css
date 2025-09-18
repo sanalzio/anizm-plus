@@ -507,3 +507,31 @@ div.notification-tab > span.comment-count {
 .anizmEpisodeButton {
     color: var(--primaryColorLighter);
 }
+
+
+
+
+
+
+/* Yeni "son yorumlar bölümü için" */
+
+.animeLink {
+    color: var(--primaryColor) !important;
+    background: hsla(from var(--primaryColor) h s l / .1);
+    border: 1px solid hsla(from var(--primaryColor) h s l / .3);
+}
+.animeLink:hover {
+    color: var(--primaryColorLighter) !important;
+    background: hsla(from var(--primaryColorLighter) h s l / .2);
+    border-color: hsla(from var(--primaryColorLighter) h s l / .4);
+}
+
+.userName:hover {
+    color: var(--primaryColorLighter) !important;
+}
+
+.userMention strong {
+    color: var(--primaryColorLighter);
+}
+
+/* Yeni "son yorumlar bölümü için" */

@@ -128,3 +128,7 @@ Video oynatıcılarında ki istenmeyen logoları kaldırır. Ve farenizi ekranı
 ### Son görülme bilgisini devre dışı bırak
 
 Cihazınızdan, her 2 saniyede bir Anizm sunucularına gönderilen "Son görülme" bilgisini göndermeyi engeller.
+
+### Anime detayına dış bağlantılar ekle
+
+Anime detayı sayfalarına `MyAnimeList` ve `AniList` siteleri için bağlantılar arayıp ekler. (Arama işlemi sayfa yüklenişinde çok küçük bir miktarda fazla cpu gücü kullanabilir.)

@@ -1,10 +1,15 @@
+# 1.3.1
+- Arama sistemindeki bir hata giderildi.
+- Yeni arayüz değişikliklerine uyum sağlandı.
+- `Gelişmiş ayarlar` bölümüne `"Anime detayına dış bağlantılar ekle"` ayarı eklendi.
+
 # 1.3.0
 - Arama sonuçlarına AniList düğmesi eklendi.
 - Gereksiz "Sekmelere erişim" izni kaldırıldı.
 - Arama ara yüzüne iyileştirmeler uygulandı.
 - Genel ara yüz iyileştirmeleri uygulandı.
 - Daha doğru bir yeni sürüm algılama sistemi yazıldı.
-- Arkaplan düzenleme sistemi iyileştirildi.
+- Arka plan düzenleme sistemi iyileştirildi.
 - Bazı reklamlar için gizleme uygulandı.
 
 # 1.2.10

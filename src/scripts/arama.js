@@ -410,7 +410,7 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 (anime) => 
 
                     controllOptions(
-                        anime.info_titleoriginal,
+                        (anime.info_titleoriginal || anime.info_title),
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -437,8 +437,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                         }
                         if (options.sort == "wordcount") {
                             if (options.orderby == "asc")
-                                return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                            return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                                return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                            return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                         }
                         if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                             if (options.orderby == "asc")
@@ -448,9 +448,9 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                     }
 
                     if (options.orderby == "desc")
-                        return b.info_titleoriginal.localeCompare(a.info_titleoriginal);
+                        return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
 
-                    return a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                    return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
                 }
             );
 
@@ -506,8 +506,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                     }
                     if (options.sort == "wordcount") {
                         if (options.orderby == "asc")
-                            return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                        return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                            return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                        return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                     }
                     if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                         if (options.orderby == "asc")
@@ -542,15 +542,15 @@ function search(rawQuery, messageFunc, noFoundMsg) {
         (anime) => {
 
             if (
-                anime.info_titleoriginal &&
-                anime.info_titleoriginal
+                (anime.info_titleoriginal || anime.info_title) &&
+                (anime.info_titleoriginal || anime.info_title)
                     .toLowerCase()
                     .replace(/[,.:;\-]/g, " ")
                     .replace(/\s\s+/g, " ")
                     .replace(/[^a-z\d\s]/g, "")
                     .includes(query) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -645,8 +645,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                    return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")
@@ -655,8 +655,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 }
                 if (options.sort == "title") {
                     if (options.orderby == "desc")
-                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : b.info_titleoriginal.localeCompare(a.info_titleoriginal);
-                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
+                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
                 }
             }
 
@@ -665,13 +665,13 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                     return b.info_titleenglish.differenceCount(query) - a.info_titleenglish.differenceCount(query)
                 else
-                    return b.info_titleoriginal.differenceCount(query) - a.info_titleoriginal.differenceCount(query)
+                    return (b.info_titleoriginal || b.info_title).differenceCount(query) - (a.info_titleoriginal || a.info_title).differenceCount(query)
             }
 
             if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                 return a.info_titleenglish.differenceCount(query) - b.info_titleenglish.differenceCount(query)
             else
-                return a.info_titleoriginal.differenceCount(query) - b.info_titleoriginal.differenceCount(query)
+                return (a.info_titleoriginal || a.info_title).differenceCount(query) - (b.info_titleoriginal || b.info_title).differenceCount(query)
         }
     );
 
@@ -732,8 +732,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
             }
             if (options.sort == "wordcount") {
                 if (options.orderby == "asc")
-                    return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                    return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
             }
             if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                 if (options.orderby == "asc")
@@ -742,20 +742,20 @@ function search(rawQuery, messageFunc, noFoundMsg) {
             }
             if (options.sort == "title") {
                 if (options.orderby == "desc")
-                    return b.info_titleoriginal.localeCompare(a.info_titleoriginal);
-                return a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                    return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
+                return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
             }
         }
 
         if (options.orderby == "desc")
             return (
-                b.info_titleoriginal.differenceCount(query) -
-                a.info_titleoriginal.differenceCount(query)
+                (b.info_titleoriginal || b.info_title).differenceCount(query) -
+                (a.info_titleoriginal || a.info_title).differenceCount(query)
             );
 
         return (
-            a.info_titleoriginal.differenceCount(query) -
-            b.info_titleoriginal.differenceCount(query)
+            (a.info_titleoriginal || a.info_title).differenceCount(query) -
+            (b.info_titleoriginal || b.info_title).differenceCount(query)
         );
     });
 
@@ -764,13 +764,13 @@ function search(rawQuery, messageFunc, noFoundMsg) {
     matchedAnimes = keywordsSort(json.filter(
         (anime) =>
 
-            (anime.info_titleoriginal &&
+            ((anime.info_titleoriginal || anime.info_title) &&
                 (
                     (
                         normalKeywords.length == 0 &&
                         forcedKeywords.length !== 0 &&
                         forcedKeywords.every(el =>
-                            anime.info_titleoriginal
+                            (anime.info_titleoriginal || anime.info_title)
                                 .toLowerCase()
                                 .replace(/[^a-z\d\s]/g, "")
                                 .includes(prepareKeyword(el))
@@ -780,13 +780,13 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                         (
                             normalKeywords.length !== 0 &&
                             normalKeywords.some(el =>
-                                anime.info_titleoriginal
+                                (anime.info_titleoriginal || anime.info_title)
                                     .toLowerCase()
                                     .replace(/[^a-z\d\s]/g, "")
                                     .includes(el))
                         ) ||
                         forcedKeywords.every(el =>
-                            anime.info_titleoriginal
+                            (anime.info_titleoriginal || anime.info_title)
                                 .toLowerCase()
                                 .replace(/[^a-z\d\s]/g, "")
                                 .includes(prepareKeyword(el))
@@ -794,7 +794,7 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                     )
                 ) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -884,23 +884,23 @@ function search(rawQuery, messageFunc, noFoundMsg) {
     matchedAnimes = keywordsSort(json.filter(
         (anime) =>
 
-            (anime.info_titleoriginal &&
+            ((anime.info_titleoriginal || anime.info_title) &&
                 (
                     normalKeywords.length == 0 ||
                     normalKeywords.some(el =>
-                        anime.info_titleoriginal
+                        (anime.info_titleoriginal || anime.info_title)
                             .toLowerCase()
                             .replace(/[^a-z\d\s]/g, "")
                             .includes(el))
                 ) &&
                 forcedKeywords.every(el =>
-                    anime.info_titleoriginal
+                    (anime.info_titleoriginal || anime.info_title)
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -968,13 +968,13 @@ function search(rawQuery, messageFunc, noFoundMsg) {
         matchedAnimes = json.filter(
             (anime) =>
 
-                (anime.info_titleoriginal &&
-                    anime.info_titleoriginal
+                ((anime.info_titleoriginal || anime.info_title) &&
+                    (anime.info_titleoriginal || anime.info_title)
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .differenceCount(query) === i &&
                     controllOptions(
-                        anime.info_titleoriginal,
+                        (anime.info_titleoriginal || anime.info_title),
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -1025,8 +1025,8 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                    return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")

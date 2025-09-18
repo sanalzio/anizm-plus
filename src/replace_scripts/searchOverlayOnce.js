@@ -270,13 +270,13 @@ const searchByInput = () => {
 
         matchedAnimes = animeList.filter(
         (anime) =>
-            (anime.info_titleoriginal &&
+            ((anime.info_titleoriginal || anime.info_title) &&
             (
-                anime.info_titleoriginal
+                (anime.info_titleoriginal || anime.info_title)
                     .toLowerCase()
                     .replace(/[^a-z\d\s]/g, "")
                     .includes(search.toLowerCase().replace(/\s\s+/g, " ").trim().replace(/[^a-z\d\s]/g, "")) ||
-                anime.info_titleoriginal
+                (anime.info_titleoriginal || anime.info_title)
                     .toLowerCase()
                     .replace(/[^a-z\d\s]/g, " ")
                     .includes(search.toLowerCase().replace(/\s\s+|[^a-z\d\s]/g, " ").trim())
@@ -445,7 +445,7 @@ const searchByInput = () => {
                 (anime) => 
 
                     controllOptions(
-                        anime.info_titleoriginal,
+                        (anime.info_titleoriginal || anime.info_title),
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -472,8 +472,8 @@ const searchByInput = () => {
                         }
                         if (options.sort == "wordcount") {
                             if (options.orderby == "asc")
-                                return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                            return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                                return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                            return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                         }
                         if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                             if (options.orderby == "asc")
@@ -483,9 +483,9 @@ const searchByInput = () => {
                     }
 
                     if (options.orderby == "desc")
-                        return b.info_titleoriginal.localeCompare(a.info_titleoriginal);
+                        return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
 
-                    return a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                    return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
                 }
             );
 
@@ -539,8 +539,8 @@ const searchByInput = () => {
                     }
                     if (options.sort == "wordcount") {
                         if (options.orderby == "asc")
-                            return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                        return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                            return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                        return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                     }
                     if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                         if (options.orderby == "asc")
@@ -573,15 +573,15 @@ const searchByInput = () => {
         (anime) => {
 
             if (
-                anime.info_titleoriginal &&
-                anime.info_titleoriginal
+                (anime.info_titleoriginal || anime.info_title) &&
+                (anime.info_titleoriginal || anime.info_title)
                     .toLowerCase()
                     .replace(/[,.:;\-]/g, " ")
                     .replace(/\s\s+/g, " ")
                     .replace(/[^a-z\d\s]/g, "")
                     .includes(query) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -676,8 +676,8 @@ const searchByInput = () => {
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                    return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")
@@ -686,8 +686,8 @@ const searchByInput = () => {
                 }
                 if (options.sort == "title") {
                     if (options.orderby == "desc")
-                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : b.info_titleoriginal.localeCompare(a.info_titleoriginal);
-                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
+                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
                 }
             }
 
@@ -696,13 +696,13 @@ const searchByInput = () => {
                 if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                     return b.info_titleenglish.differenceCountForSearch(query) - a.info_titleenglish.differenceCountForSearch(query)
                 else
-                    return b.info_titleoriginal.differenceCountForSearch(query) - a.info_titleoriginal.differenceCountForSearch(query)
+                    return (b.info_titleoriginal || b.info_title).differenceCountForSearch(query) - (a.info_titleoriginal || a.info_title).differenceCountForSearch(query)
             }
 
             if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                 return a.info_titleenglish.differenceCountForSearch(query) - b.info_titleenglish.differenceCountForSearch(query)
             else
-                return a.info_titleoriginal.differenceCountForSearch(query) - b.info_titleoriginal.differenceCountForSearch(query)
+                return (a.info_titleoriginal || a.info_title).differenceCountForSearch(query) - (b.info_titleoriginal || b.info_title).differenceCountForSearch(query)
         }
     );
 
@@ -766,8 +766,8 @@ const searchByInput = () => {
             }
             if (options.sort == "wordcount") {
                 if (options.orderby == "asc")
-                    return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                    return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
             }
             if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                 if (options.orderby == "asc")
@@ -776,20 +776,20 @@ const searchByInput = () => {
             }
             if (options.sort == "title") {
                 if (options.orderby == "desc")
-                    return b.info_titleoriginal.localeCompare(a.info_titleoriginal);
-                return a.info_titleoriginal.localeCompare(b.info_titleoriginal);
+                    return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
+                return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
             }
         }
 
         if (options.orderby == "desc")
             return (
-                b.info_titleoriginal.differenceCountForSearch(query) -
-                a.info_titleoriginal.differenceCountForSearch(query)
+                (b.info_titleoriginal || b.info_title).differenceCountForSearch(query) -
+                (a.info_titleoriginal || a.info_title).differenceCountForSearch(query)
             );
 
         return (
-            a.info_titleoriginal.differenceCountForSearch(query) -
-            b.info_titleoriginal.differenceCountForSearch(query)
+            (a.info_titleoriginal || a.info_title).differenceCountForSearch(query) -
+            (b.info_titleoriginal || b.info_title).differenceCountForSearch(query)
         );
     });
 
@@ -797,21 +797,21 @@ const searchByInput = () => {
     matchedAnimes = keywordsSort(animeList.filter(
         (anime) =>
 
-            (anime.info_titleoriginal &&
+            ((anime.info_titleoriginal || anime.info_title) &&
                 normalKeywords.every(el =>
-                    anime.info_titleoriginal
+                    (anime.info_titleoriginal || anime.info_title)
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .includes(el)
                 ) &&
                 forcedKeywords.every(el =>
-                    anime.info_titleoriginal
+                    (anime.info_titleoriginal || anime.info_title)
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -872,13 +872,13 @@ const searchByInput = () => {
     matchedAnimes = keywordsSort(animeList.filter(
         (anime) =>
 
-            (anime.info_titleoriginal &&
+            ((anime.info_titleoriginal || anime.info_title) &&
                 (
                     (
                         normalKeywords.length == 0 &&
                         forcedKeywords.length !== 0 &&
                         forcedKeywords.every(el =>
-                            anime.info_titleoriginal
+                            (anime.info_titleoriginal || anime.info_title)
                                 .toLowerCase()
                                 .replace(/[^a-z\d\s]/g, "")
                                 .includes(prepareKeyword(el))
@@ -888,13 +888,13 @@ const searchByInput = () => {
                         (
                             normalKeywords.length !== 0 &&
                             normalKeywords.some(el =>
-                                anime.info_titleoriginal
+                                (anime.info_titleoriginal || anime.info_title)
                                     .toLowerCase()
                                     .replace(/[^a-z\d\s]/g, "")
                                     .includes(el))
                         ) ||
                         forcedKeywords.every(el =>
-                            anime.info_titleoriginal
+                            (anime.info_titleoriginal || anime.info_title)
                                 .toLowerCase()
                                 .replace(/[^a-z\d\s]/g, "")
                                 .includes(prepareKeyword(el))
@@ -902,7 +902,7 @@ const searchByInput = () => {
                     )
                 ) &&
                 controllOptions(
-                    anime.info_titleoriginal,
+                    (anime.info_titleoriginal || anime.info_title),
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -1001,13 +1001,13 @@ const searchByInput = () => {
         matchedAnimes = animeList.filter(
             (anime) =>
 
-                (anime.info_titleoriginal &&
-                    anime.info_titleoriginal
+                ((anime.info_titleoriginal || anime.info_title) &&
+                    (anime.info_titleoriginal || anime.info_title)
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .differenceCountForSearch(query) === i &&
                     controllOptions(
-                        anime.info_titleoriginal,
+                        (anime.info_titleoriginal || anime.info_title),
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -1058,8 +1058,8 @@ const searchByInput = () => {
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return a.info_titleoriginal.split(" ").length-b.info_titleoriginal.split(" ").length;
-                    return b.info_titleoriginal.split(" ").length-a.info_titleoriginal.split(" ").length;
+                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
+                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")
@@ -1114,11 +1114,11 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
     const score = animeInfo.info_malpoint;
     const animeUrl = animeInfo.info_slug;
     const titleHighlightedOriginal = getHighlightedText(
-        animeInfo.info_titleoriginal,
+        (animeInfo.info_titleoriginal || animeInfo.info_title),
         searchValue
     );
     const shouldIncludeEnglishTitle =
-        animeInfo.info_titleenglish !== animeInfo.info_titleoriginal;
+        animeInfo.info_titleenglish !== (animeInfo.info_titleoriginal || animeInfo.info_title);
     const subtitleTextToHighlight = shouldIncludeEnglishTitle
         ? `${animeInfo.info_titleenglish}, ${animeInfo.info_othernames}`
         : animeInfo.info_othernames;
@@ -1233,7 +1233,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
   <img class="card-poster mal-img" src="/mal.svg" alt="MAL sayfası">
  </a>
  <span target="_blank" class="anilist-link" onclick="mal2anilistOpen(${animeInfo.info_malid.toString()})">
-  <img class="card-poster anilist-img" src="/anilist.svg" alt="anilist sayfası">
+  <img class="card-poster anilist-img" src="/anilist.svg" alt="AniList sayfası">
  </span>
 </div>
 </div>
@@ -1269,12 +1269,12 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
 
 const getFastSearchResults = (animeInfo, searchValue) => {
     const titleHighlightedOriginal = getHighlightedText(
-        animeInfo.info_titleoriginal,
+        (animeInfo.info_titleoriginal || animeInfo.info_title),
         searchValue,
         true
     );
     const shouldIncludeEnglishTitle =
-        animeInfo.info_titleenglish !== animeInfo.info_titleoriginal;
+        animeInfo.info_titleenglish !== (animeInfo.info_titleoriginal || animeInfo.info_title);
     const subtitleTextToHighlight = shouldIncludeEnglishTitle
         ? `${animeInfo.info_titleenglish}, ${animeInfo.info_othernames}`
         : animeInfo.info_othernames;

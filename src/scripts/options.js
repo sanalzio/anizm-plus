@@ -447,6 +447,12 @@ document.addEventListener("change", function (event) {
                 });
                 break;
 
+            case "anime-links":
+                browserObj.storage.local.set({
+                    animeLinks: el.checked
+                });
+                break;
+
             default:
                 break;
         }
@@ -623,6 +629,7 @@ function applySettings(result) {
     }
 
     document.getElementById("last-seen").checked = result.lastSeen == undefined ? false : result.lastSeen;
+    document.getElementById("anime-links").checked = result.animeLinks == undefined ? false : result.animeLinks;
 }
 
 
@@ -665,7 +672,8 @@ const dataKeys = [
     "homeBg",
     "homeSliderBg",
     "episodeBg",
-    "lastSeen"
+    "lastSeen",
+    "animeLinks"
 ];
 
 const defaultSettings = {
@@ -688,7 +696,8 @@ const defaultSettings = {
     homeBg: null,
     homeSliderBg: null,
     episodeBg: null,
-    lastSeen: false
+    lastSeen: false,
+    animeLinks: false
 }
 
 function exportSettings() {

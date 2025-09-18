@@ -26,9 +26,42 @@ img.mal-img {
     width: 80%;
 }
 img.anilist-img {
+    cursor: pointer;
     height: auto;
     width: 50%;
 }
+
+
+
+
+.linksRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.linksRow .mal-link,
+.linksRow .mal-img,
+.linksRow .anilist-img {
+    width: auto;
+    height: 100%;
+    display: inline-block;
+}
+
+.linksRow img.mal-img {
+    margin-top: .2rem;
+}
+
+.linksRow .anilist-link {
+    margin-top: 0;
+}
+.linksRow .anilist-img {
+    margin-left: .5rem;
+}
+
+
 
 @media only screen and (min-width: 577px) {
     div.searchResultItem:has(img.mal-img) div.resultContent .animeSummary {
