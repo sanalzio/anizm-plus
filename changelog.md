@@ -1,3 +1,6 @@
+# 1.3.2
+- Bazı reklam engellemeleri.
+
 # 1.3.1
 - Arama sistemindeki bir hata giderildi.
 - Yeni arayüz değişikliklerine uyum sağlandı.

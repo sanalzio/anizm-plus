@@ -51,7 +51,10 @@ let blockList = [
     "/js/avgrtbdasdwsawqs.js",
     "https://cdn.jsdelivr.net/npm/devtools-detector",
     "/metrics",
-    "information-qot.com/code-process/2.js"
+    "information-qot.com/code-process/2.js",
+    "/js/grnd_pp_180925.js",
+    "/js/grnd_pp_",
+    "/js/grnd_"
 ];
 
 (async function () {
