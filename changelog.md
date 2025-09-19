@@ -1,3 +1,8 @@
+# 1.3.3
+- Bölüm sayfasındaki reklamları engelleme.
+- `Gelişmiş ayarlar` bölümüne `"İzlenme bilgisini devre dışı bırak"` ayarı eklendi.
+- Minik optimizasyon.
+
 # 1.3.2
 - Bazı reklam engellemeleri.
 

@@ -276,8 +276,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
     })(() => {
         // Eğer kullanıcı bir anime detayı sayfasında ise animenin başlığını alır
         const animeTitle =
-            typeof document.getElementsByClassName("animeDetayInfoWrapper") !==
-                "undefined" &&
+            document.getElementsByClassName("animeDetayInfoWrapper").length > 0 &&
             document.getElementsByClassName("anizm_pageTitle") &&
             document
                 .getElementsByClassName("anizm_pageTitle")[0]
@@ -370,6 +369,8 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
                             mal2anilistOpen(event.target.getAttribute("data-mal-id"));
                         }
                     });
+
+                    return true; // Anime bulunduğu için arama işlemini durduruyor.
                 }
             }
 
@@ -433,7 +434,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
                         if (braceDepth === 0 && buffer.trim()) {
                             try {
                                 const obj = JSON.parse(buffer);
-                                onItem?.(obj); // Callback
+                                if (onItem?.(obj)) break; // Callback
                             } catch (e) {
                                 console.error(
                                     "JSON parse error:",

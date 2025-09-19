@@ -71,7 +71,7 @@ let blockList = [
 const settings = new Object();
 
 // storage'dan ilk değeri al
-browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs", "players"], (data) => { //, "fansubsActive"
+browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs", "players", "lastSeen", "watched"], (data) => { //, "fansubsActive"
     if (typeof data.searchActive !== "undefined") {
         settings.searchActive = data.searchActive;
     }
@@ -82,6 +82,9 @@ browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs"
         settings.applyColor = data.applyColor;
         settings.themeId = data.themeId;
     }
+
+    if (data.lastSeen) settings.lastSeen = true;
+    if (data.watched) settings.watched = true;
 
     if (data.fansubs && typeof data.fansubs !== "string") {
         browserObj.storage.local.set({fansubs:data.fansubs.map(f => f.replaceAll(",", "\\,")).join(",")})
@@ -111,7 +114,12 @@ browserObj.storage.onChanged.addListener((changes, area) => {
 browserObj.webRequest.onBeforeRequest.addListener(
     function (details) {
 
-        if (blockList.some(el => details.url.includes(el))) return { cancel: true };
+        if (
+            (blockList.some(el => details.url.includes(el))) ||
+
+            (settings.watched && details.url.includes("/userWatched")) ||
+            (settings.lastSeen && details.url.includes("/api/update-last-seen"))
+        ) return { cancel: true };
 
         if (settings.searchActive !== false && details.url.includes("/js/custom/searchOverlayOnce.js"))
             return { redirectUrl: getURL("replace_scripts/searchOverlayOnce.js") };

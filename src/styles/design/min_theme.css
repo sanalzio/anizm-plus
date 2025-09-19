@@ -14,9 +14,7 @@ div[id^="discordInviteBox"],
     li:has(a[title="Fansublar"]),
     li.headerSearchContainer
 ) */
-div.menu:has(ul)>ul>li:has(a[href^="https://discord"]),
-
-a[href*="//shortlink.life"]:has(img) /* Reklam */
+div.menu:has(ul)>ul>li:has(a[href^="https://discord"])
 
 { display: none !important; }
 

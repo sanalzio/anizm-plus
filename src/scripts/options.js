@@ -446,10 +446,16 @@ document.addEventListener("change", function (event) {
                     lastSeen: el.checked
                 });
                 break;
-
+                
             case "anime-links":
                 browserObj.storage.local.set({
                     animeLinks: el.checked
+                });
+                break;
+
+            case "watched":
+                browserObj.storage.local.set({
+                    watched: el.checked
                 });
                 break;
 
@@ -630,6 +636,7 @@ function applySettings(result) {
 
     document.getElementById("last-seen").checked = result.lastSeen == undefined ? false : result.lastSeen;
     document.getElementById("anime-links").checked = result.animeLinks == undefined ? false : result.animeLinks;
+    document.getElementById("watched").checked = result.watched == undefined ? false : result.watched;
 }
 
 
@@ -673,7 +680,8 @@ const dataKeys = [
     "homeSliderBg",
     "episodeBg",
     "lastSeen",
-    "animeLinks"
+    "animeLinks",
+    "watched"
 ];
 
 const defaultSettings = {
@@ -697,7 +705,8 @@ const defaultSettings = {
     homeSliderBg: null,
     episodeBg: null,
     lastSeen: false,
-    animeLinks: false
+    animeLinks: false,
+    watched: false
 }
 
 function exportSettings() {

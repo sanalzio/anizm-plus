@@ -1,3 +1,14 @@
+/* Reklamlar */
+
+/*a[href*="//shortlink.life"]:has(img),*/
+#videoFrame + a,
+a:has(+ #videoFrame)
+
+{ display: none !important }
+
+/* Reklamlar */
+
+
 #menuContent{
     min-width: fit-content;
 }

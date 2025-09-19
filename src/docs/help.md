@@ -132,3 +132,7 @@ Cihazınızdan, her 2 saniyede bir Anizm sunucularına gönderilen "Son görülm
 ### Anime detayına dış bağlantılar ekle
 
 Anime detayı sayfalarına `MyAnimeList` ve `AniList` siteleri için bağlantılar arayıp ekler. (Arama işlemi sayfa yüklenişinde çok küçük bir miktarda fazla cpu gücü kullanabilir.)
+
+### İzlenme bilgisini devre dışı bırak
+
+Bölüm sayfasında 2 dakika geçirince "bölüm izlendi" bilgisi göndermeyi engeller.

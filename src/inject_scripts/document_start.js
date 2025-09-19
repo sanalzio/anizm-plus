@@ -54,7 +54,7 @@ injectStyle("styles/design/necessary.css");
 
 
 
-browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen"], function (result) {
+browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen", "watched"], function (result) {
 
     if (result.minCssActive !== false)
         injectStyle("styles/design/min_theme.css");
@@ -108,23 +108,24 @@ browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColo
         });
     });
 
-    if (result.lastSeen)
+    /* if (result.lastSeen)
         (function onScriptReady(callback) {
-            if (document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen")).length>0) {
-                callback();
+            const look = document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen"));
+            if (look && look.length>0) {
+                callback(look);
             } else {
                 new MutationObserver((_, obs) => {
-                    if (document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen")).length>0) {
+                    const look = document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("api/update-last-seen"));
+                    if (look && look.length>0) {
                         obs.disconnect();
-                        callback();
+                        callback(look);
                     }
                 }).observe(document.documentElement, {
                     childList: true,
                     subtree: true,
                 });
             }
-        })(() => {
-            const scripts = document.body.querySelectorAll("script");
+        })(scripts => {
 
             scripts.forEach(script => {
                 if (script.innerText.includes("api/update-last-seen")) {
@@ -133,6 +134,33 @@ browserObj.storage.local.get(["themeId", "removeBgs", "minCssActive", "applyColo
                 }
             });
         });
+
+    if (result.watched)
+        (function onScriptReady(callback) {
+            const look = document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("userWatched"));
+            if (look && look.length>0) {
+                callback(look);
+            } else {
+                new MutationObserver((_, obs) => {
+                    const look = document.body && Array.from(document.body.querySelectorAll("script")).filter(s => s.innerText.includes("userWatched"));
+                    if (look && look.length>0) {
+                        obs.disconnect();
+                        callback(look);
+                    }
+                }).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        })(scripts => {
+
+            scripts.forEach(script => {
+                if (script.innerText.includes("userWatched")) {
+                    script.remove();
+                    console.log("İzlenme bilgisi gönderimi engellendi.");
+                }
+            });
+        }); */
 
     if (result.fansubsActive && result.fansubs)
         document.documentElement.insertAdjacentHTML("afterbegin", '<data id="$" content="' + result.fansubs.replaceAll('"', "&quot;") + '">');
