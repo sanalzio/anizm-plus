@@ -1,3 +1,8 @@
+# 1.3.4
+- Ayarların uygulanmaması hatasını düzeltme.
+- Arayüz güncellemeleri.
+- "Anime bağlantıları" sistemi için optimizasyon.
+
 # 1.3.3
 - Bölüm sayfasındaki reklamları engelleme.
 - `Gelişmiş ayarlar` bölümüne `"İzlenme bilgisini devre dışı bırak"` ayarı eklendi.

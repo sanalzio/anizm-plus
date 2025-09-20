@@ -292,6 +292,44 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
         // Açıklmak gerekirse animelerin tümünün bilgisinin bulunduğu veri setini parça parça çekerek tümünü çekmeden hızlıca çekme esnasında bulmaya yarıyor.
         if (animeTitle) {
 
+
+            document
+                .getElementsByClassName("episodeButtons")[0]
+                .insertAdjacentHTML("beforebegin",
+                    `<li id="linksRow" class="dataRow"><span class="dataTitle">Bağlantılar</span><span id="linksValueRow" class="dataValue"><div id="links-loader"></div></span></li>`
+                );
+            const row = document.getElementById("linksRow");
+            const loader = document.getElementById("links-loader");
+
+
+            async function getAnilistUrl(malId) {
+                const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
+                const data = JSON.stringify({
+                    query,
+                    variables: { id: malId, type: "ANIME" },
+                });
+
+                try {
+                    const response = await fetch(
+                        "https://graphql.anilist.co",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: data,
+                        }
+                    );
+
+                    const responseData = await response.json();
+                    return responseData.data.Media.siteUrl || null;
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                    return null;
+                }
+            }
+
+
             let found;
 
             function processItem(item) {
@@ -309,66 +347,16 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
                 ) {
                     found = true;
 
+                    // const valueRow = document.getElementById("linksValueRow");
 
-                    document
-                        .getElementsByClassName("episodeButtons")[0]
-                        .insertAdjacentHTML("beforebegin",
-                            `<li class="dataRow"><span class="dataTitle">Bağlantılar</span><span class="dataValue linksRow"><a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${item.info_malid.toString()}"><img class="mal-img" src="/mal.svg" alt="MAL sayfası"></a><img data-mal-id="${item.info_malid.toString()}" class="anilist-img" src="/anilist.svg" alt="AniList sayfası"></span></li>`
-                        );
+                    loader.insertAdjacentHTML("beforebegin", `<a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${item.info_malid.toString()}"><img class="mal-img" src="/mal.svg" alt="MAL sayfası"></a>`);
 
-
-
-
-                    var anilistUrls = new Object();
-
-                    async function getAnilistUrl(malId) {
-                        const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
-                        const data = JSON.stringify({
-                            query,
-                            variables: { id: malId, type: "ANIME" },
-                        });
-
-                        try {
-                            const response = await fetch(
-                                "https://graphql.anilist.co",
-                                {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: data,
-                                }
-                            );
-
-                            const responseData = await response.json();
-                            return responseData.data.Media.siteUrl || null;
-                        } catch (error) {
-                            console.error("Error fetching data:", error);
-                            return null;
-                        }
-                    }
-                    function mal2anilistOpen(malIdInp) {
-
-                        // eğer daha önceden kaydedildiyse direkt oradan alıyor
-                        if (anilistUrls[malIdInp]) {
-                            window.open(anilistUrls[malIdInp], "_blank");
-                            return;
-                        }
-
-                        getAnilistUrl(parseInt(malIdInp))
-                            .then(url => {
-                                anilistUrls[malIdInp] = url;
-                                window.open(url, "_blank");
-                            });
-                    }
-
-
-
-                    document.addEventListener("click", event => {
-                        if (event.target.classList.contains("anilist-img") && event.target.getAttribute("data-mal-id")) {
-                            mal2anilistOpen(event.target.getAttribute("data-mal-id"));
-                        }
-                    });
+                    getAnilistUrl(parseInt(item.info_malid))
+                        .then(url => {
+                            loader.insertAdjacentHTML("beforebegin", `<a target="_blank" class="anilist-link" href="${url}"><img class="anilist-img" src="/anilist.svg" alt="MAL sayfası"></a>`);
+                            loader.remove();
+                        })
+                        .catch(()=>loader.remove());
 
                     return true; // Anime bulunduğu için arama işlemini durduruyor.
                 }
@@ -452,8 +440,14 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
             // Kullanımı:
             streamJsonObjects("/getAnimeListForSearch", processItem)
-                .then(() => found ? console.log("Anime bulundu.") : console.log("Anime bulunamadı."))
-                .catch(console.error);
+                .then(() => {
+                    if (found) {
+                        console.log("Anime bulundu.");
+                    } else {
+                        row.remove();
+                        console.log("Anime bulunamadı.");
+                    }
+                }).catch(console.error);
         }
     });
 });

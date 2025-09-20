@@ -5,7 +5,9 @@ a[title^="AnizmMC"],
 
 .duyuruContainer,
 
-div[id^="discordInviteBox"],
+div[id*="InviteBox"],
+div[id*="invitebox"],
+div[id*="inviteBox"],
 
 /* div.menu:has(ul)>ul>li:not(
     li:has(a[title="TAKVİM"]),

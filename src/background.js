@@ -68,7 +68,7 @@ let blockList = [
     } catch {}
 })();
 
-const settings = new Object();
+var settings = new Object();
 
 // storage'dan ilk değeri al
 browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs", "players", "lastSeen", "watched"], (data) => { //, "fansubsActive"
@@ -96,17 +96,15 @@ browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs"
 
 // değer değişirse güncelle
 browserObj.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && changes.searchActive) {
-        settings.searchActive = changes.searchActive.newValue;
-    }
-    if (area === "local" && changes.applyColor) {
-        settings.applyColor = changes.applyColor.newValue;
-    }
-    /* if (area === "local" && changes.fansubsActive) {
-        settings.fansubsActive = changes.fansubsActive.newValue;
-    } */
-    if (area === "local" && changes.themeId) {
-        settings.themeId = changes.themeId.newValue;
+    if (area === "local") {
+        if (changes.searchActive) settings.searchActive = changes.searchActive.newValue;
+        if (changes.applyColor) settings.applyColor = changes.applyColor.newValue;
+        /* if (changes.fansubsActive) {
+            settings.fansubsActive = changes.fansubsActive.newValue;
+        } */
+        if (changes.themeId) settings.themeId = changes.themeId.newValue;
+        if (changes.lastSeen) settings.lastSeen = changes.lastSeen.newValue;
+        if (changes.watched) settings.watched = changes.watched.newValue;
     }
 });
 
