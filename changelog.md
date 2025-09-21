@@ -1,3 +1,6 @@
+# 1.3.5
+- Reklam engellemeleri.
+
 # 1.3.4
 - Ayarların uygulanmaması hatasını düzeltme.
 - Arayüz güncellemeleri.

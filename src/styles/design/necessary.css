@@ -2,7 +2,8 @@
 
 /*a[href*="//shortlink.life"]:has(img),*/
 #videoFrame + a:has(img),
-a:has(+ #videoFrame):has(img)
+a:has(+ #videoFrame):has(img),
+.animeIzleInnerContainer > a:has(img) /* bu kod belki sorun çıkarabilir ama şimdilik dursun */
 
 { display: none !important }
 

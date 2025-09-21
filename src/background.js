@@ -54,7 +54,8 @@ let blockList = [
     "information-qot.com/code-process/2.js",
     "/js/grnd_pp_180925.js",
     "/js/grnd_pp_",
-    "/js/grnd_"
+    "/js/grnd_",
+    "/js/aclb.js"
 ];
 
 (async function () {
