@@ -7,7 +7,7 @@ bun minify_manifest.js
 # scripts/
 bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/scripts/ ./scripts/applyTheme.js ./scripts/arama.js ./scripts/options.js ./scripts/popup.js ./scripts/newversion.js
 # inject_scripts/
-bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/inject_scripts/ ./inject_scripts/aincrad_inject.js ./inject_scripts/chatango.js ./inject_scripts/document_start.js ./inject_scripts/document_end.js ./inject_scripts/player_inject_css.js ./inject_scripts/chat_window_inject.js
+bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/inject_scripts/ ./inject_scripts/filters.js ./inject_scripts/aincrad_inject.js ./inject_scripts/chatango.js ./inject_scripts/document_start.js ./inject_scripts/document_end.js ./inject_scripts/player_inject_css.js ./inject_scripts/chat_window_inject.js
 # replace_scripts/
 bun build --minify-syntax --minify-whitespace --splitting --outdir=./build/replace_scripts/ ./replace_scripts/custom.js ./replace_scripts/episodea.js ./replace_scripts/searchOverlayOnce.js
 # backgorund.js
@@ -37,6 +37,7 @@ minify ./styles/design/for_color_themes.css > ./build/styles/design/for_color_th
 minify ./styles/design/min_theme.css > ./build/styles/design/min_theme.css
 minify ./styles/design/necessary.css > ./build/styles/design/necessary.css
 minify ./styles/design/remove_bgs.css > ./build/styles/design/remove_bgs.css
+minify ./styles/design/filters.css > ./build/styles/design/filters.css
 
 # styles/colors/
 minify ./styles/colors/blue_theme.css > ./build/styles/colors/blue_theme.css
@@ -61,6 +62,7 @@ minify arama.html > ./build/arama.html
 minify options.html > ./build/options.html
 minify popup.html > ./build/popup.html
 minify newversion.html > ./build/newversion.html
+minify ./components/filtermenu.html > ./build/components/filtermenu.html
 
 #### Minify HTML ####
 

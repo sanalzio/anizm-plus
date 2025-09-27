@@ -326,7 +326,7 @@ function search(rawQuery, messageFunc, noFoundMsg) {
 
         if (options.maxyear || options.minyear || options.year) {
 
-            let parsedYear = parseYear(year);
+            let parsedYear = Number(parseYear(year));
             if (!parsedYear) return false;
 
             if (
@@ -373,10 +373,6 @@ function search(rawQuery, messageFunc, noFoundMsg) {
                 case "orderby":
                 case "tagmode":
                     options[key] = optionMatch[4].toLowerCase();
-                    break;
-
-                case "year":
-                    options[key] = optionMatch[4];
                     break;
 
                 case "tags":

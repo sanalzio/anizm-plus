@@ -48,6 +48,9 @@ Eğer video için birden fazla video kaynağı varsa belirlediğiniz öncelikle 
 
 Arayüzü biraz daha sıkılaştırır ve sadeleştirir. İstenmeyen duyurular, minecraft server reklamları, discord reklamları, gereksiz linkler vs. bölümleri gizler.
 
+### Kontrolleri aşağıya taşı
+Fansub ve oynatıcı seçeneklerini video penceresinin aşağısına taşır.
+
 ### Linkler
 
 Anizm sayfasında, sol üst köşede bulunan linkleri yaptığınız seçimlere göre düzenler.

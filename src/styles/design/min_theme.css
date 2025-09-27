@@ -16,7 +16,9 @@ div[id*="inviteBox"],
     li:has(a[title="Fansublar"]),
     li.headerSearchContainer
 ) */
-div.menu:has(ul)>ul>li:has(a[href^="https://discord"])
+div.menu:has(ul)>ul>li:has(a[href^="https://discord"]),
+
+.ui.container.anasayfaListe>h1:first-child /* Ana sayfadaki turuncu yazı */
 
 { display: none !important; }
 

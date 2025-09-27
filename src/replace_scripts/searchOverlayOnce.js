@@ -181,7 +181,7 @@ $(() => {
             }
             // It is already fetched in the current page.
             if (animeList.length > 0) return;
-            fetch("getAnimeListForSearch")
+            fetch("/getAnimeListForSearch")
                 .then(req => req.json())
                 .then(data => {
                     animeList = data;
@@ -255,13 +255,13 @@ const searchByInput = () => {
     }
 
     const search = $(".searchBarInput").val();
-    if (!search.toLowerCase().trim()) {
+    if (!search.toLowerCase().trim() && typeof filters == "undefined") {
         $("#fullViewSearchResults").html("");
         toggleLoadMoreButton(false);
         lastSearch = undefined;
         return;
     }
-    if (search.toLowerCase().trim() === lastSearch) return;
+    if (search.toLowerCase().trim() === lastSearch && typeof filters == "undefined") return;
 
     lastSearch = search;
 
@@ -322,7 +322,7 @@ const searchByInput = () => {
 
     matchedAnimes = new Array();
 
-    const options = new Object();
+    const options = typeof filters == "object" ? {...filters} : new Object();
     const optionsRegexpMatches = [...search.matchAll(optionsRegexp)];
 
     const controllOptions = (title, year, malpoint, lastEpisode, categoriesObj) => {
@@ -361,7 +361,7 @@ const searchByInput = () => {
 
         if (options.maxyear || options.minyear || options.year) {
 
-            let parsedYear = parseYear(year);
+            let parsedYear = Number(parseYear(year));
             if (!parsedYear) return false;
 
             if (
@@ -410,10 +410,6 @@ const searchByInput = () => {
                     options[key] = optionMatch[4].toLowerCase();
                     break;
 
-                case "year":
-                    options[key] = optionMatch[4];
-                    break;
-
                 case "tags":
                     optionMatch[4].toLocaleLowerCase("tr").split(",").forEach(tag => {
                         if (tag.startsWith("!"))
@@ -441,6 +437,7 @@ const searchByInput = () => {
 
     if (searchQuery.replace(/[^a-z\d\s]/g, "").length === 0) {
         if (!$.isEmptyObject(options)) {
+            console.log("celdu", options, filters);
             matchedAnimes = animeList.filter(
                 (anime) => 
 

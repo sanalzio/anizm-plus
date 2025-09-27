@@ -138,7 +138,7 @@ try {
 
 // Eklenti ayarlarına göre işlemler
 
-browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive", "searchActive", "applyColor", "detailedSearch", "minCssActive", "links", "animeLinks"], function (result) {
+browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive", "applyColor", "detailedSearch", "minCssActive", "links", "animeLinks", "bottomControls"], function (result) {
 
     /* if (result.applyColor && result.themeId) {
 
@@ -153,37 +153,43 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
     /* -- "izledim/izlemedim" düğmesi yer düzenlemesi -- */
     
-    if (result.minCssActive !== false) {
+    // if (result.minCssActive !== false) {
 
-        // player seçenekleri için grafik arayüzü düzenlemesi
-        try {
-            // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-            (function onDomReady(callback) {
-                if (document.getElementById("fanList")) {
-                    callback();
-                } else {
-                    new MutationObserver((_, obs) => {
-                        if (document.getElementById("fanList")) {
-                            obs.disconnect();
-                            callback();
-                        }
-                    }).observe(document.documentElement, {
-                        childList: true,
-                        subtree: true,
-                    });
-                }
-            })(() => {
-                const cont = document.getElementById("videoFrame");
-                const vidContainer = document.getElementsByClassName("episodePlayerContent")[0];
-                const fl = document.getElementById("fanList");
+    // player seçenekleri için grafik arayüzü düzenlemesi
+    try {
+        // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
+        (function onDomReady(callback) {
+            if (document.getElementById("fanList")) {
+                callback();
+            } else {
+                new MutationObserver((_, obs) => {
+                    if (document.getElementById("fanList")) {
+                        obs.disconnect();
+                        callback();
+                    }
+                }).observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                });
+            }
+        })(() => {
+            const cont = document.getElementById("videoFrame");
+            const vidContainer = document.getElementsByClassName("episodePlayerContent")[0];
+            const fl = document.getElementById("fanList");
+            const translators = document.getElementsByClassName("episodeTranslators")[0];
 
-                cont.insertBefore(fl, vidContainer);
-
+            if (result.bottomControls) {
+                cont.insertBefore(vidContainer, translators);
+                translators.style.paddingTop = "10px";
                 fl.classList.remove("mt-5");
-            });
-            
-        } catch {}
-    }
+            } else {
+                cont.insertBefore(fl, vidContainer);
+                fl.classList.remove("mt-5");
+            }
+        });
+        
+    } catch {}
+    // }
     
     /* -- "izledim/izlemedim" düğmesi yer düzenlemesi -- */
 

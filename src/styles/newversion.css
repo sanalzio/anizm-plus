@@ -14,3 +14,10 @@
 #this-version {
     color: hsl(24, 80%, 62%);
 }
+
+#features, #features * {
+    width: fit-content;
+}
+#features {
+    margin: auto;
+}

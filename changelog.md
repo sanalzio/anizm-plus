@@ -1,3 +1,8 @@
+# 1.4.0
+- Arama menüsüne filtreler için kullanıcı ara yüzü eklendi.
+- `Kontrolleri aşağıya taşı` ayarı eklendi.
+- Ara yüz düzenlemeleri yapıldı.
+
 # 1.3.5
 - Reklam engellemeleri.
 

@@ -1,0 +1,150 @@
+<div id="filterContainer">
+    <button id="searchFilterButton">Filtrele</button>
+    <div id="filtersDropDown">
+        <h3 class="filter-header">MyAnimeList Puanı</h3>
+        <div class="range" id="malp-range">
+            <div class="range-slider" id="malp-range-slider">
+                <span class="range-selected" id="malp-range-selected"></span>
+            </div>
+            <div class="range-input" id="malp-range-input">
+                <input type="range" class="min" min="0.1" max="10" value="0.1" step="0.1">
+                <input type="range" class="max" min="0.1" max="10" value="10" step="0.1">
+            </div>
+            <div class="range-price" id="malp-range-price">
+                <label for="malp-min">En az</label>
+                <input type="number" class="min" id="malp-min" value="0.1" min="0.1" max="10" step="0.1">
+                <label for="malp-max">En fazla</label>
+                <input type="number" class="max" id="malp-max" value="10" min="0.1" max="10" step="0.1">
+            </div>
+        </div>
+        <h3 class="filter-header">Kelime sayısı</h3>
+        <div class="range" id="words-range">
+            <div class="range-slider" id="words-range-slider">
+                <span class="range-selected" id="words-range-selected"></span>
+            </div>
+            <div class="range-input" id="words-range-input">
+                <input type="range" class="min" min="1" max="50" value="1" step="1">
+                <input type="range" class="max" min="1" max="50" value="50" step="1">
+            </div>
+            <div class="range-price" id="words-range-price">
+                <label for="min">En az</label>
+                <input type="number" class="min" id="words-min" value="1" min="1" max="50" step="1">
+                <label for="max">En fazla</label>
+                <input type="number" class="max" id="words-max" value="50" min="1" max="50" step="1">
+            </div>
+        </div>
+        <h3 class="filter-header">Bölüm sayısı</h3>
+        <div class="range" id="eps-range">
+            <div class="range-slider" id="eps-range-slider">
+                <span class="range-selected" id="eps-range-selected"></span>
+            </div>
+            <div class="range-input" id="eps-range-input">
+                <input type="range" class="min" min="1" max="2000" value="1" step="1">
+                <input type="range" class="max" min="1" max="2000" value="2000" step="1">
+            </div>
+            <div class="range-price" id="eps-range-price">
+                <label for="min">En az</label>
+                <input type="number" class="min" id="eps-min" value="1" min="1" max="2000" step="1">
+                <label for="max">En fazla</label>
+                <input type="number" class="max" id="eps-max" value="2000" min="1" max="2000" step="1">
+            </div>
+        </div>
+        <h3 class="filter-header">Yapım yılı</h3>
+        <div class="range" id="year-range">
+            <div class="range-slider" id="year-range-slider">
+                <span class="range-selected" id="year-range-selected"></span>
+            </div>
+            <div class="range-input" id="year-range-input">
+                <input type="range" class="min" min="1930" max="2026" value="1930" step="1">
+                <input type="range" class="max" min="1930" max="2026" value="2026" step="1">
+            </div>
+            <div class="range-price" id="year-range-price">
+                <label for="min">En az</label>
+                <input type="number" class="min" id="year-min" value="1930" min="1930" max="2026" step="1">
+                <label for="max">En fazla</label>
+                <input type="number" class="max" id="year-max" value="2026" min="1930" max="2026" step="1">
+            </div>
+        </div>
+        <h3 class="filter-header">Sıralama</h3>
+        <select class="filter-select" name="sort" id="sort">
+            <option value="malp">MyAnimeList puanı</option>
+            <option value="wordcount">Kelime sayısı</option>
+            <option value="year">Yapım yılı</option>
+            <option value="sim" selected>Benzerlik</option>
+            <option value="title">Alfabetik</option>
+        </select>
+        <h3 class="filter-header">Sıralama düzeni</h3>
+        <select class="filter-select" name="orderby" id="orderby">
+            <option value="desc" selected>Azalan</option>
+            <option value="asc">Artan</option>
+        </select>
+        <h3 class="filter-header">Etiketler</h3>
+        <div id="filter-tags">
+            <span class="filter-tag">Aksiyon</span>
+            <span class="filter-tag">Arabalar</span>
+            <span class="filter-tag">Askeri</span>
+            <span class="filter-tag">Bilim-Kurgu</span>
+            <span class="filter-tag">Bunama</span>
+            <span class="filter-tag">Büyü</span>
+            <span class="filter-tag">Çocuklar</span>
+            <span class="filter-tag">Dedektif</span>
+            <span class="filter-tag">Dementia</span>
+            <span class="filter-tag">Doğaüstü-Güçler</span>
+            <span class="filter-tag">Dövüş</span>
+            <span class="filter-tag">Dövüş Sanatları</span>
+            <span class="filter-tag">Dram</span>
+            <span class="filter-tag r18">Ecchi</span>
+            <span class="filter-tag">Erkeklerin Aşkı</span>
+            <span class="filter-tag">Fantastik</span>
+            <span class="filter-tag">Gerilim</span>
+            <span class="filter-tag">Gizem</span>
+            <span class="filter-tag">Harem</span>
+            <span class="filter-tag">Hazine-Avcılığı</span>
+            <span class="filter-tag r18">Hentai</span>
+            <span class="filter-tag">Josei</span>
+            <span class="filter-tag">Kızların Aşkı</span>
+            <span class="filter-tag">Komedi</span>
+            <span class="filter-tag">Korku</span>
+            <!-- <span class="filter-tag">Live Action</span> -->
+            <span class="filter-tag">Macera</span>
+            <span class="filter-tag">Mecha</span>
+            <span class="filter-tag">Movie</span>
+            <span class="filter-tag">Müzik</span>
+            <span class="filter-tag">Ninja</span>
+            <span class="filter-tag">OAD - ONA - OVA</span>
+            <span class="filter-tag">Okul</span>
+            <span class="filter-tag">Oyun</span>
+            <span class="filter-tag">Parodi</span>
+            <span class="filter-tag">Polisiye</span>
+            <!-- <span class="filter-tag">Politik</span> -->
+            <span class="filter-tag">Psikolojik</span>
+            <span class="filter-tag">Romantizm</span>
+            <span class="filter-tag">Samuray</span>
+            <span class="filter-tag">Savaş</span>
+            <span class="filter-tag">Seinen</span>
+            <span class="filter-tag">Şeytanlar</span>
+            <span class="filter-tag">Shoujo</span>
+            <span class="filter-tag">Shoujo-Ai</span>
+            <span class="filter-tag">Shounen</span>
+            <span class="filter-tag">Shounen-Ai</span>
+            <span class="filter-tag">Spor</span>
+            <span class="filter-tag">Süper-Güç</span>
+            <span class="filter-tag">Tarihi</span>
+            <!-- <span class="filter-tag">Tuhaf</span> -->
+            <span class="filter-tag">Uzay</span>
+            <span class="filter-tag">Vampir</span>
+            <span class="filter-tag">Yaoi</span>
+            <span class="filter-tag">Yaşamdan Kesitler</span>
+            <span class="filter-tag">Yuri</span>
+        </div>
+        <h3 class="filter-header">Etiket modu</h3>
+        <select class="filter-select" name="tagmode" id="tagmode">
+            <option value="and" selected>Ve</option>
+            <option value="or">Ya da</option>
+        </select>
+        <div id="filter-apply-container">
+            <button class="ui button mini filters-button" id="reset-filters-button">Sıfırla</button>
+            <button class="ui button mini filters-button" id="apply-filters-button">Tamam</button>
+        </div>
+    </div>
+</div>
