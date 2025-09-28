@@ -107,7 +107,18 @@ var decodeEntities = (function () {
     return decodeHTMLEntities;
 })();
 
-$(() => {
+$(async () => {
+
+    selectedSearchType = (
+        await (
+            await fetch(
+                "/anizm-plus-settings" + "?time=" + new Date().getTime()
+            )
+        ).json()
+    ).detailedSearch
+        ? SearchTypes.DETAILED
+        : SearchTypes.FAST;
+
     $(".searchTypeSelection").removeClass("passive");
 
     if (selectedSearchType != SearchTypes.FAST)

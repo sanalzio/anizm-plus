@@ -58,10 +58,12 @@
 #searchOverlay::-webkit-scrollbar-thumb {
     background: var(--primaryColor) !important;
 }
-.anizm_themeHover:hover,
 .anizm_button.list,
 ::-webkit-scrollbar-thumb:hover,
 #searchOverlay::-webkit-scrollbar-thumb:hover {
+    background: var(--primaryColorDarker) !important;
+}
+.anizm_themeHover:hover {
     background: var(--primaryColorDarker) !important;
 }
 .ui.active.button:active, .ui.button:active,

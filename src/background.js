@@ -72,7 +72,7 @@ let blockList = [
 var settings = new Object();
 
 // storage'dan ilk değeri al
-browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs", "players", "lastSeen", "watched"], (data) => { //, "fansubsActive"
+browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs", "detailedSearch", "players", "lastSeen", "watched"], (data) => { //, "fansubsActive"
     if (typeof data.searchActive !== "undefined") {
         settings.searchActive = data.searchActive;
     }
@@ -86,6 +86,9 @@ browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs"
 
     if (data.lastSeen) settings.lastSeen = true;
     if (data.watched) settings.watched = true;
+
+    if (typeof data.detailedSearch == "undefined" || data.detailedSearch !== false) settings.detailedSearch = true;
+    else settings.detailedSearch = false;
 
     if (data.fansubs && typeof data.fansubs !== "string") {
         browserObj.storage.local.set({fansubs:data.fansubs.map(f => f.replaceAll(",", "\\,")).join(",")})
@@ -106,6 +109,10 @@ browserObj.storage.onChanged.addListener((changes, area) => {
         if (changes.themeId) settings.themeId = changes.themeId.newValue;
         if (changes.lastSeen) settings.lastSeen = changes.lastSeen.newValue;
         if (changes.watched) settings.watched = changes.watched.newValue;
+        if (changes.detailedSearch) {
+            if (changes.detailedSearch.newValue === false) settings.detailedSearch = false;
+            else settings.detailedSearch = true;
+        }
     }
 });
 
@@ -122,6 +129,13 @@ browserObj.webRequest.onBeforeRequest.addListener(
 
         if (settings.searchActive !== false && details.url.includes("/js/custom/searchOverlayOnce.js"))
             return { redirectUrl: getURL("replace_scripts/searchOverlayOnce.js") };
+
+        const contentReq = details.url.match(/\/anizm-plus-content\/([\s\S]+)$/);
+        if (contentReq)
+            return { redirectUrl: getURL(contentReq[1]) };
+
+        if (details.url.split("?")[0].endsWith("/anizm-plus-settings"))
+            return { redirectUrl: "data:application/json," + JSON.stringify(settings) };
 
         if (details.url.includes("/js/custom.js"))
             return { redirectUrl: getURL("replace_scripts/custom.js") };

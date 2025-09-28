@@ -54,7 +54,7 @@ injectStyle("styles/design/necessary.css");
 
 
 
-browserObj.storage.local.get(["themeId", "searchActive", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen", "watched"], function (result) {
+browserObj.storage.local.get(["themeId", "searchActive", "removeBgs", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen", "watched", "animeLinks"], function (result) {
 
     if (result.minCssActive !== false)
         injectStyle("styles/design/min_theme.css");
@@ -219,39 +219,46 @@ browserObj.storage.local.get(["themeId", "searchActive", "removeBgs", "minCssAct
             document.documentElement.appendChild(newStyleElement);
         }
  
-    });
 
-    // arama filtreleri
-    // arama arayüzünün oluşmasını bekleyip işlem yapıyoruz
-    (function (callback) {
-        if (document.getElementById('searchOverlay')) {
-            callback();
-        } else {
-            new MutationObserver((_, obs) => {
-                if (document.getElementById('searchOverlay')) {
-                    obs.disconnect();
-                    callback();
-                }
-            }).observe(document.documentElement, {
-                childList: true,
-                subtree: true,
-            });
-        }
-    })(()=>{
+        // arama filtreleri
+        // arama arayüzünün oluşmasını bekleyip işlem yapıyoruz
         if (result.searchActive != false) {
-
-            injectStyle("styles/design/filters.css");
-
+    
             const newScriptElement = document.createElement("script");
             newScriptElement.src = getURL("inject_scripts/filters.js");
             document.body.appendChild(newScriptElement);
-
-            fetch(getURL("components/filtermenu.html"))
-                .then(res => res.text())
-                .then(content => {
-                    document.getElementById('searchOverlay').insertAdjacentHTML("beforeend", content);
-                });
+    
+            (function (callback) {
+                if (document.getElementById('searchOverlay')) {
+                    callback();
+                } else {
+                    new MutationObserver((_, obs) => {
+                        if (document.getElementById('searchOverlay')) {
+                            obs.disconnect();
+                            callback();
+                        }
+                    }).observe(document.documentElement, {
+                        childList: true,
+                        subtree: true,
+                    });
+                }
+            })(()=>{
+                injectStyle("styles/design/filters.css");
+    
+                fetch(getURL("components/filtermenu.html"))
+                    .then(res => res.text())
+                    .then(content => {
+                        document.getElementById('searchOverlay').insertAdjacentHTML("beforeend", content);
+                    });
+            });
         }
+    
+        if (result.animeLinks) {
+            const newScriptElement = document.createElement("script");
+            newScriptElement.src = getURL("inject_scripts/link_finder.js");
+            document.body.appendChild(newScriptElement);
+        }
+
     });
 
 });

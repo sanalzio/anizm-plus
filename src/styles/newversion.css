@@ -20,4 +20,11 @@
 }
 #features {
     margin: auto;
+    font-size: medium;
+}
+#features code {
+    background: rgba(255,255,255,.15);
+    padding: .125rem;
+    border-radius: .5rem;
+    font-family: 'Courier New', Courier, monospace;
 }

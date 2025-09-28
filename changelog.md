@@ -1,3 +1,6 @@
+# 1.4.1
+- Firefox için hata ayıklamaları yapıldı.
+
 # 1.4.0
 - Arama menüsüne filtreler için kullanıcı ara yüzü eklendi.
 - `Kontrolleri aşağıya taşı` ayarı eklendi.
