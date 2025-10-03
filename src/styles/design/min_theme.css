@@ -107,7 +107,7 @@ html{
 }
 
 @-moz-document url-prefix() { /* Firefox için */
-    :root {
+    * {
         scrollbar-width: thin;
     }
 }

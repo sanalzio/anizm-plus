@@ -1,3 +1,6 @@
+# 1.4.2
+- Ara yüz iyileştirmeleri.
+
 # 1.4.1
 - Firefox için hata ayıklamaları yapıldı.
 
