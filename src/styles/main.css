@@ -65,6 +65,9 @@ html{
     width: 100%;
     min-height: 100vh;
     background-color: var(--themeBgColor);
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: medium;
 }
 
 /* -- Html element -- */
@@ -133,22 +136,27 @@ header{
 /* - Logo - */
 
 #logo-btn{
-    display: block;
+    display: flex;
+    flex-direction: row;
     margin-right: 0.75rem;
-    flex: 0;
+    flex: 1;
+    max-width: fit-content;
     height: 2rem;
     max-height: 2rem;
 
-    /* filter: var(--logoFilter); */
+    filter: var(--logoFilter);
 }
 
-#logo, #logo-small {
-    display: block;
+.logo, .logo-small {
+    display: inline-block;
+    max-width: fit-content;
+    flex: 1;
     height: 2rem;
     max-height: 2rem;
 }
 
-#logo-small { display: none; }
+.logo-small,
+.none, .logo.none, .logo-small.none { display: none; }
 
 /* - Logo - */
 
@@ -295,6 +303,11 @@ header{
 
 
 #message-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
     margin: auto;
     margin-top: calc(50vh - .5rem);
     /* display: none; */
@@ -311,9 +324,9 @@ header{
 
 
 #main-loader{
-    display: none;
     display: inline-block;
     vertical-align: text-bottom;
+    margin-right: .25rem;
 }
 
 .loader {
@@ -324,7 +337,6 @@ header{
     height: 1.3rem;
     border-radius: 50%;
     animation: loader-spin 500ms linear infinite;
-    margin-right: .25rem;
 }
 
 @keyframes loader-spin {
@@ -395,6 +407,11 @@ header{
     font-weight: bold;
     line-height: 1rem;
     font-size: 1rem;
+}
+
+.result-card .card-left .card-left-under .card-mal-score {
+    margin-left: 1rem;
+    text-wrap: nowrap;
 }
 
 .result-card .card-left .card-left-under .card-mal-score::before {
@@ -492,8 +509,7 @@ header{
 /* -- Media -- */
 
 
-
-@media (min-width: 0px) and (max-width: 720px) {
+@media only screen and (max-width: 767px) {
 
     #results-container {
         padding: 5rem 5% 0 5% !important;
@@ -503,15 +519,14 @@ header{
         width: 100%;
     }
 
-}
-
-
-@media (min-width: 0px) and (max-width: 550px) {
-
-    #logo { display: none !important; }
-    #logo-small { display: block !important; }
+    #links-container { display: none; }
 
     ::-webkit-scrollbar { width: 5px; }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo:not(.none) { display: none !important; }
+    .logo-small:not(.none) { display: block !important; }
 }
 
 

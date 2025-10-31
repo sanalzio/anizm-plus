@@ -59,7 +59,8 @@ img.anilist-img {
 #linksValueRow .anilist-link,
 #linksValueRow .anilist-img {
     width: auto;
-    height: 100%;
+    /* height: 100%; */
+    height: 24px;
     display: inline-block;
 }
 
@@ -75,7 +76,7 @@ img.anilist-img {
 }
 
 
-#links-loader {
+#links-loader, #year-loader {
     border: 0.2rem solid color-mix(in srgb, var(--primaryColor), black);
     border-top: 0.2rem solid var(--primaryColor);
     border-left: 0.2rem solid var(--primaryColorDarker);

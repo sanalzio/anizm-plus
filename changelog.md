@@ -1,3 +1,9 @@
+# 1.5.0
+- Ara yüz iyileştirmeleri.
+- İyileştirilmiş arama sistemi için bozuk link hatası düzeltildi.
+- Uyum düzeltmeleri.
+- Hata düzeltmeleri.
+
 # 1.4.2
 - Ara yüz iyileştirmeleri.
 

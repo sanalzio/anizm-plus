@@ -26,12 +26,9 @@ div.menu:has(ul)>ul>li:has(a[href^="https://discord"]),
 
 
 
-
 main {
-    /* box-shadow: 0px 50vh 0px 0px var(--themeBgColor); */
-    position: relative;
+    min-height: 100%!important;
 }
-
 
 
 
@@ -125,8 +122,15 @@ html{
 
 
 footer {
-    overflow: hidden;
-    height: 0;
+    display:none;
+    /*overflow: hidden;
+    height: 0;*/
+}
+main {
+    /* box-shadow: 0px 50vh 0px 0px var(--themeBgColor); */
+    position: relative;
+    overflow-x:hidden;
+    padding-bottom: 3rem;
 }
 .donateContainer {
     display: none !important;
@@ -279,3 +283,13 @@ div.notification-tab > span.comment-count {
 }
 
 /* Arama ara yüzü */
+
+
+
+div:has(.latestAddedAnimesSlideSection) {
+    margin-top: 11rem;
+}
+
+#pageContent {
+    margin-top: 0;
+}

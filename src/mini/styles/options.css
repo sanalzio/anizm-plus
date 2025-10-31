@@ -92,10 +92,6 @@ footer{
     color: white;
     text-decoration: none;
 }
-.option-class-container span:not(.ace_editor span){
-    color: white;
-    text-decoration: none;
-}
 
 .option-container{
     position: relative;
@@ -128,7 +124,7 @@ legend{
 
 
 
-input, select, #fansubs, #players, .btn, #nickname, .link{
+input, select, .btn, #nickname, .link{
     -webkit-box-shadow: 0px 0px 10px 0px var(--primaryColor); 
     box-shadow: 0px 0px 10px 0px var(--primaryColor);
     border-radius: 0.3rem;
@@ -165,31 +161,10 @@ input[type="checkbox"] {
 
 /* - Genel ayarlar bölümü - */
 
-.better-search-container{
-    margin-bottom: .25rem;
-}
-
-
-#fansubs-container,
-#players-container,
 #user-style-container{
     flex: 1;
     display: flex;
     flex-direction: column;
-}
-#fansubs,
-#players {
-    margin-top: 0.5rem;
-    width: 100%;
-    height: 100%;
-    min-height: 6rem;
-    flex: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
-    resize: none;
-    font-family: monospace;
-    font-size: 14px;
-    color: #dddddd;
 }
 #user-style {
     height: 30vh;
@@ -206,9 +181,6 @@ input[type="checkbox"] {
 }
 #user-style-label{
     width: min-content;
-}
-.player-css-container{
-    margin-top: .5rem;
 }
 
 /* - Genel ayarlar bölümü - */

@@ -10,9 +10,12 @@
     /* Orange Theme (Default) */
     --logoFilter: none;
 
-    --primaryColor: #f1a035;
+    --primaryColor: hsl(34, 87%, 58%);
+    --primaryColorDarker: hsl(from var(--primaryColor) h s calc(l - 10));
+    --primaryColorLighter: hsl(from var(--primaryColor) h s calc(l + 10));
+    /*--primaryColor: #f1a035;
     --primaryColorDarker: #cf8320;
-    --primaryColorLighter: #ffab3e;
+    --primaryColorLighter: #ffab3e;*/
 
     --dunEklendiColor: #b36e14;
 

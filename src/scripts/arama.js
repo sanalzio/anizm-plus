@@ -12,16 +12,6 @@ var engTitleByDef = false;
 
 var queryInpClicked = false;
 
-const themeIds = [
-    "orange",
-    "green",
-    "blue",
-    "pink",
-    "purple",
-    "red",
-    "gray"
-];
-
 
 /* -- Globals -- */
 
@@ -43,9 +33,6 @@ const resultsContainer = document.getElementById("results-container");
 const resultsCountP = document.getElementById("results-count-p");
 const resultsCount = document.getElementById("results-count");
 
-const faviconLink = document.getElementById("favicon");
-const logoSmallImg = document.getElementById("logo-small");
-
 const logoBtn = document.getElementById("logo-btn");
 
 const scrollToTop = document.getElementById("scroll-to-top");
@@ -53,13 +40,6 @@ const scrollToTop = document.getElementById("scroll-to-top");
 const pageLinkElements = document.querySelectorAll("a.page-link");
 
 const html = document.documentElement;
-
-const faviconPath = new Object();
-const logoPath = new Object();
-const logoSmallPath = new Object();
-
-const themeLink = document.getElementById("theme-link");
-const logoImg = document.getElementById("logo");
 
 
 /* -- Elements -- */
@@ -1050,31 +1030,6 @@ function search(rawQuery, messageFunc, noFoundMsg) {
 
 
 
-/* -- For theme chanages -- */
-
-themeIds.forEach(themeId => {
-    faviconPath[themeId] = "./assets/favicon/"+ themeId +".png";
-    logoPath[themeId] = "./assets/logo/"+ themeId +".webp";
-    logoSmallPath[themeId] = "./assets/icon/"+ themeId +".png";
-});
-
-function switchTheme(themeId) {
-    if (!themeIds.includes(themeId))
-        return;
-
-    faviconLink.href = faviconPath[themeId];
-    logoSmallImg.src = logoSmallPath[themeId];
-
-    logoImg.src = logoPath[themeId];
-
-    themeLink.href = `styles/colors/${themeId}_theme.css`;
-}
-
-/* -- For theme chanages -- */
-
-
-
-
 /* -- Event listeners -- */
 
 
@@ -1197,9 +1152,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        browserObj.storage.local.get(["hostname"], function (result) {
-            if (result.hostname) hostname = result.hostname;
-        });
+        (typeof browser !== "undefined" &&
+        browser.runtime &&
+        browser.runtime.getURL
+            ? browser
+            : chrome
+        ).storage.local.get(
+            ["hostname", "themeId", "applyColor"],
+            function (result) {
+                if (result.hostname) hostname = result.hostname;
+                if (result.applyColor && result.themeId)
+                    switchTheme(result.themeId);
+            }
+        );
     } catch {}
 
 

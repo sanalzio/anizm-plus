@@ -1120,7 +1120,7 @@ const showSearchResults = () => {
 
 const getDetailedSearchResults = (animeInfo, searchValue) => {
     const score = animeInfo.info_malpoint;
-    const animeUrl = animeInfo.info_slug;
+    const animeUrl = "/" + animeInfo.info_slug;
     const titleHighlightedOriginal = getHighlightedText(
         (animeInfo.info_titleoriginal || animeInfo.info_title),
         searchValue
@@ -1183,7 +1183,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
                 latestEpisodeArea = `<div class="latestEpisodesContainer">
                     <span class="episodesText">Son eklenen bölüm:</span>
                     <div class="buttonsInnerWrapper">
-                        <a class="anizmLinkWrapper" href="${episode.episode_slug}" target="_blank">
+                        <a class="anizmLinkWrapper" href="/${episode.episode_slug}" target="_blank">
                             <button class="anizmEpisodeButton">
                                 <p>
                                     <span class="bg"></span>
@@ -1202,7 +1202,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
                 ${(animeInfo.lastEpisode || [])
                     .map((episode) => {
                         return `
-                        <a class="anizmLinkWrapper" href="${episode.episode_slug}" target="_blank">
+                        <a class="anizmLinkWrapper" href="/${episode.episode_slug}" target="_blank">
                             <button class="anizmEpisodeButton">
                                 <p>
                                     <span class="bg"></span>
@@ -1247,9 +1247,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
 </div>
 <div class="resultImgDate">
 <a href="${animeUrl}">
- <img src="images/loading.gif" data-src="/storage/pcovers/${
-     animeInfo.info_poster
- }" class="animeImg lazyload" />
+ <img src="images/loading.gif" data-src="/storage/pcovers/${animeInfo.info_poster}" class="animeImg lazyload" />
  ${episodeCount ? '<span class="animeEpisodeCount">' + episodeCount + "</span>" : ""}
 </a>
 <span class="animeDate">Yapım Yılı: ${animeInfo.info_year}</span>
@@ -1300,7 +1298,7 @@ const getFastSearchResults = (animeInfo, searchValue) => {
           ${(animeInfo.lastEpisode || [])
               .map((episode) => {
                   return `
-                  <a class="anizmLinkWrapper" href="${episode.episode_slug}" target="_blank">
+                  <a class="anizmLinkWrapper" href="/${episode.episode_slug}" target="_blank">
                     <button class="anizmEpisodeButton">
                         <p>
                             <span class="bg"></span>
@@ -1321,9 +1319,7 @@ const getFastSearchResults = (animeInfo, searchValue) => {
 
     return `
         <div class="fastResultTitleContainer">
-            <a class="anizmAbsoluteDetailLink" href="${
-                animeInfo.info_slug
-            }" target="_blank">
+            <a class="anizmAbsoluteDetailLink" href="/${animeInfo.info_slug}" target="_blank">
             </a>
             <h5 class="animeTitle">${titleHighlightedOriginal}</h5>
             ${hasOtherNames ? otherNamesSection : ""}

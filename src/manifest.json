@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Anizm+",
-    "version": "1.4.2",
+    "version": "1.5.0",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
 
@@ -23,7 +23,6 @@
         "webRequest",
         "webRequestBlocking",
         "storage",
-        // "<all_urls>"
 
 
         "https://anizm.pro/*",
@@ -35,7 +34,19 @@
 
         "https://cdn.jsdelivr.net/npm/devtools-detector/",
 
-        "https://information-qot.com/code-process/*"
+        "https://information-qot.com/code-process/*",
+
+        "https://st.chatango.com/*",
+
+        "https://youtube.googleapis.com/embed/*",
+        "https://sistenn.uns.bio/*",
+        "https://anizm.rpmvid.com/*",
+        "https://video.sibnet.ru/shell.php?videoid=*",
+        "https://optraco.top/explorer/*",
+        "https://anizmplayer.com/*",
+        "https://anizm.strp2p.com/*",
+        "https://vidmoly.to/embed-*",
+        "https://l455o.com/bkg/*"
     ],
 
 
@@ -48,10 +59,7 @@
         "styles/*",
         "assets/*",
         "components/*",
-        "inject_scripts/*",
-
-        "arama.html",
-        "options.html"
+        "inject_scripts/*"
     ],
 
 
@@ -64,13 +72,13 @@
 
 
     "browser_action": {
-        "default_popup": "popup.html",
+        "default_popup": "pages/popup.html",
         "default_icon": "assets/icon128.png"
     },
 
 
 
-    "options_page": "options.html",
+    "options_page": "pages/options.html",
 
 
 
@@ -92,7 +100,7 @@
                 "https://puffytr.com/*",
                 "https://anizle.com/*"
             ],
-            "js": ["inject_scripts/document_end.js"],
+            "js": ["inject_scripts/document_end.js", "inject_scripts/link_finder.js"],
             "run_at": "document_end"
         },
         {
@@ -101,14 +109,6 @@
             ],
             "all_frames": true,
             "js": ["inject_scripts/chat_window_inject.js"],
-            "run_at": "document_start"
-        },
-        {
-            "matches": [
-                "https://anizmnet.chatango.com/"
-            ],
-            "all_frames": true,
-            "js": ["inject_scripts/chatango.js"],
             "run_at": "document_start"
         },
         {

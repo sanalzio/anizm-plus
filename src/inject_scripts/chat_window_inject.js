@@ -47,7 +47,30 @@ function injectStyle(URL) {
 
 browserObj.storage.local.get(["themeId", "applyColor"], function (result) {
     onDomReady(() => {
+
         injectStyle("styles/design/chat_window.css");
-        injectStyle("styles/colors/" + (result.applyColor ? result.themeId : "orange") + "_theme.css");
+
+        if (result.applyColor && result.themeId) {
+
+            if (result.themeId.startsWith("$")) {
+
+                const primaryColor = result.themeId.slice(1, 7);
+
+                fetch(getURL("styles/colors/custom_theme.css"))
+                    .then(req => req.text())
+                    .then(data => {
+                        const newStyleElement = document.createElement("style");
+                        newStyleElement.innerHTML = primaryColor.replaceAll(primaryColor, data);
+                        document.documentElement.appendChild(newStyleElement);
+                    });
+
+                return;
+            }
+
+            injectStyle("styles/colors/" + (result.applyColor ? result.themeId : "orange") + "_theme.css");
+            return;
+        }
+
+        injectStyle("styles/colors/orange_theme.css");
     });
 });

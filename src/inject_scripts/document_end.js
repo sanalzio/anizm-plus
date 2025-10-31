@@ -56,7 +56,7 @@ catch {} */
 // Anime detayı sayfalarındaki kategoriler başlığına link ekleme
 try {
     // burada DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-    (function onDomReady(callback) {
+    (async function onDomReady(callback) {
         if (document.querySelector(".anizm_sectionTitle span")) {
             callback();
         } else {
@@ -91,7 +91,7 @@ catch {}
 
 try {
     // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-    (function onDomReady(callback) {
+    (async function onDomReady(callback) {
         if (document.querySelector("div:has(>a[data-playerreport],>a[data-title=\"Sorun bildir\"])")) {
             callback();
         } else {
@@ -151,6 +151,46 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
 
 
+
+    if (result.applyColor && result.themeId) {
+        // Mobil için başlık rengini değiştir
+        try {
+            (async function (callback) {
+                const selector = "meta[name=\"theme-color\"],meta[name=\"msapplication-TileColor\"]";
+                let arr = document.querySelectorAll(selector);
+                if (arr.length > 0) {
+                    callback(arr);
+                } else {
+                    new MutationObserver((_, obs) => {
+                        let arr = document.querySelectorAll(selector);
+                        if (arr.length > 0) {
+                            obs.disconnect();
+                            callback(arr);
+                        }
+                    }).observe(document.documentElement, {
+                        childList: true,
+                        subtree: true,
+                    });
+                }
+            })(arr => {
+                if (result.themeId.startsWith("$")) {
+                    [...arr].forEach(el=>el.setAttribute("content", "#" + result.themeId.slice(1, 7)));
+                    return;
+                }
+
+                fetch(getURL("styles/colors/themes.json"))
+                    .then(r=>r.json())
+                    .then(d=>{
+                        [...arr].forEach(el=>el.setAttribute("content", "#" + d[result.themeId]));
+                    });
+            });
+        }
+        catch {}
+    }
+
+
+
+
     /* -- "izledim/izlemedim" düğmesi yer düzenlemesi -- */
     
     // if (result.minCssActive !== false) {
@@ -158,7 +198,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
     // player seçenekleri için grafik arayüzü düzenlemesi
     try {
         // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-        (function onDomReady(callback) {
+        (async function onDomReady(callback) {
             if (document.getElementById("fanList")) {
                 callback();
             } else {
@@ -201,7 +241,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
     // Ana sayfadaki sağ üstteki linkleri düzenle
     try {
         // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-        (function onDomReady(callback) {
+        (async function onDomReady(callback) {
             if (document.querySelector("#menuContent ul")) {
                 callback();
             } else {
@@ -242,7 +282,7 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
 
     /* if (result.detailedSearch !== false)
         // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-        (function onDomReady(callback) {
+        (async function onDomReady(callback) {
             if (document.querySelector(".searchTypeSelection .searchTypeOption")) {
                 callback();
             } else {

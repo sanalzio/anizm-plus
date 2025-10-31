@@ -283,7 +283,7 @@ for (let i = 0; i < bgSelContainers.length; i++) {
 }
 
 
-document.getElementById("fansubs-active").addEventListener("change", (e) => {
+/* document.getElementById("fansubs-active").addEventListener("change", (e) => {
     if (!e.target.checked)
         document.getElementById("fansubs").setAttribute("disabled", "");
     else
@@ -294,7 +294,7 @@ document.getElementById("players-active").addEventListener("change", (e) => {
         document.getElementById("players").setAttribute("disabled", "");
     else
         document.getElementById("players").removeAttribute("disabled");
-});
+}); */
 
 
 // change with scroll
@@ -410,11 +410,9 @@ const saveValue = debounce((k, val) => {
     saved(k);
 }, WAIT_MS_FOR_SAVE);
 
-const saveFansubs = debounce((val) => {
+/* const saveFansubs = debounce((val) => {
     const fansubs = val != "" ?
-        val
-            /* .split(/(?<!\\),/)
-            .map(f => f.replaceAll("\\,", ",").toLocaleLowerCase("tr")) */ :
+        val :
         null;
 
         browserObj.storage.local.set({
@@ -426,9 +424,7 @@ const saveFansubs = debounce((val) => {
 
 const savePlayers = debounce((val) => {
     const players = val != "" ?
-        val
-            /* .split(/(?<!\\),/)
-            .map(f => f.replaceAll("\\,", ",").toLocaleLowerCase("tr")) */ :
+        val :
         null;
 
         browserObj.storage.local.set({
@@ -436,26 +432,14 @@ const savePlayers = debounce((val) => {
         });
 
         saved("players");
-}, WAIT_MS_FOR_SAVE);
+}, WAIT_MS_FOR_SAVE); */
 
 document.addEventListener("change", function (event) {
     const el = event.target
     if (el.classList.contains("option")) {
         switch (el.id) {
 
-            case "search":
-                browserObj.storage.local.set({
-                    searchActive: el.checked
-                });
-                break;
-
-            case "detailed-search":
-                browserObj.storage.local.set({
-                    detailedSearch: el.checked
-                });
-                break;
-
-            case "fansubs-active":
+            /* case "fansubs-active":
                 browserObj.storage.local.set({
                     fansubsActive: el.checked
                 });
@@ -465,7 +449,7 @@ document.addEventListener("change", function (event) {
                 browserObj.storage.local.set({
                     selectPlayer: el.checked
                 });
-                break;
+                break; */
 
             case "min-theme":
                 browserObj.storage.local.set({
@@ -485,34 +469,10 @@ document.addEventListener("change", function (event) {
                     themeId: getThemeSelectValue(themeSelect.value)
                 });
                 break;
-
-            /* case "rem-bgs":
-                browserObj.storage.local.set({
-                    removeBgs: el.checked
-                });
-                break; */
-
-            case "player-css":
-                browserObj.storage.local.set({
-                    player: el.checked
-                });
-                break;
-
-            case "last-seen":
-                browserObj.storage.local.set({
-                    lastSeen: el.checked
-                });
-                break;
                 
             case "anime-links":
                 browserObj.storage.local.set({
                     animeLinks: el.checked
-                });
-                break;
-
-            case "watched":
-                browserObj.storage.local.set({
-                    watched: el.checked
                 });
                 break;
 
@@ -533,7 +493,7 @@ document.addEventListener("input", function (event) {
     if (el.classList.contains("option")) {
         switch (el.id) {
 
-            case "fansubs":
+            /* case "fansubs":
                 document.getElementById("fansubs-saved").style.display = "none";
                 saveFansubs(el.value);
                 break;
@@ -541,7 +501,7 @@ document.addEventListener("input", function (event) {
             case "players":
                 document.getElementById("players-saved").style.display = "none";
                 savePlayers(el.value);
-                break;
+                break; */
 
             case "nickname":
             case "hostname":
@@ -603,10 +563,10 @@ function applySettings(result) {
     if (result.applyColor) document.getElementById("color-theme-select-container").removeAttribute("disabled");
     else document.getElementById("color-theme-select-container").setAttribute("disabled", "");
 
-    if (result.fansubsActive) document.getElementById("fansubs").removeAttribute("disabled");
+    /* if (result.fansubsActive) document.getElementById("fansubs").removeAttribute("disabled");
     else document.getElementById("fansubs").setAttribute("disabled", "");
     if (result.selectPlayer) document.getElementById("players").removeAttribute("disabled");
-    else document.getElementById("players").setAttribute("disabled", "");
+    else document.getElementById("players").setAttribute("disabled", "");*/
 
     let customThemeInputNewDsiplay = "none";
     if (result.themeId) {
@@ -619,15 +579,12 @@ function applySettings(result) {
     customThemeInput.style.display = customThemeInputNewDsiplay;
 
     // document.getElementById("rem-bgs").checked = result.removeBgs == undefined ? false : result.removeBgs;
-    document.getElementById("search").checked = result.searchActive == undefined ? true : result.searchActive;
-    document.getElementById("detailed-search").checked = result.detailedSearch == undefined ? true : result.detailedSearch;
-    document.getElementById("fansubs-active").checked = result.fansubsActive == undefined ? false : result.fansubsActive;
-    document.getElementById("fansubs").value = result.fansubs == undefined ? "" : result.fansubs;//.map(f => f.replaceAll(",", "\\,")).join(",");
+    /* document.getElementById("fansubs-active").checked = result.fansubsActive == undefined ? false : result.fansubsActive;
+    document.getElementById("fansubs").value = result.fansubs == undefined ? "" : result.fansubs;//.map(f => f.replaceAll(",", "\\,")).join(","); */
     document.getElementById("nickname").value = result.nickname == undefined ? "" : result.nickname;
     document.getElementById("hostname").value = result.hostname == undefined ? "" : result.hostname;
-    document.getElementById("player-css").checked = result.player == undefined ? true : result.player;
-    document.getElementById("players-active").checked = result.selectPlayer == undefined ? false : result.selectPlayer;
-    document.getElementById("players").value = result.players == undefined ? "" : result.players;//.map(f => f.replaceAll(",", "\\,")).join(",");
+    /* document.getElementById("players-active").checked = result.selectPlayer == undefined ? false : result.selectPlayer;
+    document.getElementById("players").value = result.players == undefined ? "" : result.players;//.map(f => f.replaceAll(",", "\\,")).join(","); */
     
     editor.setValue(result.userCss, 1);
 
@@ -706,9 +663,7 @@ function applySettings(result) {
         }
     }
 
-    document.getElementById("last-seen").checked = result.lastSeen == undefined ? false : result.lastSeen;
     document.getElementById("anime-links").checked = result.animeLinks == undefined ? true : result.animeLinks;
-    document.getElementById("watched").checked = result.watched == undefined ? false : result.watched;
     document.getElementById("bottom-controls").checked = result.bottomControls == undefined ? false : result.bottomControls;
 }
 
@@ -735,52 +690,40 @@ function showImportMessage(message, color = "var(--success)") {
 const dataKeys = [
     "themeId",
     "applyColor",
-    // "removeBgs",
-    "fansubs",
-    "fansubsActive",
-    "searchActive",
+    // "fansubs",
+    // "fansubsActive",
     "minCssActive",
-    "detailedSearch",
     "userCss",
     "nickname",
     "hostname",
-    "player",
     "links",
-    "selectPlayer",
-    "players",
+    // "selectPlayer",
+    // "players",
     "changeBgs",
     "homeBg",
     "homeSliderBg",
     "episodeBg",
-    "lastSeen",
     "animeLinks",
-    "watched",
     "bottomControls"
 ];
 
 const defaultSettings = {
     themeId: null,
     applyColor: false,
-    // removeBgs: false,
-    fansubs: "",
-    fansubsActive: false,
-    searchActive: true,
+    // fansubs: "",
+    // fansubsActive: false,
     minCssActive: true,
-    detailedSearch: true,
     userCss: null,
     nickname: null,
     hostname: null,
-    player: true,
     links: ["takvim", "tavsiye-robotu", "fansublar", "arama"],
-    selectPlayer: false,
-    players: "",
+    // selectPlayer: false,
+    // players: "",
     changeBgs: false,
     homeBg: null,
     homeSliderBg: null,
     episodeBg: null,
-    lastSeen: false,
     animeLinks: true,
-    watched: false,
     bottomControls: false
 }
 

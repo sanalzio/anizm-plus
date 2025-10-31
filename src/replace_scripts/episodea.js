@@ -146,7 +146,7 @@ site_js.controller.register("episodepage", {
 
             try {
 
-                const priorityFansubs = priorityFansubsElement.getAttribute("content").split(/(?<!\\),/).map(p => p.replaceAll("\\,", ",").toLowerCase())                
+                const priorityFansubs = priorityFansubsElement.getAttribute("content").split(/(?<!\\),/).map(p => p.replaceAll("\\,", ",").toLowerCase());
 
                 const bluRayRegExp = /(?<!\w)bd(?!\w)/i;
 
@@ -198,7 +198,7 @@ site_js.controller.register("episodepage", {
 
         if (priorityPlayersElement && priorityPlayersElement.getAttribute("content")) {
             const playerBtns = Array.from(document.querySelectorAll("[data-playerclick]"));
-            const priorityPlayers = priorityPlayersElement.getAttribute("content").split(/(?<!\\),/).map(p => p.replaceAll("\\,", ",").toLowerCase())
+            const priorityPlayers = priorityPlayersElement.getAttribute("content").split(/(?<!\\),/).map(p => p.replaceAll("\\,", ",").toLowerCase());
 
             if (playerBtns.length > 1) {
                 const sortedBtns = playerBtns

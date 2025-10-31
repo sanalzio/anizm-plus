@@ -1,6 +1,7 @@
 /* --- Sabitler --- */
 
 :root{
+    --dunEklendiColor: hsl(from var(--primaryColor) calc(h + 50) s calc(l - 20));
     --suAnIzlediklerim: #8CBF94;
     --tamaladiklarim: #7FA6E0;
     --izleyeceklerim: #E8B17D;
@@ -42,6 +43,31 @@
     box-shadow: 0px 0px 0px 1px var(--primaryColor) inset !important;
     font-family: "Merriweather Sans", sans-serif;
     font-size: 100%;
+}
+
+
+.aramaortabox > .ui.input {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 16px;
+}
+.ui.input.down input, .ui.input > input,
+.ui.input.down input, .ui.input > input:active,
+.ui.input.down input, .ui.input > input:focus {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+#homeSearchTrigger {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.ui.input.down input, .ui.input > input:active {
+    border-color: var(--primaryColorDarker);
+}
+.ui.action.input:not([class*="left action"])>input:focus {
+    border-right-color: var(--primaryColor) !important;
 }
 
 
@@ -356,10 +382,11 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
     background-color: var(--primaryColor) !important;
 }
 
-[data-translatorclick].active .translatorCompactBox {
+[data-translatorclick].active .translatorCompactBox,
+.translatorCompactBox.active {
     background-color: var(--primaryColor) !important;
     border-color: var(--primaryColorLighter) !important;
-    box-shadow: 0 0 10px var(--primaryColorDarker);
+    box-shadow: 0 0 10px var(--primaryColorDarker) !important;
 }
 
 
@@ -465,7 +492,7 @@ input[data-episodefilter] {
 
 
 #mobile-fixed-menu {
-    border-bottom: 2px solid var(--primaryColor);
+    border-bottom: 2px solid var(--primaryColor) !important;
 }
 .mobile-profile-item i {
     color: var(--primaryColor);
@@ -495,6 +522,9 @@ div.notification-tab > span.comment-count {
 .mobile-mark-all-read {
     background: var(--primaryColor);
 }
+.mobile-mark-all-read:hover {
+    background: var(--primaryColorDarker);
+}
 .mobile-notification-badge {
     background: var(--primaryColorLighter) !important;
 }
@@ -517,23 +547,112 @@ div.notification-tab > span.comment-count {
 
 /* Yeni "son yorumlar bölümü için" */
 
-.animeLink {
-    color: var(--primaryColor) !important;
-    background: hsla(from var(--primaryColor) h s l / .1);
-    border: 1px solid hsla(from var(--primaryColor) h s l / .3);
+a.animeLink,
+.animeInfo>a,
+.animeInfo a.animeLink,
+.animeInfo .animeLink {
+    color: hsl(from var(--primaryColorLighter) h s calc(l + 10)) !important;
+    background: hsl(from var(--primaryColor) h s l / .1);
+    border: 1px solid hsl(from var(--primaryColor) h s l / .3);
 }
-.animeLink:hover {
-    color: var(--primaryColorLighter) !important;
-    background: hsla(from var(--primaryColorLighter) h s l / .2);
-    border-color: hsla(from var(--primaryColorLighter) h s l / .4);
+a.animeLink:hover,
+.animeInfo>a:hover,
+.animeInfo a.animeLink:hover,
+.animeInfo .animeLink:hover {
+    color: hsl(from var(--primaryColorLighter) h s calc(l + 10)) !important;
+    background: hsl(from var(--primaryColorLighter) h s l / .2);
+    border-color: hsl(from var(--primaryColorLighter) h s l / .4);
 }
 
+
 .userName:hover {
-    color: var(--primaryColorLighter) !important;
+    color: hsl(from var(--primaryColorLighter) h s calc(l + 10)) !important;
 }
 
 .userMention strong {
-    color: var(--primaryColorLighter);
+    color: hsl(from var(--primaryColorLighter) h s calc(l + 10)) !important;
+}
+
+.recentCommentCard, .recentCommentCard:hover {
+    background: rgba(30, 30, 30, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 /* Yeni "son yorumlar bölümü için" */
+
+
+
+
+.mobile-register-btn {
+    background: var(--primaryColor)!important;
+    border-color: var(--primaryColorDarker)!important;
+}
+.mobile-register-btn:hover {
+    background: var(--primaryColorDarker)!important;
+    border-color: var(--primaryColorDarker)!important;
+    color: black;
+}
+
+
+.mobile-login-btn {
+    border-color: var(--primaryColor)!important;
+    color: var(--primaryColorLighter)!important;
+}
+.mobile-login-btn:hover {
+    background: var(--primaryColor)!important;
+    border-color: var(--primaryColorDarker)!important;
+    color: black;
+}
+
+.mobile-search-btn > .search.icon {
+    color: var(--primaryColorLighter);
+}
+
+
+.mobile-profile-btn:hover {
+    background: transparent;
+}
+
+
+.ui.checkbox input:checked~.box:before, .ui.checkbox input:checked~label:before,
+.ui.radio.checkbox input:checked~.box:before, .ui.radio.checkbox input:checked~label:before,
+.ui.radio.checkbox input:focus:checked~.box:before, .ui.radio.checkbox input:focus:checked~label:before {
+    background: var(--primaryColor);
+}
+.ui.checkbox input:checked:focus~.box:before, .ui.checkbox input:checked:focus~label:before, .ui.checkbox input:not([type=radio]):indeterminate:focus~.box:before, .ui.checkbox input:not([type=radio]):indeterminate:focus~label:before {
+    background: var(--primaryColor);
+    border-color: var(--primaryColorLighter);
+}
+.ui.checkbox .box:before, .ui.checkbox label:before,
+.ui.selection.active.dropdown .menu,
+.ui.selection.active.dropdown:hover .menu {
+    border-color: var(--primaryColor);
+}
+
+
+
+
+/* Hayatımda yazdığım en boş kodlardan biri herhalde */
+.google-login-button {
+    background-color: var(--primaryColorDarker)!important;
+    color: white!important;
+    border: 1px solid var(--primaryColor)!important;
+    box-shadow: 3px 3px 0px hsl(from var(--primaryColor) h s calc(l - 25))!important;
+}
+.google-login-button:active {
+    margin: 3px -3px -3px 3px!important;
+    box-shadow: none!important;
+}
+
+
+
+
+.ui.form .field.field input:-webkit-autofill {
+    border-color: var(--primaryColor)!important;
+    box-shadow: 0 0 0 100px hsl(from var(--primaryColorDarker) h s l/.5) inset!important;
+}
+.ui.form .field.field input:-webkit-autofill:focus {
+    border-color: var(--primaryColor)!important;
+    box-shadow: 0 0 0 100px hsl(from var(--primaryColorDarker) h s l/.7) inset!important;
+}

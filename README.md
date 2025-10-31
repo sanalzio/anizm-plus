@@ -12,8 +12,10 @@ Anzim sitesini konfor ve işlevsellik açısından iyileştirir.
 - [Anizm+](#anizm)
 - [✔ Kurulum](#-kurulum)
   - [Tarayıcı engelleri](#tarayıcı-engelleri)
+    - [Sırf Chrome kullanıyorum diye kullanamayacak mıyım?](#sırf-chrome-kullanıyorum-diye-kullanamayacak-mıyım)
   - [Chrome tabanlı tarayıcılar için kurulum. (Brave,  Vivaldi, Microsoft Edge, Opera)](#chrome-tabanlı-tarayıcılar-için-kurulum-brave--vivaldi-microsoft-edge-opera)
-  - [Firefox ve forkları (Zen Browser vb.)](#firefox-ve-forkları-zen-browser-vb)
+  - [Firefox ve forkları (Zen Browser vb.) için kurulum.](#firefox-ve-forkları-zen-browser-vb-için-kurulum)
+  - [Chrome gibi `Manifest V2` desteği olmayan tarayıcılar için kurulum.](#chrome-gibi-manifest-v2-desteği-olmayan-tarayıcılar-için-kurulum)
 - [✨ Özellikleri](#-özellikleri)
   - [🛑 Reklam ve ölçüm sistemlerini engelleme](#-reklam-ve-ölçüm-sistemlerini-engelleme)
   - [🔎 Arama sistemi iyileştirme](#-arama-sistemi-iyileştirme)
@@ -29,6 +31,9 @@ Reklam engelleyici gibi eklentilerin tam performansında çalışabilmesi için 
 
 Bu nedenle bu eklentiyi kullanmak için; **Firefox ve forkları (Zen Browser vb.)**, **Brave**, **Vivaldi (bir süreliğine)**, **Opera** ya da **Microsoft Edge** tarayıcılarından birini kullanmanız gerekir.
 
+### Sırf Chrome kullanıyorum diye kullanamayacak mıyım?
+Maalesef öyle. Ama iyi haberlerim var artık Chrome gibi `Manifest V2` desteklemeyen tarayıcılar için `Manifest V3` sistemi üzerine kurulu `Anizm+ Mini` sürümü var. Bu sürüm adından anlaşılabileceği üzere bazı özelliklerden fedakarlık ederek Chrome gibi tarayıcılarda çalışabiliyor. **Kurulumu için aşşağıyı takip edin.**
+
 ## Chrome tabanlı tarayıcılar için kurulum. (Brave,  Vivaldi, Microsoft Edge, Opera)
 
 1) Tarayıcının sağ üstte arama barının sağındaki eklenti tuşuna basıp açılan baloncukta ki `Eklentileri yönet` tuşuna tıklayın.
@@ -37,8 +42,16 @@ Bu nedenle bu eklentiyi kullanmak için; **Firefox ve forkları (Zen Browser vb.
 4) Yüklenen eklentinin `detaylar` bölümüne tıklayın.
 5) En alt kısma inip `Eklenti ayarları` bölümüne tıklayıp açılan sayfada kişisel ayarlarınızı yapabilirsiniz.
 
-## Firefox ve forkları (Zen Browser vb.)
+## Firefox ve forkları (Zen Browser vb.) için kurulum.
 <a href="https://addons.mozilla.org/addon/anizm-plus/"><img src="./assets/get_addon_tr.png" alt="Anizm+ eklentisini edinin."></a>
+
+## Chrome gibi `Manifest V2` desteği olmayan tarayıcılar için kurulum.
+
+1) Tarayıcının sağ üstte arama barının sağındaki eklenti tuşuna basıp açılan baloncukta ki `Eklentileri yönet` tuşuna tıklayın.
+2) Açılan pencerede sağ üstteki `Geliştirici modu` seçeneğini aktif edin.
+3) [Buradan](https://github.com/sanalzio/anizm-plus/releases/latest) indirdiğiniz `anizm-plus-mini.zip` dosyasını önünüzdeki `Eklentiler` sayfasına sürükleyip bırakın.
+4) Yüklenen eklentinin `detaylar` bölümüne tıklayın.
+5) En alt kısma inip `Eklenti ayarları` bölümüne tıklayıp açılan sayfada kişisel ayarlarınızı yapabilirsiniz.
 
 # ✨ Özellikleri
 

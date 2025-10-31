@@ -81,7 +81,7 @@ browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs"
     } */
     if (typeof data.applyColor !== "undefined") {
         settings.applyColor = data.applyColor;
-        settings.themeId = data.themeId;
+        settings.themeId = data.themeId.startsWith("$") ? "custom" : data.themeId;
     }
 
     if (data.lastSeen) settings.lastSeen = true;
@@ -106,7 +106,7 @@ browserObj.storage.onChanged.addListener((changes, area) => {
         /* if (changes.fansubsActive) {
             settings.fansubsActive = changes.fansubsActive.newValue;
         } */
-        if (changes.themeId) settings.themeId = changes.themeId.newValue;
+        if (changes.themeId) settings.themeId = changes.themeId.newValue.startsWith("$") ? "custom" : changes.themeId.newValue;
         if (changes.lastSeen) settings.lastSeen = changes.lastSeen.newValue;
         if (changes.watched) settings.watched = changes.watched.newValue;
         if (changes.detailedSearch) {
@@ -145,10 +145,10 @@ browserObj.webRequest.onBeforeRequest.addListener(
 
 
         if (details.url.includes("/upload/assets/logo.webp") && settings.applyColor)
-            return { redirectUrl: getURL("assets/logo/"+ settings.themeId +".webp") };
+            return { redirectUrl: getURL("assets/logo/"+ (settings.themeId == "custom" ? "orange" : settings.themeId) +".webp") };
 
         if ((details.url.includes("/favicon.ico") || details.url.includes("/images/logo_")) && settings.applyColor)
-            return { redirectUrl: getURL("assets/favicon/" + settings.themeId + ".png") };
+            return { redirectUrl: getURL("assets/favicon/" + (settings.themeId == "custom" ? "gray" : settings.themeId) + ".png") };
 
 
         if (details.url.split("#")[0].split("?")[0].endsWith("/mal.svg"))
@@ -157,14 +157,9 @@ browserObj.webRequest.onBeforeRequest.addListener(
             return { redirectUrl: getURL("assets/anilist.svg") };
 
 
-        if (settings.searchActive !== false && (details.url.split("#")[0].split("?")[0].endsWith("/arama"))) {
+        if (settings.searchActive !== false && (details.url.split("#")[0].split("?")[0].endsWith("/arama")))
+            return { redirectUrl: getURL("arama.html?hostname=" + details.url.split("/")[2]) };
 
-            if (settings.applyColor !== true) {
-                return { redirectUrl: getURL("arama.html?hostname=" + details.url.split("/")[2]) };
-            }
-
-            return { redirectUrl: getURL("arama.html?hostname=" + details.url.split("/")[2]) + "&theme=" + settings.themeId };
-        }
     },
     {
         urls: [

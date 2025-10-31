@@ -100,9 +100,8 @@
     .range-slider {
         height: 0.6rem;
     }
-}
 
-@media (max-width: 480px) {
+
     .range-price {
         flex-direction: column;
         align-items: stretch;
@@ -253,7 +252,7 @@
     margin-bottom: 1rem;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 767px) {
     #filtersDropDown {
         --filtersDropDownWidth: 95vw;
         height: 95vh;
@@ -275,6 +274,9 @@
     }
     #mobile-fixed-menu{
         z-index: 6;
+    }
+    #mobile-menu-overlay{
+        z-index: 5;
     }
 }
 

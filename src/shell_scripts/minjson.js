@@ -45,9 +45,21 @@ function stripJsonCommentsSafe(json) {
     return result;
 }
 
-const manifestFileObj = file("manifest.json");
+const fileObj = file(process.argv[2]);
+const fileContent = await fileObj.text();
+const json = JSON.parse(stripJsonCommentsSafe(fileContent));
+
+write(process.argv[3], JSON.stringify(json, null, 0));
+
+/* const manifestFileObj = file("../manifest.json");
 const manifestFileContent = await manifestFileObj.text();
 const manifest = JSON.parse(stripJsonCommentsSafe(manifestFileContent));
 
-write("./build/manifest.json", JSON.stringify(manifest, null, 0));
+write("../build/manifest.json", JSON.stringify(manifest, null, 0));
 
+
+const themesFileObj = file("../styles/colors/themes.json");
+const themesFileContent = await themesFileObj.text();
+const themes = JSON.parse(stripJsonCommentsSafe(themesFileContent));
+
+write("../build/styles/colors/themes.json", JSON.stringify(themes, null, 0)); */

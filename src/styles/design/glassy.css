@@ -1,0 +1,432 @@
+:root{
+    --transition: background-color box-shadow;
+    --transition-duration: .2s;
+
+
+    --scrollbar-width: 10px;
+
+
+    /* shadows */
+    --shadow-s: inset 0 1px 2px #ffffff30,
+        /* top highlight */ 0 1px 2px #00000030,
+    /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
+    --shadow-m: inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030,
+    /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */
+    --shadow-l: inset 0 1px 2px #ffffff70, /* top highlight */ 0 4px 6px #00000030,
+    /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
+}
+
+.anizm_button,
+#videoFrame,
+.ui.primary.button,
+.ui.primary.buttons .button,
+.ui.blue.button,
+.ui.blue.buttons .button,
+#custom-comment-system .ui.primary.button,
+.anizm_button[style*="background-color:#5c6bc0"],
+.anizm_button[style*="background-color: #5c6bc0"],
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"],
+.follow-btn,
+.ui.basic.button.follow-btn,
+.ui.red.button.follow-btn,
+.ui.button.follow-btn,
+#addWatched,
+[data-translatorclick] .translatorCompactBox,
+.ui.label,
+footer,
+.ui.small.label,
+.ui.small.labels .label,
+.ui.button.fluid.orange,
+#custom-comment-system,
+.ui.warning.message .header,
+.ui.warning.message,
+.ui.info.message .header,
+.ui.info.message,
+.ui.icon.button,
+.episodeTranslatorNote,
+.playerUploader,
+.episodeTranslatorNote .title,
+.episodeTranslatorNote>.ui.icon.button,
+.uploaderLittleInfo,
+.animeDetayKutu,
+.anizm_box,
+.anizm_boxTitle,
+.episode_searchBox,
+.episodeLine,
+#pageContent a.span[href*="/kategoriler"],
+.anizm_sectionTitle>a,
+.anizm_sectionTitle>span,
+.info_otherTitle,
+.anizm_pageTitle,
+.infoSta li,
+header,
+#menuContent>.menu>ul>li/*,
+.menu.notification-menu*/
+{
+    background: #00000040!important;
+    color: #ffffffee!important;
+    border: 1px solid #ffffff70!important;
+    backdrop-filter: blur(5px);
+    transition-duration: var(--transition-duration);
+    transition-property: var(--translation);
+    box-shadow: var(--shadow-s);
+    border-radius: 16px;
+    z-index: 10;
+}
+.anizm_box,
+.animeDetayKutu {
+    background: #00000070!important;
+    box-shadow: var(--shadow-l);
+}
+.ui {
+    border-radius: 16px!important;
+}
+
+
+
+.anizmTitleLink:hover {
+    color: hsl(from var(--primaryColor) h s calc(l + 30) / .85);
+}
+.anizm_sectionTitle>a, .anizm_sectionTitle>span {
+    padding: .55rem .75rem;
+    border-radius: 1.5rem;
+    display: inline-block;
+    box-shadow: var(--shadow-m);
+    background: #99999940!important;
+}
+.anizm_pageTitle{
+    padding: .5rem 1rem;
+    margin: .5rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+    box-shadow: var(--shadow-l);
+    background: #66666640!important;
+}
+.infoSta li {
+    padding: 0 .5rem!important;
+    color: #ffffffdd!important;
+}
+.info_otherTitle:before {
+    content: "Diğer isimler: ";
+}
+
+
+
+body > main > header.mt-3 {
+    background: #66666640!important;
+    box-shadow: var(--shadow-l);
+    margin: .5rem .5rem 0 .5rem!important;
+    width: calc(100% - 1rem)!important;
+}
+body > main > header .avatar {
+    box-shadow: var(--shadow-s);
+}
+#menuContent {
+    margin-top: .125rem;
+}
+#menuContent>.menu>ul>li{
+    padding: 5px 8px;
+    margin: 5px 8px;
+    background: #66666640!important;
+}
+#menuContent>.menu>ul>li:has(a:hover) {
+    background: #99999940!important;
+    box-shadow: var(--shadow-m);
+}
+#menuContent>.menu>ul>li>a:hover {
+    border: none;
+}
+.headerSearchIcon {
+    padding: 5px 8px!important;
+}
+.headerSearchContainer {
+    padding: 0!important;
+    border-radius: 100%!important;
+}
+#menuContent>.menu>ul>li.headerSearchContainer:has(.headerSearchIcon:hover),
+#menuContent>.menu>ul>li.headerSearchContainer:hover {
+    box-shadow: var(--shadow-m);
+    background: #99999940!important;
+}
+
+
+
+body.searchShown {
+    padding-right: var(--scrollbar-width);
+}
+
+
+
+/*.menu.notification-menu.visible{
+    z-index: ;
+}*/
+
+
+
+.anizm_button:hover,
+#addWatched:hover,
+.ui.label:hover,
+.ui.small.label:hover,
+.ui.small.labels .label:hover
+{
+    box-shadow: var(--shadow-m);
+    background: #55555560!important;
+}
+.anizm_button.active {
+    box-shadow: var(--shadow-m), 0 0 10px 0px var(--primaryColor);
+}
+
+.anizm_button.default,
+.ui.primary.button,
+.ui.primary.buttons .button,
+.ui.blue.button,
+.ui.blue.buttons .button,
+#custom-comment-system .ui.primary.button,
+.anizm_button[style*="background-color:#5c6bc0"],
+.anizm_button[style*="background-color: #5c6bc0"],
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"],
+.follow-btn,
+.ui.basic.button.follow-btn,
+.ui.red.button.follow-btn,
+.ui.button.follow-btn,
+#deleteWatched,
+.videoPlayerButtons.active,
+[data-translatorclick].active .translatorCompactBox,
+.ui.button.fluid.orange,
+.ui.icon.button
+{
+    box-shadow: var(--shadow-s);
+    background: hsl(from var(--primaryColor) h s calc(l - 3) / .8)!important;
+}
+.anizm_button.default:hover,
+.ui.primary.button:hover,
+.ui.primary.buttons .button:hover,
+.ui.blue.button:hover,
+.ui.blue.buttons .button:hover,
+#custom-comment-system .ui.primary.button:hover,
+.anizm_button[style*="background-color:#5c6bc0"]:hover,
+.anizm_button[style*="background-color: #5c6bc0"]:hover,
+.anizm_button[style*="background-color:red"]:hover,
+.anizm_button[style*="background-color: red"]:hover,
+.follow-btn:hover,
+.ui.follow-btn:hover,
+.ui.basic.button.follow-btn:hover,
+.ui.red.button.follow-btn:hover,
+.ui.button.follow-btn:hover,
+#deleteWatched:hover,
+.videoPlayerButtons.active:hover,
+[data-translatorclick].active .translatorCompactBox:hover,
+.ui.button.fluid.orange:hover,
+.ui.icon.button:hover
+{
+    box-shadow: var(--shadow-m);
+    background: hsl(from var(--primaryColor) h s l / .8)!important;
+}
+
+
+
+
+[data-translatorclick] .translatorCompactBox,
+.videoPlayerButtons {
+    background: #99999940!important;
+}
+[data-translatorclick] .translatorCompactBox:hover,
+.videoPlayerButtons:hover {
+    box-shadow: var(--shadow-m);
+    background: #99999960!important;
+}
+[data-translatorclick].active .translatorCompactBox:hover {
+    box-shadow: var(--shadow-m), 0 0 10px 0px var(--primaryColor);
+}
+.episodeTranslators {
+    border: none!important;
+}
+.videoPlayerButtons {
+    transition-property: var(--transition) transform;
+}
+.videoPlayerButtons:hover {
+    transform: translateY(-1px);
+}
+
+
+
+
+#videoFrame {
+    background: #00000070!important;
+    box-shadow: var(--shadow-l);
+}
+.episodeTranslators {
+    background: transparent!important;
+}
+
+
+
+footer {
+    background: #00000070!important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+}
+main {
+    padding-bottom: 3rem;
+}
+
+
+
+::selection {
+    background: hsl(from var(--primaryColor) h s l / .5);
+}
+
+
+
+#pageContent>*:nth-last-child(1), #pageContent>*:nth-last-child(4), #pageContent>*:nth-last-child(2) {
+    background: #00000070!important;
+    color: #ffffffee!important;
+    border: 1px solid #ffffff70!important;
+    backdrop-filter: blur(5px);
+    padding: 0 3rem;
+}
+#pageContent>*:nth-last-child(1) {
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: none!important;
+    padding-bottom: 2rem;
+}
+#pageContent>*:nth-last-child(3) {
+    display: none;
+}
+#pageContent>*:nth-last-child(4) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: calc(1127px + 2rem) !important;
+    border-radius: 16px;
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-bottom: none!important;
+    padding-top: 3rem;
+    position: relative;
+    z-index: 1;
+}
+#pageContent a.span[href*="/kategoriler"] {
+    display: inline-block;
+    padding: .55rem .75rem;
+    border-radius: 1.5rem;
+    transition-property: var(--transition) transform;
+    box-shadow: var(--shadow-m);
+    background: #99999940!important;
+}
+#pageContent a.span[href*="/kategoriler"]:hover {
+    box-shadow: var(--shadow-l);
+    background: #dddddd30 !important;
+    transform: translateY(-.1rem);
+}
+#pageContent>*:nth-last-child(2), #pageContent>*:nth-last-child(3) {
+    border-radius: 0!important;
+    border-bottom: none!important;
+    border-top: none!important;
+    padding-top: 2rem;
+}
+
+
+
+
+#custom-comment-system {
+    background: #00000070!important;
+}
+.ck-editor {
+    border: 1px solid #ffffff70!important;
+    box-shadow: var(--shadow-s);
+    border-radius: 16px;
+    overflow: hidden;
+}
+.ck.ck-toolbar {
+    background: #00000099!important;
+}
+.ck.ck-editor__main>.ck-editor__editable {
+    background: #000000DD!important;
+    padding: 1rem;
+}
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline p::spelling-error {
+    text-decoration:underline #e05e5e;
+    text-decoration-thickness: 2px;
+}
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline p {
+    font-size: medium!important;
+    line-height: normal!important;
+}
+.ck.ck-editor__main>.ck-editor__editable.ck-placeholder {
+    color: #dddddd!important;
+}
+
+
+
+.episodeTranslatorNote,
+.playerUploader {
+    background: #00000070!important;
+    overflow: hidden;
+    box-shadow: var(--shadow-l);
+}
+.episodeTranslatorNote .title {
+    margin: .5rem 0 0 .5rem;
+    background: #dddddd30!important;
+    box-shadow: var(--shadow-m);
+}
+.episodeTranslatorNote>.ui.icon.button,
+.uploaderLittleInfo {
+    background: #dddddd40!important;
+}
+.uploaderLittleInfo {
+    margin: .5rem .5rem 0 0;
+    box-shadow: var(--shadow-m);
+}
+.translatorEncoderWrapper>.translatorName{
+    margin-top: .5rem;
+}
+#fansite {
+    padding-right: 1rem;
+}
+
+
+
+
+.animeDetayKutu a:hover,
+.episodeLine>span[style^="color: yellow"],
+.episodeLine>span[style^="color:yellow"],
+.ui.inverted.mini.statistic .value
+{
+    color: hsl(from var(--primaryColor) h s calc(l + 30) / .85)!important;
+}
+.info_episodeList {
+    overflow: hidden!important;
+    box-sizing: border-box!important;
+    padding: .5rem
+}
+.info_episodeList .anizm_boxTitle {
+    background: #dddddd30!important;
+    box-shadow: var(--shadow-m);
+    margin-bottom: .5rem;
+}
+.episode_searchBox {
+    background: #bbbbbb30!important;
+    overflow: hidden;
+    box-shadow: var(--shadow-m);
+    margin-bottom: .5rem
+}
+.episode_searchBox:has(#episodeFilterInput:focus) {
+    box-shadow: var(--shadow-l);
+    background: #dddddd40!important;
+}
+.episode_searchBox>input {
+    border: none!important;
+}
+.episodeLine {
+    background: #dddddd19!important;
+    padding: .75rem;
+    margin: .25rem;
+}
+.episodeLine:hover {
+    background: #dddddd39!important;
+    box-shadow: var(--shadow-m);
+}

@@ -18,9 +18,9 @@ searchBtn.addEventListener("click", () => {
     let parameters = "";
 
     if (HOSTNAME) parameters = "hostname=" + HOSTNAME + "&";
-    if (themeId) parameters = "theme=" + themeId + "&";
+    //if (themeId) parameters = "theme=" + themeId + "&";
 
-    window.open("/arama.html?" + parameters + "q=" + encodeURIComponent(queryInput.value), "_blank");
+    window.open(`./arama.html?${parameters}q=${encodeURIComponent(queryInput.value)}`, "_blank");
 
 });
 
@@ -51,11 +51,25 @@ clearQueryBtn.addEventListener("click", () => {
 
 
 
+// Ayarlar düğmesi işlevi
+document.getElementById('options-link').addEventListener("click", e=>{
+    e.preventDefault();
+    browserObj.tabs.create({ url: "/pages/options.html" });
+});
+
+
+
+
 
 
 // Eklenti ayarlarını uygula
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    if (window.innerWidth !== document.body.clientWidth) {
+        document.documentElement.style.width = "100%";
+        document.getElementsByTagName('footer')[0].style.marginBottom = "10rem";
+    }
 
     browserObj.storage.local.get(["nickname", "hostname", "applyColor", "themeId"], result => {
 
