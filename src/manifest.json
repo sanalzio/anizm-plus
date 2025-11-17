@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Anizm+",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
 
@@ -28,9 +28,8 @@
         "https://anizm.pro/*",
         "https://anizm.net/*",
         "https://anizle.com/*",
+        "https://anizle.net/*",
         "https://puffytr.com/*",
-
-        "https://anizmplayer.com/*",
 
         "https://cdn.jsdelivr.net/npm/devtools-detector/",
 
@@ -52,14 +51,11 @@
 
 
     "web_accessible_resources": [
-        "replace_scripts/searchOverlayOnce.js",
-        "replace_scripts/custom.js",
-        "replace_scripts/episodea.js",
-
         "styles/*",
         "assets/*",
         "components/*",
-        "inject_scripts/*"
+        "inject_scripts/*",
+        "replace_scripts/*"
     ],
 
 
@@ -88,7 +84,8 @@
                 "https://anizm.pro/*",
                 "https://anizm.net/*",
                 "https://puffytr.com/*",
-                "https://anizle.com/*"
+                "https://anizle.com/*",
+                "https://anizle.net/*"
             ],
             "js": ["inject_scripts/document_start.js"],
             "run_at": "document_start"
@@ -98,7 +95,8 @@
                 "https://anizm.pro/*",
                 "https://anizm.net/*",
                 "https://puffytr.com/*",
-                "https://anizle.com/*"
+                "https://anizle.com/*",
+                "https://anizle.net/*"
             ],
             "js": ["inject_scripts/document_end.js", "inject_scripts/link_finder.js"],
             "run_at": "document_end"

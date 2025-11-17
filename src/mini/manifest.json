@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Anizm+ Mini",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
     "browser_specific_settings": {
@@ -19,6 +19,7 @@
         "https://anizm.pro/*",
         "https://anizm.net/*",
         "https://anizle.com/*",
+        "https://anizle.net/*",
         "https://puffytr.com/*"
     ],
 
@@ -29,6 +30,7 @@
                 "https://anizm.pro/*",
                 "https://anizm.net/*",
                 "https://anizle.com/*",
+                "https://anizle.net/*",
                 "https://puffytr.com/*"
             ]
         }
@@ -51,8 +53,9 @@
             "matches": [
                 "https://anizm.pro/*",
                 "https://anizm.net/*",
-                "https://puffytr.com/*",
-                "https://anizle.com/*"
+                "https://anizle.com/*",
+                "https://anizle.net/*",
+                "https://puffytr.com/*"
             ],
             "js": ["inject_scripts/document_start.js"],
             "run_at": "document_start"
@@ -61,8 +64,9 @@
             "matches": [
                 "https://anizm.pro/*",
                 "https://anizm.net/*",
-                "https://puffytr.com/*",
-                "https://anizle.com/*"
+                "https://anizle.com/*",
+                "https://anizle.net/*",
+                "https://puffytr.com/*"
             ],
             "js": [
                 "inject_scripts/document_end.js",

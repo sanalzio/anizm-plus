@@ -33,18 +33,26 @@ var filters = {};
         });
 
         // Ranges
+        // anlayana helal olsun, ben yazmama rağmen okurken yarım saat uğraştım
         [
             ["malp", "0.1", "10"],
             ["words", "1", "50"],
             ["eps", "1", "2000"],
             ["year", "1930", maxYear],
         ].forEach((obj) => {
-            window[obj[0] + "RangeInput"][0].value = obj[1];
+            eval(obj[0] + "RangeInput" + "[0].value = '" + obj[1] + "'");
+            eval(obj[0] + "RangeInput" + "[1].value = '" + obj[2] + "'");
+            eval(obj[0] + "RangePrice" + "[0].value = '" + obj[1] + "'");
+            eval(obj[0] + "RangePrice" + "[1].value = '" + obj[2] + "'");
+            eval(obj[0] + "Range" + ".style.right = '0%'");
+            eval(obj[0] + "Range" + ".style.left = '0%'");
+
+            /* window[obj[0] + "RangeInput"][0].value = obj[1];
             window[obj[0] + "RangeInput"][1].value = obj[2];
             window[obj[0] + "RangePrice"][0].value = obj[1];
             window[obj[0] + "RangePrice"][1].value = obj[2];
             window[obj[0] + "Range"].style.right = "0%";
-            window[obj[0] + "Range"].style.left = "0%";
+            window[obj[0] + "Range"].style.left = "0%"; */
         });
 
         // Tags
@@ -59,7 +67,7 @@ var filters = {};
 
     resetBtn.addEventListener("click", resetFilters);
     applyBtn.addEventListener("click", () => {
-        searchByInput();
+        searchByInput(null, "filter");
     });
 
     [filterBtn, applyBtn].forEach((el) =>

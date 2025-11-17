@@ -144,6 +144,12 @@ browserObj.webRequest.onBeforeRequest.addListener(
             return { redirectUrl: getURL("replace_scripts/episodea.js") };
 
 
+
+        if (details.url.endsWith("/js/custom/searchWorker.js"))
+            return { redirectUrl: getURL("replace_scripts/searchWorker.js") };
+
+
+
         if (details.url.includes("/upload/assets/logo.webp") && settings.applyColor)
             return { redirectUrl: getURL("assets/logo/"+ (settings.themeId == "custom" ? "orange" : settings.themeId) +".webp") };
 
@@ -164,6 +170,7 @@ browserObj.webRequest.onBeforeRequest.addListener(
     {
         urls: [
             "https://anizle.com/*",
+            "https://anizle.net/*",
             "https://puffytr.com/*",
             "https://anizm.pro/*",
             "https://anizm.net/*",

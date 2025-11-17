@@ -201,7 +201,8 @@
     width: fit-content;
     height: fit-content;
     position: absolute;
-    display: flex;
+    /*display: flex;*/
+    display: none;
     top: .5rem;
     left: .5rem;
     flex-direction: column;
@@ -320,4 +321,9 @@
 
 .range {
     width: 95%;
+}
+
+
+#searchOverlay:has(.detailedSearch.searchTypeOption.active) > #filterContainer {
+    display: flex!important;
 }

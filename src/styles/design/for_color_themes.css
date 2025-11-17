@@ -165,6 +165,7 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 .ui.primary.button, .ui.primary.buttons .button,
 .ui.blue.button, .ui.blue.buttons .button,
 
+.anizm_button.default,
 #custom-comment-system .ui.primary.button,
 .anizm_button[style*="background-color:#5c6bc0"],
 .anizm_button[style*="background-color: #5c6bc0"],
@@ -184,7 +185,6 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
 
 
 
-.anizm_button.default,
 #disquis,
 .gelismisSecimDropdown .item:hover {
     background: var(--primaryColorDarker) !important;

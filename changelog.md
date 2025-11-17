@@ -1,3 +1,8 @@
+# 1.5.1
+- [anizle.net](https://anizle.net/) desteği eklendi.
+- Daha akıcı arama ara yüzü sistemi yazıldı.
+- Hata düzeltmeleri.
+
 # 1.5.0
 - Ara yüz iyileştirmeleri.
 - İyileştirilmiş arama sistemi için bozuk link hatası düzeltildi.
