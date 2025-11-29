@@ -23,7 +23,7 @@ function versionCheck() {
             if (cloud === client) continue;
             if (cloud > client) {
 
-                browserObj.tabs.create({ url: "newversion.html#" + newVersion });
+                browserObj.tabs.create({ url: "pages/newversion.html#" + newVersion });
 
                 console.log("Yeni sürüm bulundu!");
                 return;
@@ -35,7 +35,9 @@ function versionCheck() {
 }
 
 // Açılışta internet ile yeni sürüm taraması yap.
-browserObj.runtime.onStartup.addListener(versionCheck);
+ // firefox ise özel olarak sürüm kontrolü yapmasına gerek yok herhalde.
+if (!navigator.userAgent.toLowerCase().includes('firefox'))
+    browserObj.runtime.onStartup.addListener(versionCheck);
 
 
 
@@ -55,7 +57,8 @@ let blockList = [
     "/js/grnd_pp_180925.js",
     "/js/grnd_pp_",
     "/js/grnd_",
-    "/js/aclb.js"
+    "/js/aclb.js",
+    "/js/axium"
 ];
 
 (async function () {

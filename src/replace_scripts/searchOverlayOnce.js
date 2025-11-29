@@ -12,6 +12,16 @@ const SearchTypes = {
 };
 let selectedSearchType = SearchTypes.FAST;
 
+
+const notFound = document.createElement("div");
+notFound.id = "not-found";
+notFound.innerHTML = "Tam eşleşme bulunamadı, benzer sonuçlar gösteriliyor.";
+notFound.setAttribute(
+    "style",
+    "width:100%;text-align:center;margin:.5rem 0;font-size:medium;font-weight:bold!important;color:var(--primaryColorDarker)"
+);
+
+
 const optionsRegexp = /(["'])(#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,! \-]+))\1|#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,!\-]+)/gi;
 
 
@@ -25,6 +35,17 @@ const getEpisodeCount = (lastEpisode) => {
         }
     return episodeCount;
 };
+
+
+function getTitleProp(anime) {
+    return titleProp = (
+            anime.info_titleoriginal
+             && anime.info_titleoriginal != anime.info_titleenglish
+             && anime.info_titleoriginal != anime.info_japanese
+        ) || !anime.info_title
+         ? "info_titleoriginal"
+         : "info_title";
+}
 
 
 async function getAnilistUrl(malId) {
@@ -68,7 +89,6 @@ fetch("/js/custom/searchWorker.js")
             }
 
             matchedAnimes = e.data;
-            console.log(matchedAnimes.length);
             showSearchResults();
         });
 
@@ -256,21 +276,29 @@ function searchByInput(e, type) {
     }
 
     const search = $(".searchBarInput").val();
-    if (!search.toLowerCase().trim() && typeof filters == "undefined") {
+    if (!search.toLowerCase().trim() && type != "filter") {
         $("#fullViewSearchResults").html("");
         toggleLoadMoreButton(false);
         lastSearch = undefined;
         return;
     }
-    if (search.toLowerCase().trim() === lastSearch && typeof filters == "undefined") return;
+    if (search.toLowerCase().trim() == lastSearch && type != "filter") return;
 
-    lastSearch = search;
+    lastSearch = search.toLowerCase().trim();
 
     const options = typeof filters == "object" ? {...filters} : new Object();
     worker.postMessage({ type: (type || selectedSearchType), search: search, options: options });
 };
 
 const showSearchResults = () => {
+
+    // Reset elements before showing new results.
+    $("#fullViewSearchResults").html("");
+
+    if (matchedAnimes.length && matchedAnimes[0] !== true)
+        document.getElementById("fullViewSearchResults").insertAdjacentElement("afterbegin", notFound);
+    else matchedAnimes.shift();
+
     const isFastSearch = selectedSearchType === SearchTypes.FAST;
     const resultLimit = isFastSearch
         ? INITIAL_RESULT_LIMIT * 2
@@ -279,8 +307,7 @@ const showSearchResults = () => {
         ? getFastSearchResults
         : getDetailedSearchResults;
     const searchResults = matchedAnimes.slice(0, resultLimit);
-    // Reset elements before showing new results.
-    $("#fullViewSearchResults").html("");
+
     // Append new results to the container.
     for (const anime of searchResults) {
         $("#fullViewSearchResults").append(searchFuncByType(anime, lastSearch));
@@ -298,11 +325,11 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
     const score = animeInfo.info_malpoint;
     const animeUrl = "/" + animeInfo.info_slug;
     const titleHighlightedOriginal = getHighlightedText(
-        (animeInfo.info_titleoriginal || animeInfo.info_title),
+        animeInfo[getTitleProp(animeInfo)],
         searchValue
     );
     const shouldIncludeEnglishTitle =
-        animeInfo.info_titleenglish !== (animeInfo.info_titleoriginal || animeInfo.info_title);
+        animeInfo.info_titleenglish !== animeInfo[getTitleProp(animeInfo)];
     const subtitleTextToHighlight = shouldIncludeEnglishTitle
         ? `${animeInfo.info_titleenglish}, ${animeInfo.info_othernames}`
         : animeInfo.info_othernames;
@@ -451,12 +478,12 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
 
 const getFastSearchResults = (animeInfo, searchValue) => {
     const titleHighlightedOriginal = getHighlightedText(
-        (animeInfo.info_titleoriginal || animeInfo.info_title),
+        animeInfo[getTitleProp(animeInfo)],
         searchValue,
         true
     );
     const shouldIncludeEnglishTitle =
-        animeInfo.info_titleenglish !== (animeInfo.info_titleoriginal || animeInfo.info_title);
+        animeInfo.info_titleenglish !== animeInfo[getTitleProp(animeInfo)];
     const subtitleTextToHighlight = shouldIncludeEnglishTitle
         ? `${animeInfo.info_titleenglish}, ${animeInfo.info_othernames}`
         : animeInfo.info_othernames;

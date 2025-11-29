@@ -115,6 +115,16 @@ function isJapanese(str) {
     return str.match(/[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\u30f2-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/) !== null;
 }
 
+function getTitleProp(anime) {
+    return titleProp = (
+            anime.info_titleoriginal
+             && anime.info_titleoriginal != anime.info_titleenglish
+             && anime.info_titleoriginal != anime.info_japanese
+        ) || !anime.info_title
+         ? "info_titleoriginal"
+         : "info_title";
+}
+
 
 const optionsRegexp = /(["'])(#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,! \-]+))\1|#(maxmalp|minmalp|malp|maxwords|minwords|wordcount|minyear|maxyear|year|maxeps|mineps|eps|sort|orderby|tags|tagmode):([A-Za-z0-9çğıöşüÇĞİÖŞÜ_,!\-]+)/gi;
 
@@ -126,13 +136,13 @@ function searchFunc(type, search, options){
         if (!search.length) return;
         return animeList.filter(
         (anime) =>
-            ((anime.info_titleoriginal || anime.info_title) &&
+            (anime[getTitleProp(anime)] &&
             (
-                (anime.info_titleoriginal || anime.info_title)
+                anime[getTitleProp(anime)]
                     .toLowerCase()
                     .replace(/[^a-z\d\s]/g, "")
                     .includes(search.toLowerCase().replace(/\s\s+/g, " ").trim().replace(/[^a-z\d\s]/g, "")) ||
-                (anime.info_titleoriginal || anime.info_title)
+                anime[getTitleProp(anime)]
                     .toLowerCase()
                     .replace(/[^a-z\d\s]/g, " ")
                     .includes(search.toLowerCase().replace(/\s\s+|[^a-z\d\s]/g, " ").trim())
@@ -287,11 +297,11 @@ function searchFunc(type, search, options){
 
     if (searchQuery.replace(/[^a-z\d\s]/g, "").length === 0) {
         if (!isEmpty(options))
-            return animeList.filter(
+            return [true, ...animeList.filter(
                 (anime) => 
 
                     controllOptions(
-                        (anime.info_titleoriginal || anime.info_title),
+                        anime[getTitleProp(anime)],
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -300,6 +310,8 @@ function searchFunc(type, search, options){
 
             ).sort(
                 (a, b) => {
+
+                    const AtitleProp = getTitleProp(a), BtitleProp = getTitleProp(b);
 
                     if (options.sort) {
 
@@ -318,8 +330,8 @@ function searchFunc(type, search, options){
                         }
                         if (options.sort == "wordcount") {
                             if (options.orderby == "asc")
-                                return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
-                            return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
+                                return a[AtitleProp].split(" ").length-b[BtitleProp].split(" ").length;
+                            return b[BtitleProp].split(" ").length-a[AtitleProp].split(" ").length;
                         }
                         if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                             if (options.orderby == "asc")
@@ -329,11 +341,11 @@ function searchFunc(type, search, options){
                     }
 
                     if (options.orderby == "desc")
-                        return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
+                        return b[BtitleProp].localeCompare(a[AtitleProp]);
 
-                    return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
+                    return a[AtitleProp].localeCompare(b[BtitleProp]);
                 }
-            );
+            )];
         return;
     }
 
@@ -346,7 +358,7 @@ function searchFunc(type, search, options){
 
         const japaneseQuery = searchQuery.replace(/[\u3000-\u303f\s]/g, "");
 
-        return animeList.filter(
+        return [true, ...animeList.filter(
             (anime) =>
     
                 (anime.info_japanese &&
@@ -363,6 +375,8 @@ function searchFunc(type, search, options){
 
         ).sort(
             (a, b) => {
+
+                const AtitleProp = getTitleProp(a), BtitleProp = getTitleProp(b);
 
                 if (options.sort) {
 
@@ -381,8 +395,8 @@ function searchFunc(type, search, options){
                     }
                     if (options.sort == "wordcount") {
                         if (options.orderby == "asc")
-                            return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
-                        return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
+                            return a[AtitleProp].split(" ").length-b[BtitleProp].split(" ").length;
+                        return b[BtitleProp].split(" ").length-a[AtitleProp].split(" ").length;
                     }
                     if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                         if (options.orderby == "asc")
@@ -398,7 +412,7 @@ function searchFunc(type, search, options){
                 return a.info_japanese.replace(/[\u3000-\u303f\s]/g, "").differenceCountForSearch(japaneseQuery) -
                 b.info_japanese.replace(/[\u3000-\u303f\s]/g, "").differenceCountForSearch(japaneseQuery);
             }
-        );
+        )];
     }
 
 
@@ -411,15 +425,15 @@ function searchFunc(type, search, options){
         (anime) => {
 
             if (
-                (anime.info_titleoriginal || anime.info_title) &&
-                (anime.info_titleoriginal || anime.info_title)
+                anime[getTitleProp(anime)] &&
+                anime[getTitleProp(anime)]
                     .toLowerCase()
                     .replace(/[,.:;\-]/g, " ")
                     .replace(/\s\s+/g, " ")
                     .replace(/[^a-z\d\s]/g, "")
                     .includes(query) &&
                 controllOptions(
-                    (anime.info_titleoriginal || anime.info_title),
+                    anime[getTitleProp(anime)],
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -497,6 +511,8 @@ function searchFunc(type, search, options){
     ).sort(
         (a, b) => {
 
+            const AtitleProp = getTitleProp(a), BtitleProp = getTitleProp(b);
+
             if (options.sort) {
 
                 if (options.sort == "malp" && a.info_malpoint != undefined && b.info_malpoint != undefined) {
@@ -514,8 +530,8 @@ function searchFunc(type, search, options){
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
-                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
+                        return a[AtitleProp].split(" ").length-b[BtitleProp].split(" ").length;
+                    return b[BtitleProp].split(" ").length-a[AtitleProp].split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")
@@ -524,8 +540,8 @@ function searchFunc(type, search, options){
                 }
                 if (options.sort == "title") {
                     if (options.orderby == "desc")
-                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
-                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
+                        return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? b.info_titleenglish.localeCompare(a.info_titleenglish) : b[BtitleProp].localeCompare(a[AtitleProp]);
+                    return (findedIn === 1 && a.info_titleenglish && b.info_titleenglish) ? a.info_titleenglish.localeCompare(b.info_titleenglish) : a[AtitleProp].localeCompare(b[BtitleProp]);
                 }
             }
 
@@ -534,19 +550,19 @@ function searchFunc(type, search, options){
                 if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                     return b.info_titleenglish.differenceCountForSearch(query) - a.info_titleenglish.differenceCountForSearch(query)
                 else
-                    return (b.info_titleoriginal || b.info_title).differenceCountForSearch(query) - (a.info_titleoriginal || a.info_title).differenceCountForSearch(query)
+                    return b[BtitleProp].differenceCountForSearch(query) - a[AtitleProp].differenceCountForSearch(query)
             }
 
             if (findedIn === 1 && a.info_titleenglish && b.info_titleenglish)
                 return a.info_titleenglish.differenceCountForSearch(query) - b.info_titleenglish.differenceCountForSearch(query)
             else
-                return (a.info_titleoriginal || a.info_title).differenceCountForSearch(query) - (b.info_titleoriginal || b.info_title).differenceCountForSearch(query)
+                return a[AtitleProp].differenceCountForSearch(query) - b[BtitleProp].differenceCountForSearch(query)
         }
     );
 
 
     if (matchedAnimes.length > 0) {
-        return matchedAnimes;
+        return [true, ...matchedAnimes];
     }
 
 
@@ -556,16 +572,15 @@ function searchFunc(type, search, options){
 
     const prepareKeyword = inp => {
         let kw = inp;
-        if (kw.match(/^".+"$/))
+        if (kw.startsWith("'") || kw.startsWith('"'))
             kw = kw.slice(1, -1);
         return kw;
     }
 
     let forcedKeywords = searchQuery
         .toLowerCase()
-        .replace(/[,.:;\-]/g, " ")
         .replace(/[^a-z\d"'\s]+/g, "")
-        .match(/"[a-z\d\s']+"/g) || new Array();
+        .match(/"[a-z\d\s']+"|'[a-z\d\s"]+'/g) || new Array();
 
     let normalKeywords = searchQuery
         .toLowerCase()
@@ -579,6 +594,9 @@ function searchFunc(type, search, options){
     if (forcedKeywords) normalKeywords = normalKeywords.filter(el => !forcedKeywords.includes(el));
 
     const keywordsSort = matched => matched.sort((a, b) => {
+
+        const AtitleProp = getTitleProp(a), BtitleProp = getTitleProp(b);
+    
         if (options.sort) {
             if (
                 options.sort == "malp" &&
@@ -603,8 +621,8 @@ function searchFunc(type, search, options){
             }
             if (options.sort == "wordcount") {
                 if (options.orderby == "asc")
-                    return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
-                return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
+                    return a[AtitleProp].split(" ").length-b[BtitleProp].split(" ").length;
+                return b[BtitleProp].split(" ").length-a[AtitleProp].split(" ").length;
             }
             if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                 if (options.orderby == "asc")
@@ -613,20 +631,20 @@ function searchFunc(type, search, options){
             }
             if (options.sort == "title") {
                 if (options.orderby == "desc")
-                    return (b.info_titleoriginal || b.info_title).localeCompare((a.info_titleoriginal || a.info_title));
-                return (a.info_titleoriginal || a.info_title).localeCompare((b.info_titleoriginal || b.info_title));
+                    return b[BtitleProp].localeCompare(a[AtitleProp]);
+                return a[AtitleProp].localeCompare(b[BtitleProp]);
             }
         }
 
         if (options.orderby == "desc")
             return (
-                (b.info_titleoriginal || b.info_title).differenceCountForSearch(query) -
-                (a.info_titleoriginal || a.info_title).differenceCountForSearch(query)
+                b[BtitleProp].differenceCountForSearch(query) -
+                a[AtitleProp].differenceCountForSearch(query)
             );
 
         return (
-            (a.info_titleoriginal || a.info_title).differenceCountForSearch(query) -
-            (b.info_titleoriginal || b.info_title).differenceCountForSearch(query)
+            a[AtitleProp].differenceCountForSearch(query) -
+            b[BtitleProp].differenceCountForSearch(query)
         );
     });
 
@@ -634,21 +652,21 @@ function searchFunc(type, search, options){
     matchedAnimes = keywordsSort(animeList.filter(
         (anime) =>
 
-            ((anime.info_titleoriginal || anime.info_title) &&
+            (anime[getTitleProp(anime)] &&
                 normalKeywords.every(el =>
-                    (anime.info_titleoriginal || anime.info_title)
+                    anime[getTitleProp(anime)]
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .includes(el)
                 ) &&
                 forcedKeywords.every(el =>
-                    (anime.info_titleoriginal || anime.info_title)
+                    anime[getTitleProp(anime)]
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
                         .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
-                    (anime.info_titleoriginal || anime.info_title),
+                    anime[getTitleProp(anime)],
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
@@ -708,71 +726,46 @@ function searchFunc(type, search, options){
     matchedAnimes = keywordsSort(animeList.filter(
         (anime) =>
 
-            ((anime.info_titleoriginal || anime.info_title) &&
+            (anime[getTitleProp(anime)] &&
                 (
-                    (
-                        normalKeywords.length == 0 &&
-                        forcedKeywords.length !== 0 &&
-                        forcedKeywords.every(el =>
-                            (anime.info_titleoriginal || anime.info_title)
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    ) ||
-                    (
-                        (
-                            normalKeywords.length !== 0 &&
-                            normalKeywords.some(el =>
-                                (anime.info_titleoriginal || anime.info_title)
-                                    .toLowerCase()
-                                    .replace(/[^a-z\d\s]/g, "")
-                                    .includes(el))
-                        ) ||
-                        forcedKeywords.every(el =>
-                            (anime.info_titleoriginal || anime.info_title)
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    )
+                    normalKeywords.length && !forcedKeywords.length
+                     ? normalKeywords.some(el =>
+                        anime[getTitleProp(anime)]
+                            .toLowerCase()
+                            .replace(/[^a-z\d\s]/g, "")
+                            .includes(el))
+                     : true
+                ) &&
+                forcedKeywords.every(el =>
+                    anime[getTitleProp(anime)]
+                        .toLowerCase()
+                        .replace(/[^a-z\d\s]/g, "")
+                        .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
-                    (anime.info_titleoriginal || anime.info_title),
+                    anime[getTitleProp(anime)],
                     anime.info_year,
                     anime.info_malpoint,
                     anime.lastEpisode,
                     anime.categories
-                )) ||
+                )
+            ) ||
 
             (anime.info_titleenglish &&
                 (
-                    (
-                        normalKeywords.length == 0 &&
-                        forcedKeywords.length !== 0 &&
-                        forcedKeywords.every(el =>
-                            anime.info_titleenglish
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    ) ||
-                    (
-                        (
-                            normalKeywords.length !== 0 &&
-                            normalKeywords.some(el =>
-                                anime.info_titleenglish
-                                    .toLowerCase()
-                                    .replace(/[^a-z\d\s]/g, "")
-                                    .includes(el))
-                        ) ||
-                        forcedKeywords.every(el =>
-                            anime.info_titleenglish
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    )
+                    normalKeywords.length && !forcedKeywords.length
+                     ? normalKeywords.some(el =>
+                        anime.info_titleenglish
+                            .toLowerCase()
+                            .replace(/[^a-z\d\s]/g, "")
+                            .includes(el))
+                     : true
+                ) &&
+                forcedKeywords.every(el =>
+                    anime.info_titleenglish
+                        .toLowerCase()
+                        .replace(/[^a-z\d\s]/g, "")
+                        .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
                     anime.info_titleenglish,
@@ -780,36 +773,24 @@ function searchFunc(type, search, options){
                     anime.info_malpoint,
                     anime.lastEpisode,
                     anime.categories
-                )) ||
+                )
+            ) ||
 
             (anime.info_othernames &&
                 (
-                    (
-                        normalKeywords.length == 0 &&
-                        forcedKeywords.length !== 0 &&
-                        forcedKeywords.every(el =>
-                            anime.info_othernames
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    ) ||
-                    (
-                        (
-                            normalKeywords.length !== 0 &&
-                            normalKeywords.some(el =>
-                                anime.info_othernames
-                                    .toLowerCase()
-                                    .replace(/[^a-z\d\s]/g, "")
-                                    .includes(el))
-                        ) ||
-                        forcedKeywords.every(el =>
-                            anime.info_othernames
-                                .toLowerCase()
-                                .replace(/[^a-z\d\s]/g, "")
-                                .includes(prepareKeyword(el))
-                        )
-                    )
+                    normalKeywords.length && !forcedKeywords.length
+                     ? normalKeywords.some(el =>
+                        anime.info_othernames
+                            .toLowerCase()
+                            .replace(/[^a-z\d\s]/g, "")
+                            .includes(el))
+                     : true
+                ) &&
+                forcedKeywords.every(el =>
+                    anime.info_othernames
+                        .toLowerCase()
+                        .replace(/[^a-z\d\s]/g, "")
+                        .includes(prepareKeyword(el))
                 ) &&
                 controllOptions(
                     undefined,
@@ -817,7 +798,8 @@ function searchFunc(type, search, options){
                     anime.info_malpoint,
                     anime.lastEpisode,
                     anime.categories
-                ))
+                )
+            )
     ));
 
 
@@ -829,20 +811,20 @@ function searchFunc(type, search, options){
 
 
     /* Search with title similarity */
-    const tryCount = Math.floor(query.length / 2);
+    const tryCount = Math.floor(query.length / 2) || 1;
 
-    if (tryCount > 0) for (let i = 1; i <= tryCount; i++) {
+    for (let i = 1; i <= tryCount; i++) {
 
         matchedAnimes = animeList.filter(
             (anime) =>
 
-                ((anime.info_titleoriginal || anime.info_title) &&
-                    (anime.info_titleoriginal || anime.info_title)
+                (anime[getTitleProp(anime)] &&
+                    anime[getTitleProp(anime)]
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
-                        .differenceCountForSearch(query) === i &&
+                        .differenceCountForSearch(query) == i &&
                     controllOptions(
-                        (anime.info_titleoriginal || anime.info_title),
+                        anime[getTitleProp(anime)],
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -853,22 +835,9 @@ function searchFunc(type, search, options){
                     anime.info_titleenglish
                         .toLowerCase()
                         .replace(/[^a-z\d\s]/g, "")
-                        .differenceCountForSearch(query) === i &&
+                        .differenceCountForSearch(query) == i &&
                     controllOptions(
                         anime.info_titleenglish,
-                        anime.info_year,
-                        anime.info_malpoint,
-                        anime.lastEpisode,
-                        anime.categories
-                    )) ||
-
-                (anime.info_othernames &&
-                    anime.info_othernames
-                        .toLowerCase()
-                        .replace(/[^a-z\d\s]/g, "")
-                        .differenceCountForSearch(query) === i &&
-                    controllOptions(
-                        undefined,
                         anime.info_year,
                         anime.info_malpoint,
                         anime.lastEpisode,
@@ -893,8 +862,8 @@ function searchFunc(type, search, options){
                 }
                 if (options.sort == "wordcount") {
                     if (options.orderby == "asc")
-                        return (a.info_titleoriginal || a.info_title).split(" ").length-(b.info_titleoriginal || b.info_title).split(" ").length;
-                    return (b.info_titleoriginal || b.info_title).split(" ").length-(a.info_titleoriginal || a.info_title).split(" ").length;
+                        return a[AtitleProp].split(" ").length-b[BtitleProp].split(" ").length;
+                    return b[BtitleProp].split(" ").length-a[AtitleProp].split(" ").length;
                 }
                 if (options.sort == "epcount" && a.lastEpisode != undefined && b.lastEpisode != undefined) {
                     if (options.orderby == "asc")
