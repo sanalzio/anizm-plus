@@ -58,7 +58,8 @@ let blockList = [
     "/js/grnd_pp_",
     "/js/grnd_",
     "/js/aclb.js",
-    "/js/axium"
+    "/js/axium",
+    "/js/amon"
 ];
 
 (async function () {

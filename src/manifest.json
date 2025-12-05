@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Anizm+",
-    "version": "1.5.2",
+    "version": "1.5.3",
     "description": "Anzim sitesini konfor ve işlevsellik açısından iyileştirir.",
 
 
@@ -87,6 +87,67 @@
                 "https://anizle.com/*",
                 "https://anizle.net/*"
             ],
+            "exclude_matches": [
+                "https://anizm.pro/cdn-cgi/*",
+                "https://anizm.net/cdn-cgi/*",
+                "https://puffytr.com/cdn-cgi/*",
+                "https://anizle.com/cdn-cgi/*",
+                "https://anizle.net/cdn-cgi/*",
+
+                "https://anizm.pro/ckeditor/*",
+                "https://anizm.net/ckeditor/*",
+                "https://puffytr.com/ckeditor/*",
+                "https://anizle.com/ckeditor/*",
+                "https://anizle.net/ckeditor/*",
+
+                "https://anizm.pro/css/*",
+                "https://anizm.net/css/*",
+                "https://puffytr.com/css/*",
+                "https://anizle.com/css/*",
+                "https://anizle.net/css/*",
+
+                "https://anizm.pro/images/*",
+                "https://anizm.net/images/*",
+                "https://puffytr.com/images/*",
+                "https://anizle.com/images/*",
+                "https://anizle.net/images/*",
+
+                "https://anizm.pro/js/*",
+                "https://anizm.net/js/*",
+                "https://puffytr.com/js/*",
+                "https://anizle.com/js/*",
+                "https://anizle.net/js/*",
+
+                "https://anizm.pro/semantic/*",
+                "https://anizm.net/semantic/*",
+                "https://puffytr.com/semantic/*",
+                "https://anizle.com/semantic/*",
+                "https://anizle.net/semantic/*",
+
+                "https://anizm.pro/storage/*",
+                "https://anizm.net/storage/*",
+                "https://puffytr.com/storage/*",
+                "https://anizle.com/storage/*",
+                "https://anizle.net/storage/*",
+
+                "https://anizm.pro/upload/*",
+                "https://anizm.net/upload/*",
+                "https://puffytr.com/upload/*",
+                "https://anizle.com/upload/*",
+                "https://anizle.net/upload/*",
+
+                "https://anizm.pro/manifest.json",
+                "https://anizm.net/manifest.json",
+                "https://puffytr.com/manifest.json",
+                "https://anizle.com/manifest.json",
+                "https://anizle.net/manifest.json",
+
+                "https://anizm.pro/manifest.json*",
+                "https://anizm.net/manifest.json*",
+                "https://puffytr.com/manifest.json*",
+                "https://anizle.com/manifest.json*",
+                "https://anizle.net/manifest.json*"
+            ],
             "js": ["inject_scripts/document_start.js"],
             "run_at": "document_start"
         },
@@ -97,6 +158,67 @@
                 "https://puffytr.com/*",
                 "https://anizle.com/*",
                 "https://anizle.net/*"
+            ],
+            "exclude_matches": [
+                "https://anizm.pro/cdn-cgi/*",
+                "https://anizm.net/cdn-cgi/*",
+                "https://puffytr.com/cdn-cgi/*",
+                "https://anizle.com/cdn-cgi/*",
+                "https://anizle.net/cdn-cgi/*",
+
+                "https://anizm.pro/ckeditor/*",
+                "https://anizm.net/ckeditor/*",
+                "https://puffytr.com/ckeditor/*",
+                "https://anizle.com/ckeditor/*",
+                "https://anizle.net/ckeditor/*",
+
+                "https://anizm.pro/css/*",
+                "https://anizm.net/css/*",
+                "https://puffytr.com/css/*",
+                "https://anizle.com/css/*",
+                "https://anizle.net/css/*",
+
+                "https://anizm.pro/images/*",
+                "https://anizm.net/images/*",
+                "https://puffytr.com/images/*",
+                "https://anizle.com/images/*",
+                "https://anizle.net/images/*",
+
+                "https://anizm.pro/js/*",
+                "https://anizm.net/js/*",
+                "https://puffytr.com/js/*",
+                "https://anizle.com/js/*",
+                "https://anizle.net/js/*",
+
+                "https://anizm.pro/semantic/*",
+                "https://anizm.net/semantic/*",
+                "https://puffytr.com/semantic/*",
+                "https://anizle.com/semantic/*",
+                "https://anizle.net/semantic/*",
+
+                "https://anizm.pro/storage/*",
+                "https://anizm.net/storage/*",
+                "https://puffytr.com/storage/*",
+                "https://anizle.com/storage/*",
+                "https://anizle.net/storage/*",
+
+                "https://anizm.pro/upload/*",
+                "https://anizm.net/upload/*",
+                "https://puffytr.com/upload/*",
+                "https://anizle.com/upload/*",
+                "https://anizle.net/upload/*",
+
+                "https://anizm.pro/manifest.json",
+                "https://anizm.net/manifest.json",
+                "https://puffytr.com/manifest.json",
+                "https://anizle.com/manifest.json",
+                "https://anizle.net/manifest.json",
+
+                "https://anizm.pro/manifest.json*",
+                "https://anizm.net/manifest.json*",
+                "https://puffytr.com/manifest.json*",
+                "https://anizle.com/manifest.json*",
+                "https://anizle.net/manifest.json*"
             ],
             "js": ["inject_scripts/document_end.js", "inject_scripts/link_finder.js"],
             "run_at": "document_end"

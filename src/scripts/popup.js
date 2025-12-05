@@ -52,10 +52,10 @@ clearQueryBtn.addEventListener("click", () => {
 
 
 // Ayarlar düğmesi işlevi
-document.getElementById('options-link').addEventListener("click", e=>{
+/*document.getElementById('options-link').addEventListener("click", e=>{
     e.preventDefault();
     browserObj.tabs.create({ url: "/pages/options.html" });
-});
+});*/
 
 
 

@@ -275,6 +275,15 @@ function getTitleProp(anime) {
          : "info_title";
 }
 
+function countWords(s) {
+    if (s.length === 0) return 0;
+    let spaces = 0;
+    for (let i = 0; i < s.length; i++) {
+        if (s.charCodeAt(i) === 32) spaces++;
+    }
+    return spaces + 1;
+}
+
 
 function search(rawQuery, messageFunc, noFoundMsg) {
 
@@ -330,7 +339,7 @@ function search(rawQuery, messageFunc, noFoundMsg) {
 
 
         if (options.maxwords || options.minwords || options.wordcount) {
-            const wordCount = title.split(" ").length;
+            const wordCount = countWords(title);
             if (
                 (options.maxwords && wordCount > options.maxwords) ||
                 (options.minwords && wordCount < options.minwords) ||

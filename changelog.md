@@ -1,3 +1,7 @@
+# 1.5.3
+- Dosya kaynaklarında arka plan ekleme sorunu düzeltildi.
+- Arama sistemine optimizasyon yapıldı.
+
 # 1.5.2
 - Arama sistemindeki hatalar düzeltildi.
 - Yeni sürüm sayfası düzeltildi.

@@ -1,3 +1,6 @@
+# 0.0.4
+- Dosya kaynaklarında arka plan ekleme sorunu düzeltildi.
+
 # 0.0.3
 - Arama sistemindeki hatalar düzeltildi.
 

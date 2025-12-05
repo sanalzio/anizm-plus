@@ -1,4 +1,4 @@
-.divider,
+header[data-divider] .divider,
 header .cover,
 header[data-menutype="homepage"]::before {
     display: none;
