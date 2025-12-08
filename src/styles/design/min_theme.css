@@ -293,3 +293,9 @@ div:has(.latestAddedAnimesSlideSection) {
 #pageContent {
     margin-top: 0;
 }
+
+
+
+.yt-hd-thumbnail-inner-container>a.yt-hd-thumbnail>img {
+    height: 100%
+}

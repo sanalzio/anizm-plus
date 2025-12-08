@@ -1,3 +1,7 @@
+# 1.5.4
+- Reklam engelleme düzeltmeleri yapıldı.
+- `https://anizm.com.tr/` bağlantısı desteği eklendi.
+
 # 1.5.3
 - Dosya kaynaklarında arka plan ekleme sorunu düzeltildi.
 - Arama sistemine optimizasyon yapıldı.

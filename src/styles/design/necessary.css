@@ -1,9 +1,20 @@
 /* Reklamlar */
 
-/*a[href*="//shortlink.life"]:has(img),*/
+/*a[href*="//shortlink.life"]:has(img),
 #videoFrame + a:has(img),
 a:has(+ #videoFrame):has(img),
-.animeIzleInnerContainer > a:has(img) /* bu kod belki sorun çıkarabilir ama şimdilik dursun */
+.animeIzleInnerContainer > a:has(img) bu kod belki sorun çıkarabilir ama şimdilik dursun */
+
+div[class^="aramas"] > a[target="_blank"],
+a[target="_blank"] > img.img-responsive[src^="/images/"][alt],
+a[href^="https://cutt.ly/"],
+
+html > div,
+.animeIzleInnerContainer > a,
+#searchBoxAreaLeft,
+#searchBoxAreaRight,
+.aramasagbox,
+.aramasolbox
 
 { display: none !important }
 
