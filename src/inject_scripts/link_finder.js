@@ -1,26 +1,63 @@
-var DOMAIN = "anizm.pro";
-
-(typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL
     ? browser
     : chrome
-).storage.local.get(["animeLinks"], (r) => {
+);
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
+
+var DOMAIN = "anizm.pro";
+
+
+
+function getFromStorage(...keys) {
+    return new Promise((resolve) => {
+        browserObj.storage.local.get([...keys], (result) => {
+            resolve(result);
+        });
+    });
+}
+
+
+
+async function startWorker(url) {
+    const workerUrl = getURL(url);
+    
+    // 1. Script dosyasını fetch ile çekin
+    const response = await fetch(workerUrl);
+    const scriptText = await response.text();
+
+    // 2. İçeriği bir Blob nesnesine dönüştürün
+    const blob = new Blob([scriptText], { type: 'application/javascript' });
+    
+    // 3. Bu blob için geçici bir URL oluşturun
+    const blobUrl = URL.createObjectURL(blob);
+
+    // 4. Worker'ı bu URL ile başlatın
+    const worker = new Worker(blobUrl);
+    
+    return worker;
+}
+
+
+
+
+browserObj.storage.local.get(["animeLinks"], async (r) => {
     if (typeof r.animeLinks == "boolean" && r.animeLinks === false) return;
 
-    (function onDomReady(callback) {
+    await (async function onDomReady(callback) {
         if (document.getElementById("pageContent")) {
-            callback();
+            await callback();
         } else {
-            new MutationObserver((_, obs) => {
+            new MutationObserver(async (_, obs) => {
                 if (document.getElementById("pageContent")) {
                     obs.disconnect();
-                    callback();
+                    await callback();
                 }
             }).observe(document.documentElement, {
                 childList: true,
                 subtree: true,
             });
         }
-    })(() => {
+    })(async () => {
         // Eğer kullanıcı bir anime detayı sayfasında ise animenin başlığını alır
         const animeTitle =
             document.getElementsByClassName("animeDetayInfoWrapper").length >
@@ -45,8 +82,60 @@ var DOMAIN = "anizm.pro";
                     "beforebegin",
                     `<li id="linksRow" class="dataRow"><span class="dataTitle">Bağlantılar</span><span id="linksValueRow" class="dataValue"><div id="links-loader"></div></span></li>`
                 );
-            const row = document.getElementById("linksRow");
+            // const row = document.getElementById("linksRow");
             const loader = document.getElementById("links-loader");
+
+
+            function addLinks(malID, alURL = undefined) {
+
+                // const valueRow = document.getElementById("linksValueRow");
+
+                loader.insertAdjacentHTML(
+                    "beforebegin",
+                    `<a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${malID}"><img class="mal-img" src="${getURL(
+                        "assets/mal.svg"
+                    )}" alt="MAL sayfası"></a>`
+                );
+
+
+                if (alURL) {
+                    loader.insertAdjacentHTML(
+                                "beforebegin",
+                                `<a target="_blank" class="anilist-link" href="${alURL}"><img class="anilist-img" src="${getURL(
+                                    "assets/anilist.svg"
+                                )}" alt="MAL sayfası"></a>`
+                            );
+                    loader.remove();
+                    return;
+                }
+
+                getAnilistUrl(parseInt(malID))
+                    .then((url) => {
+                        if (url) {
+                            loader.insertAdjacentHTML(
+                                "beforebegin",
+                                `<a target="_blank" class="anilist-link" href="${url}"><img class="anilist-img" src="${getURL(
+                                    "assets/anilist.svg"
+                                )}" alt="MAL sayfası"></a>`
+                            );
+                            browserObj.storage.local.set({
+                                ["alURL-" + animeTitle]: url
+                            });
+                        }
+                        loader.remove();
+                    })
+                    .catch(() => loader.remove());
+            }
+
+            const cacheMalIDKey = "malID-" + animeTitle,
+                  cacheAlURLKey = "alURL-" + animeTitle,
+                  cacheResult = await getFromStorage(cacheMalIDKey, cacheAlURLKey);
+
+            if (cacheResult[cacheMalIDKey]) {
+                console.log("Anime kayıtlardan bulundu.");
+                return addLinks(cacheResult[cacheMalIDKey], cacheResult[cacheAlURLKey]);
+            }
+
 
             async function getAnilistUrl(malId) {
                 const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
@@ -72,6 +161,7 @@ var DOMAIN = "anizm.pro";
                 }
             }
 
+
             let found;
 
             function processItem(item) {
@@ -91,109 +181,33 @@ var DOMAIN = "anizm.pro";
                 ) {
                     found = true;
 
-                    // const valueRow = document.getElementById("linksValueRow");
+                    browserObj.storage.local.set({
+                        ["malID-" + animeTitle]: item.info_malid
+                    });
 
-                    loader.insertAdjacentHTML(
-                        "beforebegin",
-                        `<a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${item.info_malid.toString()}"><img class="mal-img" src="${getURL(
-                            "assets/mal.svg"
-                        )}" alt="MAL sayfası"></a>`
-                    );
-
-                    getAnilistUrl(parseInt(item.info_malid))
-                        .then((url) => {
-                            if (url)
-                                loader.insertAdjacentHTML(
-                                    "beforebegin",
-                                    `<a target="_blank" class="anilist-link" href="${url}"><img class="anilist-img" src="${getURL(
-                                        "assets/anilist.svg"
-                                    )}" alt="MAL sayfası"></a>`
-                                );
-                            loader.remove();
-                        })
-                        .catch(() => loader.remove());
+                    addLinks(item.info_malid);
 
                     return true; // Anime bulunduğu için arama işlemini durduruyor.
                 }
             }
 
-            async function streamJsonObjects(url, onItem) {
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
 
-                const reader = res.body.getReader();
-                const decoder = new TextDecoder("utf-8");
 
-                let buffer = "";
-                let braceDepth = 0;
-                let inString = false;
-                let escapeNext = false;
-                let started = false;
+            startWorker("inject_scripts/link_finder_worker.js").then(worker => {
 
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    const chunk = decoder.decode(value, { stream: true });
-
-                    for (let ch of chunk) {
-                        // Başlangıçta sadece '[' bekle
-                        if (!started) {
-                            if (ch === "[") started = true;
-                            continue;
-                        }
-
-                        // Eğer henüz nesne başlamadıysa '{' bekle
-                        if (braceDepth === 0 && ch !== "{") {
-                            if (ch === "]") return; // Stream bitti
-                            continue;
-                        }
-
-                        buffer += ch;
-
-                        if (escapeNext) {
-                            escapeNext = false;
-                            continue;
-                        }
-
-                        if (ch === "\\") {
-                            escapeNext = true;
-                            continue;
-                        }
-
-                        if (ch === '"') {
-                            inString = !inString;
-                            continue;
-                        }
-
-                        if (!inString) {
-                            if (ch === "{") {
-                                braceDepth++;
-                            } else if (ch === "}") {
-                                braceDepth--;
-                            }
-                        }
-
-                        if (braceDepth === 0 && buffer.trim()) {
-                            try {
-                                const obj = JSON.parse(buffer);
-                                if (onItem?.(obj)) break; // Callback
-                            } catch (e) {
-                                console.error(
-                                    "JSON parse error:",
-                                    e,
-                                    "Buffer was:",
-                                    buffer
-                                );
-                            }
-                            buffer = "";
-                        }
+                worker.addEventListener('message', function (e) {
+                    if (e.data) {
+                        const stopped = processItem(e.data);
+                        if (stopped) worker.postMessage("!stop");
                     }
-                }
-            }
+                });
 
-            // Kullanımı:
-            streamJsonObjects(
+                worker.postMessage(`https://${DOMAIN}/getAnimeListForSearch`);
+
+            });
+
+
+            /* streamJsonObjects(
                 `https://${DOMAIN}/getAnimeListForSearch`,
                 processItem
             )
@@ -205,7 +219,7 @@ var DOMAIN = "anizm.pro";
                         console.log("Anime bulunamadı.");
                     }
                 })
-                .catch(console.error);
+                .catch(console.error); */
         }
     });
 });

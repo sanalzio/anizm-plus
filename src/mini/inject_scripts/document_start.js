@@ -1,6 +1,6 @@
 // Tarayıcı uyumluluğu için
-const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
-const getURL = (URL = "") => browserObj.runtime.getURL(URL);
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 
@@ -70,8 +70,78 @@ const escapeHtml = (unsafe) => {
 
 
 
+const replaceScripts = [
+    {
+        search: "episodea.js",
+        url: getURL("replace_scripts/episodea.js"),
 
-browserObj.storage.local.get(["themeId", "minCssActive", "applyColor", "userCss", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "maxBgHeight"], function (result) {
+        control: (options) => options.fansubsActive || options.selectPlayer
+    }
+]
+
+function scanReplaceScripts(node, options) {
+    for (let i = 0; i < replaceScripts.length; i++) {
+        const rule = replaceScripts[i];
+
+        // Eğer URL hedeflediğimiz script'i içeriyorsa
+        if (node.src.toLowerCase().includes(rule.search.toLowerCase())) {
+
+            replaceScripts.splice(i--, 1);
+
+            // eğer kural objesinin kendi kortol işleminden geçemediyse atla.
+            if (rule.control && !rule.control(options)) {
+                continue;
+            }
+
+            console.log("Hedef script yakalandı:", node.src);
+
+            // 1. Orijinal script'in çalışmasını durdur (Tipini değiştirerek)
+            node.type = 'javascript/blocked'; 
+            node.remove(); // DOM'dan kaldır
+
+            // 2. Kendi script'ini oluştur ve ekle
+            const myScript = document.createElement('script');
+            myScript.src = rule.url;
+            myScript.async = false; // Sıralamayı korumak için
+
+            document.documentElement.appendChild(myScript);
+        }
+    }
+}
+
+document.documentElement.insertAdjacentHTML("afterbegin", '<data id="anizmpluspath" content="' + browserObj.runtime.getURL("") + '">');
+
+
+
+
+
+browserObj.storage.local.get([
+
+    "themeId",
+    "minCssActive",
+    "applyColor",
+    "userCss",
+
+    "changeBgs",
+    "homeBg",
+    "homeSliderBg",
+    "episodeBg",
+    "maxBgHeight",
+
+    "fansubsActive",
+    "fansubs",
+    "selectPlayer",
+    "players",
+
+    "newTab"
+
+], function (result) {
+
+    if (result.newTab) {
+        const baseElement = document.createElement("base");
+        baseElement.target = "_blank";
+        document.documentElement.appendChild(baseElement);
+    }
 
     if (result.applyColor && result.themeId) {
         if (result.themeId.startsWith("$")) {
@@ -383,12 +453,43 @@ browserObj.storage.local.get(["themeId", "minCssActive", "applyColor", "userCss"
             newStyleElement.innerHTML = data;
             document.documentElement.appendChild(newStyleElement);
         }
-    
-        /* if (result.animeLinks) {
-            const newScriptElement = document.createElement("script");
-            newScriptElement.src = getURL("inject_scripts/link_finder.js");
-            document.body.appendChild(newScriptElement);
-        } */
+
+
+
+
+        if (result.fansubsActive && result.fansubs)
+            document.documentElement.insertAdjacentHTML("afterbegin", '<data id="$" content="' + result.fansubs.replaceAll('"', "&quot;") + '">');
+        if (result.selectPlayer && result.players)
+            document.documentElement.insertAdjacentHTML("afterbegin", '<data id="%" content="' + result.players.replaceAll('"', "&quot;") + '">');
+
+
+
+        // sayfada var olan scriptleri tarıyor
+        Array.from(document.getElementsByTagName("script"))
+            .forEach(el => scanReplaceScripts(el, result));
+
+        // sayfada yeni eklenen scriptleri tarıyor
+        const scriptReplaceObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                for (const node of mutation.addedNodes) {
+                    // Sadece script etiketlerini ve src'si olanları kontrol et
+                    if (node.tagName === 'SCRIPT' && node.src) {
+
+                        scanReplaceScripts(node, result);
+
+                        if (!replaceScripts.length)
+                            // İşimiz bittiğinde observer'ı durdurabiliriz (performans için)
+                            scriptReplaceObserver.disconnect();
+                    }
+                }
+            }
+        });
+
+        // documentElement (html etiketi) üzerinde izlemeye başla
+        scriptReplaceObserver.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
 
     });
 

@@ -1,3 +1,10 @@
+# 1.6.0
+- Yeni özellik `Bağlantıları yeni sekmede aç` eklendi.
+- Gelişmiş arama için filtreleme menüsündeki hatalar giderildi.
+- `Dış bağlantılar` özelliği iyileştirildi.
+- `Varsayılan olarak detalı aramayı seç` özelliği kaldırılıp seçilen arama seçeneğini hatırlayan sistem eklendi.
+- Diğer küçük hata düzeltmeleri ve iyileştirmeler yapıldı.
+
 # 1.5.4
 - Reklam engelleme düzeltmeleri yapıldı.
 - `https://anizm.com.tr/` bağlantısı desteği eklendi.

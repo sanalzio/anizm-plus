@@ -26,9 +26,13 @@ Anizm'in kendi zayıf arama sistemini detaylı arama seçeneği için daha güç
 
 Aramalar biraz daha yavaşlayabilir ama fazla fark etmez. Arama hızı kullanıcının cihazına bağlıdır.
 
-### Varsayılan olarak detaylı aramayı seç
+### Anime detayına dış bağlantılar ekle
 
-Varsayılan olarak detaylı arama yöntemini seçer.
+Anime detayı sayfalarına `MyAnimeList` ve `AniList` siteleri için bağlantılar arayıp ekler.
+
+### Bağlantıları yeni sekmede aç
+
+Sayfadaki tüm bağlantıların yeni sekmede açılmasını sağlar. (Sonraki/önceki bölüm düğmeleri de dahildir.)
 
 ### Otomatik fansub seçme
 
@@ -131,10 +135,6 @@ Video oynatıcılarında ki istenmeyen logoları kaldırır. Ve farenizi ekranı
 ### Son görülme bilgisini devre dışı bırak
 
 Cihazınızdan, her 2 saniyede bir Anizm sunucularına gönderilen "Son görülme" bilgisini göndermeyi engeller.
-
-### Anime detayına dış bağlantılar ekle
-
-Anime detayı sayfalarına `MyAnimeList` ve `AniList` siteleri için bağlantılar arayıp ekler. (Arama işlemi sayfa yüklenişinde çok küçük bir miktarda fazla cpu gücü kullanabilir.)
 
 ### İzlenme bilgisini devre dışı bırak
 

@@ -449,9 +449,9 @@ document.addEventListener("change", function (event) {
                 });
                 break;
 
-            case "detailed-search":
+            case "new-tab":
                 browserObj.storage.local.set({
-                    detailedSearch: el.checked
+                    newTab: el.checked
                 });
                 break;
 
@@ -620,7 +620,7 @@ function applySettings(result) {
 
     // document.getElementById("rem-bgs").checked = result.removeBgs == undefined ? false : result.removeBgs;
     document.getElementById("search").checked = result.searchActive == undefined ? true : result.searchActive;
-    document.getElementById("detailed-search").checked = result.detailedSearch == undefined ? true : result.detailedSearch;
+    document.getElementById("new-tab").checked = result.newTab == undefined ? false : result.newTab;
     document.getElementById("fansubs-active").checked = result.fansubsActive == undefined ? false : result.fansubsActive;
     document.getElementById("fansubs").value = result.fansubs == undefined ? "" : result.fansubs;//.map(f => f.replaceAll(",", "\\,")).join(",");
     document.getElementById("nickname").value = result.nickname == undefined ? "" : result.nickname;
@@ -628,7 +628,7 @@ function applySettings(result) {
     document.getElementById("player-css").checked = result.player == undefined ? true : result.player;
     document.getElementById("players-active").checked = result.selectPlayer == undefined ? false : result.selectPlayer;
     document.getElementById("players").value = result.players == undefined ? "" : result.players;//.map(f => f.replaceAll(",", "\\,")).join(",");
-    
+
     editor.setValue(result.userCss, 1);
 
     Links.apply(result.links == undefined ? defaultSettings.links : result.links);
@@ -740,7 +740,7 @@ const dataKeys = [
     "fansubsActive",
     "searchActive",
     "minCssActive",
-    "detailedSearch",
+    "newTab",
     "userCss",
     "nickname",
     "hostname",
@@ -766,7 +766,7 @@ const defaultSettings = {
     fansubsActive: false,
     searchActive: true,
     minCssActive: true,
-    detailedSearch: true,
+    newTab: false,
     userCss: null,
     nickname: null,
     hostname: null,

@@ -73,8 +73,10 @@ async function getAnilistUrl(malId) {
 }
 
 
+const extensionPath = document.getElementById("anizmpluspath").getAttribute("content");
+
 let worker;
-fetch("/js/custom/searchWorker.js")
+fetch(extensionPath + "replace_scripts/searchWorker.js")
     .then(r => r.text())
     .then(data => {
         const blob = new Blob([data], { type: 'application/javascript' });
@@ -142,15 +144,7 @@ var decodeEntities = (function () {
 
 $(async () => {
 
-    selectedSearchType = (
-        await (
-            await fetch(
-                "/anizm-plus-settings" + "?time=" + new Date().getTime()
-            )
-        ).json()
-    ).detailedSearch
-        ? SearchTypes.DETAILED
-        : SearchTypes.FAST;
+    selectedSearchType = localStorage.getItem("preferedSearchType") || SearchTypes.FAST;
 
     $(".searchTypeSelection").removeClass("passive");
 
@@ -192,6 +186,9 @@ $(async () => {
 
         shownResultsToSkip = 0;
         selectedSearchType = $(e.currentTarget).data("type");
+
+        localStorage.setItem("preferedSearchType", selectedSearchType);
+
         $(".searchTypeSelection .searchTypeOption").toggleClass("active");
 
         if (document.getElementById("searchOverlay").className.includes('searchShown'))
@@ -441,10 +438,10 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
   </svg>
  </section>
  <a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${animeInfo.info_malid.toString()}">
-  <img class="card-poster mal-img" src="/mal.svg" alt="MAL sayfası">
+  <img class="card-poster mal-img" src="${extensionPath}assets/mal.svg" alt="MAL sayfası">
  </a>
  <span target="_blank" class="anilist-link" onclick="mal2anilistOpen(${animeInfo.info_malid.toString()})">
-  <img class="card-poster anilist-img" src="/anilist.svg" alt="AniList sayfası">
+  <img class="card-poster anilist-img" src="${extensionPath}assets/anilist.svg" alt="AniList sayfası">
  </span>
 </div>
 </div>

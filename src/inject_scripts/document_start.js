@@ -1,6 +1,6 @@
 // Tarayıcı uyumluluğu için
-const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
-const getURL = (URL = "") => browserObj.runtime.getURL(URL);
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 
@@ -54,7 +54,42 @@ injectStyle("styles/design/necessary.css");
 
 
 
-browserObj.storage.local.get(["themeId", "searchActive", "minCssActive", "applyColor", "userCss", "fansubsActive", "fansubs", "selectPlayer", "players", "changeBgs", "homeBg", "homeSliderBg", "episodeBg", "lastSeen", "watched", "animeLinks"], function (result) {
+document.documentElement.insertAdjacentHTML("afterbegin", '<data id="anizmpluspath" content="' + browserObj.runtime.getURL("") + '">');
+
+
+
+
+browserObj.storage.local.get([
+
+    "searchActive",
+
+    "themeId",
+    "minCssActive",
+    "applyColor",
+    "userCss",
+
+    "fansubsActive",
+    "fansubs",
+    "selectPlayer",
+    "players",
+
+    "changeBgs",
+    "homeBg",
+    "homeSliderBg",
+    "episodeBg",
+
+    "lastSeen",
+    "watched",
+
+    "newTab"
+
+], function (result) {
+
+    if (result.newTab) {
+        const baseElement = document.createElement("base");
+        baseElement.target = "_blank";
+        document.documentElement.appendChild(baseElement);
+    }
 
     if (result.applyColor && result.themeId) {
         if (result.themeId.startsWith("$")) {
@@ -364,16 +399,16 @@ browserObj.storage.local.get(["themeId", "searchActive", "minCssActive", "applyC
             newStyleElement.innerHTML = data;
             document.documentElement.appendChild(newStyleElement);
         }
- 
+
 
         // arama filtreleri
         // arama arayüzünün oluşmasını bekleyip işlem yapıyoruz
         if (result.searchActive != false) {
-    
+
             const newScriptElement = document.createElement("script");
             newScriptElement.src = getURL("inject_scripts/filters.js");
             document.body.appendChild(newScriptElement);
-    
+
             (async function (callback) {
                 if (document.getElementById('searchOverlay')) {
                     callback();
@@ -398,12 +433,6 @@ browserObj.storage.local.get(["themeId", "searchActive", "minCssActive", "applyC
                     });
             });
         }
-    
-        /* if (result.animeLinks) {
-            const newScriptElement = document.createElement("script");
-            newScriptElement.src = getURL("inject_scripts/link_finder.js");
-            document.body.appendChild(newScriptElement);
-        } */
 
     });
 

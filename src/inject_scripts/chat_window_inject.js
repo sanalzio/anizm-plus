@@ -1,6 +1,6 @@
 // Tarayıcı uyumluluğu için
-const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
-const getURL = (URL = "") => browserObj.runtime.getURL(URL);
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 

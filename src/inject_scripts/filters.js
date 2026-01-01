@@ -155,7 +155,7 @@ var filters = {};
                 maxPrice - minPrice >= malpRangeMin &&
                 maxPrice <= malpRangeInput[1].max
             ) {
-                if (e.target.className === "min") {
+                if (e.target.classList.contains("min")) {
                     malpRangeInput[0].value = minPrice;
                     filters.minmalp = minPrice;
                     malpRange.style.left =
@@ -206,7 +206,7 @@ var filters = {};
                 maxPrice - minPrice >= wordsRangeMin &&
                 maxPrice <= wordsRangeInput[1].max
             ) {
-                if (e.target.className === "min") {
+                if (e.target.classList.contains("min")) {
                     wordsRangeInput[0].value = minPrice;
                     filters.minwords = minPrice;
                     wordsRange.style.left =
@@ -256,7 +256,7 @@ var filters = {};
                 maxPrice - minPrice >= epsRangeMin &&
                 maxPrice <= epsRangeInput[1].max
             ) {
-                if (e.target.className === "min") {
+                if (e.target.classList.contains("min")) {
                     epsRangeInput[0].value = minPrice;
                     filters.mineps = minPrice;
                     epsRange.style.left =
@@ -317,16 +317,23 @@ var filters = {};
                 maxPrice - minPrice >= yearRangeMin &&
                 maxPrice <= yearRangeInput[1].max
             ) {
-                if (e.target.className === "min") {
+                if (e.target.classList.contains("min")) {
                     yearRangeInput[0].value = minPrice;
                     filters.minyear = minPrice;
                     yearRange.style.left =
-                        (minPrice / yearRangeInput[0].max) * 100 + "%";
+                        ((minPrice - yearRangeInput[1].min) /
+                            (yearRangeInput[0].max - yearRangeInput[1].min)) *
+                            100 +
+                        "%";
                 } else {
                     yearRangeInput[1].value = maxPrice;
                     filters.maxyear = maxPrice;
                     yearRange.style.right =
-                        100 - (maxPrice / yearRangeInput[1].max) * 100 + "%";
+                        100 -
+                        ((maxPrice - yearRangeInput[1].min) /
+                            (yearRangeInput[1].max - yearRangeInput[1].min)) *
+                            100 +
+                        "%";
                 }
             }
         });

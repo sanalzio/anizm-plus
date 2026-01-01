@@ -9,7 +9,7 @@ div[class^="aramas"] > a[target="_blank"],
 a[target="_blank"] > img.img-responsive[src^="/images/"][alt],
 a[href^="https://cutt.ly/"],
 
-html > div,
+html > div:not(#eruda,.__chobitsu-hide__),
 .animeIzleInnerContainer > a,
 #searchBoxAreaLeft,
 #searchBoxAreaRight,

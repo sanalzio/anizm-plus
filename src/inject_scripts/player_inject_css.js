@@ -1,6 +1,6 @@
 // Tarayıcı uyumluluğu için
-const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
-const getURL = (URL = "") => browserObj.runtime.getURL(URL);
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 
@@ -87,6 +87,7 @@ function injectCSS(content, themeId) {
                 newStyleElement.innerHTML = primaryColor.replaceAll(primaryColor, data) + content;
                 document.documentElement.appendChild(newStyleElement);
             });
+        return;
     }
 
     fetch(getURL("styles/colors/" + (themeId != undefined ? themeId : "orange") + "_theme.css"))

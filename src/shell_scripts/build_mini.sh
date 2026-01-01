@@ -9,12 +9,23 @@ cp -r ../scripts/ace/ ../build/scripts/
 
 #### Minify Javascript ####
 
+
 # scripts/
 bun build --minify-syntax --minify-whitespace --splitting --outdir=../build_mini/scripts/ ../mini/scripts/options.js
+
+
 # inject_scripts/
-bun build --minify-syntax --minify-whitespace --splitting --outdir=../build_mini/inject_scripts/ ../mini/inject_scripts/document_start.js
+bun build --minify-syntax --minify-whitespace --splitting --outdir=../build_mini/inject_scripts/ ../mini/inject_scripts/disable_infos.js ../mini/inject_scripts/better_watched.js ../mini/inject_scripts/document_start.js
+
+
+# replace_scripts/
+rm -rf ../build_mini/replace_scripts/
+bun build --minify-syntax --minify-whitespace --splitting --outdir=../build_mini/replace_scripts/ ../mini/replace_scripts/episodea.js
+
+
 # backgorund.js
 #bun build --minify-syntax --minify-whitespace --splitting --outdir=../build_mini ../mini/background.js
+
 
 #### Minify Javascript ####
 
@@ -36,10 +47,9 @@ minify ../mini/pages/options.html > ../build_mini/pages/options.html
 
 
 
-rm -rf ../build_mini/docs/
-rm -rf ../build_mini/replace_scripts/
+# rm -rf ../build_mini/docs/
 rm -rf ../build_mini/components/
-rm -rf ../build_mini/assets/favicon/
+# rm -rf ../build_mini/assets/favicon/
 
 
 

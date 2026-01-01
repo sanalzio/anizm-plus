@@ -1,6 +1,6 @@
 // Tarayıcı uyumluluğu için
-/* const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
-const getURL = (URL = "") => browserObj.runtime.getURL(URL); */
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 
@@ -28,7 +28,7 @@ const getURL = (URL = "") => browserObj.runtime.getURL(URL); */
 // Ana sayfadaki sağ üstteki linkler için bir sözlük
 const links = {
     takvim: "/takvim",
-    arama: "/arama",
+    arama: getURL("pages/arama.html"),
     "izleme-geçmişim": "/izlemeGecmisim",
     "tavsiye-robotu": "/tavsiyeRobotu",
     fansublar: "/fansublar",
@@ -138,7 +138,17 @@ try {
 
 // Eklenti ayarlarına göre işlemler
 
-browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive", "applyColor", "detailedSearch", "minCssActive", "links", "bottomControls"], function (result) {
+browserObj.storage.local.get([
+    "themeId",
+    "applyColor",
+
+    "links",
+    // "minCssActive",
+    "bottomControls",
+
+    "watched",
+    "lastSeen"
+], function (result) {
 
     /* if (result.applyColor && result.themeId) {
 
@@ -257,46 +267,25 @@ browserObj.storage.local.get(["removeBgs", "themeId", "fansubs", "fansubsActive"
             }
         })(() => {
             const linkItems = result.links ?? ["takvim", "tavsiye-robotu", "fansublar", "arama"];
-    
-            if (result.links.length > 0) {
-    
+
+            if (linkItems.length > 0) {
+
                 const listsList = document.querySelector("#menuContent ul");
-    
+
                 [...listsList.children]
                     .filter(el => !el.classList.contains("headerSearchContainer"))
                     .forEach(el => el.remove());
-        
+
                     const listHTML = linkItems.map(link => {
                     const linkTitle = link.replace(/-/g, " ");
                     return `<li><a title="${linkTitle.toLocaleUpperCase("tr")}" href="${links[link]}">${linkTitle}</a></li>`;
                 }).join("");
-    
+
                 listsList.insertAdjacentHTML("afterbegin", listHTML);
             }/*  else {
-    
+
                 document.body.insertAdjacentHTML("beforeend", "<style>div.menu:has(ul)>ul>li:not(li:has(a[title=\"TAKVİM\"]),li:has(a[title=\"ARAMA\"]),li:has(a[title=\"Tavsiye Robotu\"]),li:has(a[title=\"Fansublar\"]),li.headerSearchContainer){display:none}</style>");
             } */
         });
     } catch {}
-
-
-    /* if (result.detailedSearch !== false)
-        // burada da DOM'un tamamen yüklenip yüklenmediğini kontrol ediyor.
-        (async function onDomReady(callback) {
-            if (document.querySelector(".searchTypeSelection .searchTypeOption")) {
-                callback();
-            } else {
-                new MutationObserver((_, obs) => {
-                    if (document.querySelector(".searchTypeSelection .searchTypeOption")) {
-                        obs.disconnect();
-                        callback();
-                    }
-                }).observe(document.documentElement, {
-                    childList: true,
-                    subtree: true,
-                });
-            }
-        })(() => {
-            document.querySelector(".searchTypeSelection .searchTypeOption[data-type=\"detailed\"]").click();
-        }); */
 });

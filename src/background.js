@@ -1,5 +1,6 @@
 // Tarayıcı uyumluluğu için
-const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+window.getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 
@@ -38,11 +39,6 @@ function versionCheck() {
  // firefox ise özel olarak sürüm kontrolü yapmasına gerek yok herhalde.
 if (!navigator.userAgent.toLowerCase().includes('firefox'))
     browserObj.runtime.onStartup.addListener(versionCheck);
-
-
-
-
-const getURL = (URL = "") => browserObj.runtime.getURL(URL);
 
 
 let blockList = [
@@ -138,9 +134,6 @@ browserObj.webRequest.onBeforeRequest.addListener(
         if (contentReq)
             return { redirectUrl: getURL(contentReq[1]) };
 
-        if (details.url.split("?")[0].endsWith("/anizm-plus-settings"))
-            return { redirectUrl: "data:application/json," + JSON.stringify(settings) };
-
         if (details.url.includes("/js/custom.js"))
             return { redirectUrl: getURL("replace_scripts/custom.js") };
 
@@ -149,22 +142,11 @@ browserObj.webRequest.onBeforeRequest.addListener(
 
 
 
-        if (details.url.endsWith("/js/custom/searchWorker.js"))
-            return { redirectUrl: getURL("replace_scripts/searchWorker.js") };
-
-
-
         if (details.url.includes("/upload/assets/logo.webp") && settings.applyColor)
             return { redirectUrl: getURL("assets/logo/"+ (settings.themeId == "custom" ? "orange" : settings.themeId) +".webp") };
 
         if ((details.url.includes("/favicon.ico") || details.url.includes("/images/logo_")) && settings.applyColor)
             return { redirectUrl: getURL("assets/favicon/" + (settings.themeId == "custom" ? "gray" : settings.themeId) + ".png") };
-
-
-        if (details.url.split("#")[0].split("?")[0].endsWith("/mal.svg"))
-            return { redirectUrl: getURL("assets/mal.svg") };
-        if (details.url.split("#")[0].split("?")[0].endsWith("/anilist.svg"))
-            return { redirectUrl: getURL("assets/anilist.svg") };
 
 
         if (settings.searchActive !== false && (details.url.split("#")[0].split("?")[0].endsWith("/arama")))
