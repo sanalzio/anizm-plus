@@ -27,7 +27,7 @@ cp -r ../scripts/ace/ ../build/scripts/
 # scripts/
 bun build --format cjs --minify-syntax --minify-whitespace --splitting --outdir=../build/scripts/ ../scripts/applyTheme.js ../scripts/arama.js ../scripts/options.js ../scripts/popup.js ../scripts/newversion.js
 # inject_scripts/
-bun build --format cjs --minify-syntax --minify-whitespace --splitting --outdir=../build/inject_scripts/ ../inject_scripts/link_finder.js ../inject_scripts/link_finder_worker.js ../inject_scripts/filters.js ../inject_scripts/aincrad_inject.js ../inject_scripts/document_start.js ../inject_scripts/document_end.js ../inject_scripts/player_inject_css.js ../inject_scripts/chat_window_inject.js
+bun build --format cjs --minify-syntax --minify-whitespace --splitting --outdir=../build/inject_scripts/ ../inject_scripts/inject_better_watched.js ../inject_scripts/better_watched.js ../inject_scripts/link_finder.js ../inject_scripts/link_finder_worker.js ../inject_scripts/filters.js ../inject_scripts/aincrad_inject.js ../inject_scripts/document_start.js ../inject_scripts/document_end.js ../inject_scripts/player_inject_css.js ../inject_scripts/chat_window_inject.js
 # replace_scripts/
 bun build --format cjs --minify-syntax --minify-whitespace --splitting --outdir=../build/replace_scripts/ ../replace_scripts/custom.js ../replace_scripts/episodea.js ../replace_scripts/searchOverlayOnce.js ../replace_scripts/searchWorker.js
 # backgorund.js
@@ -56,7 +56,7 @@ minify ../styles/design/chat_window.css > ../build/styles/design/chat_window.css
 minify ../styles/design/for_color_themes.css > ../build/styles/design/for_color_themes.css
 minify ../styles/design/min_theme.css > ../build/styles/design/min_theme.css
 minify ../styles/design/necessary.css > ../build/styles/design/necessary.css
-#minify ../styles/design/glassy.css > ../build/styles/design/glassy.css
+minify ../styles/design/glass.css > ../build/styles/design/glass.css
 #minify ../styles/design/remove_bgs.css > ../build/styles/design/remove_bgs.css
 minify ../styles/design/filters.css > ../build/styles/design/filters.css
 

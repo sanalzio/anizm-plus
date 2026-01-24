@@ -62,8 +62,10 @@ rm ../build_mini/background.js
 rm ../build_mini/pages/newversion.html
 rm ../build_mini/styles/newversion.css
 rm ../build_mini/scripts/newversion.js
+
 rm ../build_mini/inject_scripts/chat_window_inject.js
 rm ../build_mini/inject_scripts/chatango.js
 rm ../build_mini/inject_scripts/aincrad_inject.js
 rm ../build_mini/inject_scripts/filters.js
 rm ../build_mini/inject_scripts/player_inject_css.js
+rm ../build_mini/inject_scripts/inject_better_watched.js

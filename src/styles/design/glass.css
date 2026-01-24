@@ -1,0 +1,1009 @@
+:root{
+    --transition: background-color box-shadow;
+    --transition-duration: .2s;
+
+
+    --scrollbar-width: 10px;
+
+
+
+    --glass-bg: #2227;
+    --glass-bg-dark: #0004;
+    --glass-bg-light: #3338;
+
+
+
+    --backdrop-filter: blur(5px);
+
+
+
+    /* shadows */
+    --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 0 0px 0px rgba(255, 255, 255, 0),
+        inset 0 0 12.5px -5px #fff;
+    --shadow-glass-s: var(--shadow-glass), inset 0 1px 2px #ffffff30,
+        /* top highlight */ 0 1px 2px #00000030,
+    /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
+    --shadow-glass-m: var(--shadow-glass), inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030,
+    /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */
+    --shadow-glass-l: var(--shadow-glass), inset 0 1px 2px #ffffff70, /* top highlight */ 0 4px 6px #00000030,
+    /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
+    --shadow-s: inset 0 1px 2px #ffffff30,
+        /* top highlight */ 0 1px 2px #00000030,
+    /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
+    --shadow-m: inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030,
+    /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */
+    --shadow-l: inset 0 1px 2px #ffffff70, /* top highlight */ 0 4px 6px #00000030,
+    /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
+}
+
+.anizm_button,
+div.menu.notification-menu,
+.ui.container:has(.loginForm) .anizm_column:first-child,
+#videoFrame,
+.google-login-button,
+.recentCommentCard,
+.posterBlock .content,
+.ui.button,
+.ui.active.button,
+.ui.primary.button,
+.ui.primary.buttons .button,
+.ui.blue.button,
+.ui.blue.buttons .button,
+#custom-comment-system .ui.primary.button,
+.anizm_button[style*="background-color:#5c6bc0"],
+.anizm_button[style*="background-color: #5c6bc0"],
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"],
+.follow-btn,
+.ui.basic.button.follow-btn,
+.ui.red.button.follow-btn,
+.ui.button.follow-btn,
+#addWatched,
+[data-translatorclick] .translatorCompactBox,
+.ui.label,
+footer,
+.ui.small.label,
+.ui.small.labels .label,
+.ui.button.fluid.orange,
+#custom-comment-system,
+.ui.warning.message .header,
+.ui.warning.message,
+.ui.info.message .header,
+.ui.info.message,
+.ui.icon.button,
+.episodeTranslatorNote,
+.playerUploader,
+.episodeTranslatorNote .title,
+.episodeTranslatorNote>.ui.icon.button,
+.uploaderLittleInfo,
+.animeDetayKutu,
+.anizm_box,
+.anizm_boxTitle,
+.episode_searchBox,
+.episodeLine,
+#pageContent a.span[href*="/kategoriler"],
+.anizm_sectionTitle>a,
+.anizm_sectionTitle>span,
+.info_otherTitle,
+.anizm_pageTitle,
+.infoSta li,
+header,
+.selectionOption,
+.popularAnimeSlideSection,
+#menuContent>.menu>ul>li,
+.gelismisAramaSubContainer,
+.calendarTitle,
+.calendarItemCard,
+.ui.multiple.search.dropdown,
+.ui.inverted.basic.segment,
+.ui.four.cards>.card,
+.ui.segment,
+.ui.card,
+.posterBlock .posterAlt,
+.slideAnimeEpisodeInfo,
+.anime-year,
+.view-details,
+.ui.vertical.menu>.item,
+.ui.vertical.menu .item:last-child,
+.ui.vertical.menu>.active.item:first-child,
+.ui.selection.dropdown:focus,
+.ui.selection.active.dropdown:hover,
+.ui.menu.fluid, .ui.vertical.menu.fluid,
+.ui.selection.dropdown:hover,
+.ui.selection.dropdown,
+.loginForm > .pfull,
+.registerPageContainer > div > div:first-child,
+.registerPageContainer > div > div > .pfull:first-of-type,
+.ui.form input:not([type]), .ui.form input[type="date"], .ui.form input[type="datetime-local"], .ui.form input[type="email"], .ui.form input[type="file"], .ui.form input[type="number"], .ui.form input[type="password"], .ui.form input[type="search"], .ui.form input[type="tel"], .ui.form input[type="text"], .ui.form input[type="time"], .ui.form input[type="url"], .ui.input>input, .ui.form textarea,
+.ui.checkbox .box:before, .ui.checkbox label:before, .ui.selection.active.dropdown .menu, .ui.selection.active.dropdown:hover .menu,
+.ui.input.down input, .ui.input > input, .ui.input.down input, .ui.input > input:active, .ui.input.down input, .ui.input > input:focus/*,
+.menu.notification-menu*/,
+div.menu.acilirUyeMenusu,
+div.menu.acilirUyeMenusu .header,
+.notification-tab,
+.notification-item,
+.no-notifications,
+.ui.basic.inverted.button, .ui.basic.inverted.buttons .button,
+.ui.basic.inverted.button:hover, .ui.basic.inverted.buttons .button:hover,
+.aramaSonucItem,
+.ui.buttons:last-child,
+div.ui.container>div:has(.form),
+div.ui.container>div:has(.form) .results>a,
+.ui.pagination.menu,
+.custom-pagination .page-item>.page-link,
+#searchFilterButton,
+#reset-filters-button
+{
+    background: var(--glass-bg-dark)!important;
+    color: #fffe!important;
+    border: 1px solid #ffffff70!important;
+    backdrop-filter: var(--backdrop-filter)!important;
+    transition-duration: var(--transition-duration)!important;
+    transition-property: var(--transition)!important;
+    box-shadow: var(--shadow-glass-s)!important;
+    border-radius: 16px!important;
+    z-index: 15;
+    /*z-index: 10;*/
+}
+.popularAnimeSlideSection,
+#searchFilterButton {
+    z-index: auto;
+}
+.anizm_box,
+.animeDetayKutu,
+.gelismisSecimDropdown .item {
+    background: var(--glass-bg)!important;
+    box-shadow: var(--shadow-glass-l)!important;
+}
+.ui {
+    border-radius: 16px!important;
+}
+.ui.input>input::-webkit-input-placeholder {
+    color: #ddde!important;
+}
+
+.ui.selection.dropdown:focus,
+.ui.selection.active.dropdown:focus,
+.ui.selection.active.dropdown:hover {
+    z-index: 16;
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+}
+.ui.selection.active.dropdown:hover .menu {
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+}
+
+.ui.checkbox label:before {
+    border-radius: 35%!important;
+}
+.ui.checkbox label:after {
+    color: var(--primaryColorLighter)!important;
+}
+
+.ui.form input:not([type]), .ui.form input[type="date"], .ui.form input[type="datetime-local"], .ui.form input[type="email"], .ui.form input[type="file"], .ui.form input[type="number"], .ui.form input[type="password"], .ui.form input[type="search"], .ui.form input[type="tel"], .ui.form input[type="text"], .ui.form input[type="time"], .ui.form input[type="url"], .ui.input>input, .ui.form textarea {
+    border-color: var(--primaryColorLighter)!important;
+}
+
+.ui.button:disabled, .ui.buttons .disabled.button, .ui.disabled.active.button, .ui.disabled.button, .ui.disabled.button:hover {    cursor: default;
+    opacity: .7!important;
+    background-image: none!important;
+    -webkit-box-shadow: var(--shadow-glass-s)!important;
+    box-shadow: var(--shadow-glass-s)!important;
+    pointer-events: none!important;
+}
+
+.ui.selection.active.dropdown .menu,
+.ui.selection.active.dropdown:hover .menu{
+    background: #000b!important;
+}
+.ui.selection.visible.dropdown>.text:not(.default) {
+    color: #fffd!important;
+}
+.ui.vertical.menu>.item:not(:last-child) {
+    margin-bottom: .25rem;
+}
+.ui.menu.fluid, .ui.vertical.menu.fluid {
+    padding: .25rem;
+}
+.ui.vertical.menu .item.active,
+.ui.vertical.menu .active.item:last-child,
+.ui.vertical.menu>.active.item:first-child {
+    background: hsl(from var(--primaryColor) h s l / .7) !important;
+}
+.ui.vertical.menu .item:not(.active):hover {
+    background: #fff2!important;
+}
+
+
+.ui.checkbox label:hover, .ui.checkbox+label:hover {
+    color: #fff;
+}
+
+
+
+.anizmTitleLink:hover {
+    color: hsl(from var(--primaryColor) h s calc(l + 30) / .85);
+}
+.calendarTitle,
+.anizm_sectionTitle>a, .anizm_sectionTitle>span,
+.loginForm > .pfull > .pfull > div:first-child,
+.registerPageContainer > div > div:first-child,
+.loginForm .fields:not(.checkbox) label,
+.registerPageContainer form > .fields:not(.radio) label,
+.registerPageContainer form > .fields.radio > div > label {
+    padding: .55rem .75rem;
+    border-radius: 1.5rem;
+    display: inline-block;
+    box-shadow: var(--shadow-glass-m)!important;
+    background: var(--glass-bg)!important;
+}
+.anizm_pageTitle{
+    padding: .5rem 1rem;
+    margin: .5rem 0;
+    border-radius: 1.5rem;
+    width: fit-content;
+    box-shadow: var(--shadow-glass-l)!important;
+    background: var(--glass-bg)!important;
+}
+.infoSta li {
+    padding: 0 .5rem!important;
+    color: #fffd!important;
+}
+.info_otherTitle:before {
+    content: "Diğer isimler: ";
+}
+
+
+.calendarTitle,
+.ui.default.dropdown:not(.button)>.text, .ui.dropdown:not(.button)>.default.text {
+    color: #eeee!important;
+}
+.calendarItemImg {
+    border-radius: 16px;
+}
+.ui.selection.active.dropdown .menu {
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+}
+.gelismisSecimDropdown .item:hover,
+.ui.selection.dropdown .menu > .item:hover{
+    background: hsl(from var(--primaryColor) h s calc(l - 3) / .8)!important;
+}
+
+
+
+.anime-card .image-wrapper {
+    margin: 16px;
+}
+.anime-card .image-wrapper img,
+.ui.card>.image-wrapper, .ui.cards>.card>.image-wrapper {
+    border-radius: 16px!important;
+}
+.anime-year,
+.view-details {
+    background: hsl(from var(--primaryColor) h s calc(l - 3) / .8)!important;
+}
+.view-details:hover {
+    background: hsl(from var(--primaryColor) h s l / .9)!important;
+}
+
+.ui.pagination.menu {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.custom-pagination .pagination {
+    margin: 0;
+}
+
+.page-item.disabled>.page-link:hover {
+    background: var(--glass-bg-dark) !important;
+}
+.page-item.active>.page-link {
+    background: var(--primaryColor) !important;
+}
+
+
+
+.ui.input.down input, .ui.input > input, .ui.input.down input, .ui.input > input:active, .ui.input.down input, .ui.input > input:focus {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    box-shadow: var(--shadow-glass-m)!important;
+    backdrop-filter: var(--backdrop-filter);
+    -webkit-backdrop-filter: var(--backdrop-filter);
+    border: 1px solid var(--primaryColor)!important;
+}
+#homeSearchTrigger {
+    border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
+    border-left: none!important;
+}
+
+
+
+.ui.container.menuHeader {
+    top: 4px!important;
+}
+body > main > header,
+body > main > header.puf01 {
+    background: var(--glass-bg)!important;
+    box-shadow: var(--shadow-glass-l)!important;
+    margin: .5rem .5rem .5rem .5rem!important;
+    width: calc(100% - 1rem)!important;
+    padding: 0!important;
+}
+body > main > header .avatar {
+    box-shadow: var(--shadow-glass-s)!important;
+}
+#menuContent {
+    margin-top: .125rem;
+}
+#menuContent>.menu>ul>li{
+    padding: 5px 8px;
+    margin: 5px 8px;
+    background: #66666640!important;
+}
+#menuContent>.menu>ul>li:has(a:hover) {
+    background: #99999940!important;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+#menuContent>.menu>ul>li>a:hover {
+    border: none;
+}
+.headerSearchIcon {
+    padding: 5px 8px!important;
+}
+.headerSearchContainer {
+    padding: 0!important;
+    border-radius: 100%!important;
+}
+#menuContent>.menu>ul>li.headerSearchContainer:has(.headerSearchIcon:hover),
+#menuContent>.menu>ul>li.headerSearchContainer:hover {
+    box-shadow: var(--shadow-glass-m)!important;
+    background: #99999940!important;
+}
+header > .content ul.userUnorderedList li {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+header > .content ul.userUnorderedList li:first-child .anizm_button {
+    background: #66666640!important;
+}
+header > .content ul.userUnorderedList li:first-child .anizm_button:hover {
+    background: #99999940!important;
+}
+
+
+.popularAnimeSlideSection>.selectionContainer{
+    margin-top: .5rem;
+}
+.slideImageBorder{
+    background: hsl(from var(--primaryColorDarker) h s l / .5);
+}
+.recentCommentsPrevButton:hover, .recentCommentsNextButton:hover, .recentCommentsPrevButton, .recentCommentsNextButton, .lastWatchNextButton, .lastWatchPrevButton, .popularAnimePrevButton, .popularAnimeNextButton, .latestAddedNextButton, .latestAddedPrevButton {
+    background-image: url(data:image/svg+xml,%3Csvg%20%20%20viewBox%3D%220%200%20256%20256%22%20%20%20version%3D%221.1%22%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20%20%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20%20%20%20%20style%3D%22fill%3A%23fff8%22%20%20%20%20%20d%3D%22M%20128%2C-0.00234735%20C%2057.369043%2C-0.00234735%202.6106449e-8%2C57.367949%202.6106449e-8%2C127.99765%20c%200%2C70.6297%2057.369132973893549%2C128%20127.999999973893551%2C128%2070.63088%2C0%20128%2C-57.3703%20128%2C-128%20C%20256%2C57.367949%20198.63096%2C-0.00234735%20128%2C-0.00234735%20Z%20m%200%2C9.68749995%20c%2065.39776%2C0%20118.3125%2C52.9161484%20118.3125%2C118.3124974%200%2C65.39635%20-52.91464%2C118.3125%20-118.3125%2C118.3125%20C%2062.602149%2C246.31015%209.6875%2C193.394%209.6875%2C127.99765%209.6875%2C62.601301%2062.602238%2C9.6851526%20128%2C9.6851526%20Z%20M%20102.71875%2C39.091403%20c%20-1.51728%2C-0.006%20-3.064782%2C0.163182%20-4.5625%2C0.562499%20-2.020892%2C0.539395%20-3.648448%2C1.884744%20-5.343751%2C3.093751%20H%2091.75%20l%20-1.437504%2C1.406256%20c%20-6.757163%2C6.756097%20-6.757163%2C17.868902%200%2C24.625%20v%200.0312%20l%2055.218754%2C55.156251%20c%202.33974%2C2.33891%202.34035%2C5.72136%200%2C8.0625%20l%20-55.1875%2C55.21879%20c%20-6.74634%2C6.7489%20-6.750131%2C17.84575%200%2C24.59375%206.748855%2C6.74611%2017.87705%2C6.74988%2024.625%2C0%20l%2066.0625%2C-66.0625%20c%209.74694%2C-9.74858%209.74941%2C-25.78363%200%2C-35.53125%20l%20-66.0625%2C-66.062497%20c%20-3.2893%2C-3.296633%20-7.70518%2C-5.075648%20-12.25%2C-5.09375%20z%20m%20-0.0626%2C9.65625%20c%202.01388%2C0.008%204.00963%2C0.81888%205.46875%2C2.281249%20l%2066.0625%2C66.062498%20c%205.99899%2C5.99791%205.99866%2C15.81283%200%2C21.8125%20l%20-66.0624%2C66.09375%20c%20-2.97968%2C2.98055%20-7.95534%2C2.98095%20-10.937501%2C0%20-2.981561%2C-2.98062%20-2.950717%2C-7.92315%200.0312%2C-10.90625%20l%2055.187551%2C-55.21875%20c%205.95909%2C-5.96109%205.93133%2C-15.78955%20-0.0312%2C-21.75%20L%2097.187499%2C61.935153%20c%20-2.984902%2C-2.984433%20-2.984902%2C-7.95307%200%2C-10.9375%200.95976%2C-0.95808%202.147159%2C-1.616005%203.468751%2C-1.968751%200.66757%2C-0.177984%201.33106%2C-0.28392%202%2C-0.281248%20z%22%20%2F%3E%3Cpath%20%20%20%20%20style%3D%22fill%3A%233337%22%20%20%20%20%20d%3D%22m%20128%2C4.8438445%20c%20-68.014429%2C0%20-123.1589947%2C55.1440045%20-123.1589947%2C123.1571055%200%2C68.01309%2055.1445657%2C123.1552%20123.1589947%2C123.1552%2068.01443%2C0%20123.15899%2C-55.14211%20123.15899%2C-123.1552%20C%20251.15899%2C59.987849%20196.01443%2C4.8438445%20128%2C4.8438445%20Z%20M%20102.68517%2C43.919485%20c%203.27935%2C0.01306%206.48135%2C1.311728%208.85556%2C3.691233%20l%2066.07914%2C66.048882%20c%207.87421%2C7.87276%207.87282%2C20.80856%200%2C28.6827%20l%20-66.07914%2C66.07913%20c%20-4.86383%2C4.86521%20-12.894768%2C4.86353%20-17.760282%2C0%20-4.865851%2C-4.86432%20-4.864158%2C-12.89429%200%2C-17.76029%20l%2055.186972%2C-55.21722%20c%204.14972%2C-4.15112%204.15116%2C-10.73627%200%2C-14.88595%20L%2093.75019%2C65.370998%20c%20-4.871038%2C-4.87027%20-4.871038%2C-12.920265%200%2C-17.790534%20h%200.03024%20c%201.561517%2C-1.558787%203.49589%2C-2.668413%205.627636%2C-3.237395%201.082644%2C-0.288652%202.183984%2C-0.427938%203.277104%2C-0.423584%20z%22%20%2F%3E%3C%2Fsvg%3E);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent!important;
+    transition-property: var(--transition), filter !important;
+}
+.recentCommentsPrevButton:not(.swiper-button-disabled):hover, .recentCommentsNextButton:not(.swiper-button-disabled):hover, .lastWatchNextButton:not(.swiper-button-disabled):hover, .lastWatchPrevButton:not(.swiper-button-disabled):hover, .popularAnimePrevButton:not(.swiper-button-disabled):hover, .popularAnimeNextButton:not(.swiper-button-disabled):hover, .latestAddedNextButton:not(.swiper-button-disabled):hover, .latestAddedPrevButton:not(.swiper-button-disabled):hover {
+    filter: brightness(1.3);
+}
+.recentCommentsPrevButton {
+    transform: rotateY(180deg) translateY(-50%);
+    left: -10px;
+}
+.recentCommentsPrevButton:hover {
+    transform: rotateY(180deg) translateY(-50%);/* scale(1.1);*/
+}
+.recentCommentsNextButton {
+    right: -10px;
+}
+.recentCommentsNextButton:hover {
+    transform: translateY(-50%);/* scale(1.1);*/
+}
+.recentCommentsPrevButton::before, .recentCommentsNextButton::before {
+    display:none;
+}
+.swiper-button-disabled {
+    opacity: 0.7;
+}
+
+
+
+body.searchShown {
+    padding-right: var(--scrollbar-width);
+}
+
+
+
+.notification-tabs {
+    border: none !important;
+}
+
+.notification-tab:nth-child(2) {
+    margin: 0 .25rem!important;
+}
+
+.notification-tab:hover {
+    background: var(--glass-bg)!important;
+}
+.notification-tab.active {
+    background: var(--glass-bg-light)!important;
+}
+
+.notification-item {
+    background: #000a!important;
+}
+.notification-item:hover {
+    background: #000c!important;
+    box-shadow: var(--shadow-glass-l)!important;
+}
+
+
+.no-notifications {
+    padding: .5rem!important;
+    margin: .5rem!important;
+}
+
+
+.ui.basic.inverted.button:hover, .ui.basic.inverted.buttons .button:hover {
+    background: var(--glass-bg)!important;
+    color: #fff!important;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+
+
+div.menu.notification-menu.visible,
+div.menu.acilirUyeMenusu {
+    transform-origin: top !important;
+    background: #222C!important;
+}
+
+
+.ui.top.pointing.dropdown>.left.menu:after, .ui.top.right.pointing.dropdown>.menu:after {
+    display: none;
+}
+
+div.menu.acilirUyeMenusu .header {
+    color: hsl(from var(--primaryColor) h s calc(l + 30)) !important;
+    display: inline-block;
+    width: fit-content !important;
+    margin-left: 5% !important;
+}
+
+
+
+
+::-webkit-scrollbar,
+#searchOverlay::-webkit-scrollbar,
+html>body #searchOverlay::-webkit-scrollbar,
+html>body::-webkit-scrollbar,
+html>body *::-webkit-scrollbar,
+html>body>main::-webkit-scrollbar
+{
+    width: 10px !important;
+    height: 10px !important;
+    transition: 1.0s !important;
+}
+
+::-webkit-scrollbar-thumb,
+#searchOverlay::-webkit-scrollbar-thumb,
+html>body #searchOverlay::-webkit-scrollbar-thumb,
+html>body::-webkit-scrollbar-thumb,
+html>body *::-webkit-scrollbar-thumb,
+html>body>main::-webkit-scrollbar-thumb
+{
+    background-clip: padding-box !important;
+    border: 2px solid transparent !important;
+    border-radius: 5px !important;
+    transition: 1.0s !important;
+    background-color: var(--primaryColor) !important;
+    cursor: default !important;
+}
+
+::-webkit-scrollbar-thumb:hover,
+#searchOverlay::-webkit-scrollbar-thumb:hover,
+html>body #searchOverlay::-webkit-scrollbar-thumb:hover,
+html>body::-webkit-scrollbar-thumb:hover,
+html>body *::-webkit-scrollbar-thumb:hover,
+html>body>main::-webkit-scrollbar-thumb:hover
+{
+    background-clip: padding-box !important;
+    border: 2px solid transparent !important;
+    border-radius: 5px !important;
+    transition: 1.0s !important;
+    background-color: var(--primaryColor) !important;
+    cursor: default !important;
+}
+
+::-webkit-scrollbar-thumb:active,
+#searchOverlay::-webkit-scrollbar-thumb:active,
+html>body #searchOverlay::-webkit-scrollbar-thumb:active,
+html>body::-webkit-scrollbar-thumb:active,
+html>body *::-webkit-scrollbar-thumb:active,
+html>body>main::-webkit-scrollbar-thumb:active
+{
+    background-color: hsl(from var(--primaryColor) h s calc(l - 5)) !important;
+    cursor: default !important;
+}
+
+::-webkit-scrollbar-track,
+#searchOverlay::-webkit-scrollbar-track,
+html>body #searchOverlay::-webkit-scrollbar-track,
+html>body::-webkit-scrollbar-track,
+html>body *::-webkit-scrollbar-track,
+html>body>main::-webkit-scrollbar-track
+{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+::-webkit-scrollbar-corner,
+#searchOverlay::-webkit-scrollbar-corner,
+html>body #searchOverlay::-webkit-scrollbar-corner,
+html>body::-webkit-scrollbar-corner,
+html>body *::-webkit-scrollbar-corner,
+html>body>main::-webkit-scrollbar-corner
+{
+    background: none !important;
+}
+
+
+
+#homeSearchInput {
+    box-shadow: var(--shadow-glass-s)!important;
+    border-color: #ddddddbb!important;
+    border-right: none!important;
+}
+
+
+
+.anizm_button:hover,
+#addWatched:hover,
+.ui.label:hover,
+.ui.small.label:hover,
+.ui.small.labels .label:hover
+{
+    box-shadow: var(--shadow-glass-m)!important;
+    background: #55555560!important;
+}
+.anizm_button.active {
+    box-shadow: var(--shadow-glass-m), 0 0 10px 0px var(--primaryColor)!important;
+}
+
+.anizm_button.default,
+.ui.primary.button,
+.ui.primary.buttons .button,
+.ui.blue.button,
+.ui.blue.buttons .button,
+.ui.button,
+#custom-comment-system .ui.primary.button,
+.anizm_button[style*="background-color:#5c6bc0"],
+.anizm_button[style*="background-color: #5c6bc0"],
+.anizm_button[style*="background-color:red"],
+.anizm_button[style*="background-color: red"],
+.follow-btn,
+.ui.basic.button.follow-btn,
+.ui.red.button.follow-btn,
+.ui.button.follow-btn,
+#deleteWatched,
+.videoPlayerButtons.active,
+[data-translatorclick].active .translatorCompactBox,
+.ui.button.fluid.orange,
+.ui.icon.button,
+.posterBlock .bugunYuklenenAnime .posterAlt,
+.slideAnimeEpisodeInfo,
+.google-login-button,
+#searchFilterButton
+{
+    box-shadow: var(--shadow-glass-s)!important;
+    background: hsl(from var(--primaryColor) h s calc(l - 3) / .8)!important;
+}
+.anizm_button.default:hover,
+.ui.primary.button:hover,
+.ui.primary.buttons .button:hover,
+.ui.blue.button:hover,
+.ui.blue.buttons .button:hover,
+#custom-comment-system .ui.primary.button:hover,
+.anizm_button[style*="background-color:#5c6bc0"]:hover,
+.anizm_button[style*="background-color: #5c6bc0"]:hover,
+.anizm_button[style*="background-color:red"]:hover,
+.anizm_button[style*="background-color: red"]:hover,
+.follow-btn:hover,
+.ui.follow-btn:hover,
+.ui.basic.button.follow-btn:hover,
+.ui.red.button.follow-btn:hover,
+.ui.button.follow-btn:hover,
+#deleteWatched:hover,
+.videoPlayerButtons.active:hover,
+[data-translatorclick].active .translatorCompactBox:hover,
+.ui.button.fluid.orange:hover,
+.ui.icon.button:hover,
+.google-login-button:hover,
+.custom-pagination .page-item:not(.disabled)>.page-link:hover,
+#searchFilterButton:hover
+{
+    box-shadow: var(--shadow-glass-m)!important;
+    background: hsl(from var(--primaryColor) h s l / .8)!important;
+}
+.ui.active.button, .ui.active.button:hover {
+    background: hsl(from var(--primaryColorLighter) h s l / .8)!important;
+    filter: none;
+}
+.ui.button:hover {
+    background: hsl(from var(--primaryColor) h s l / .8)!important;
+    background-color: hsl(from var(--primaryColor) h s l / .8)!important;
+}
+
+
+
+
+[data-translatorclick] .translatorCompactBox,
+.videoPlayerButtons {
+    background: #99999940!important;
+}
+[data-translatorclick] .translatorCompactBox:hover,
+.videoPlayerButtons:hover {
+    box-shadow: var(--shadow-glass-m)!important;
+    background: #99999960!important;
+}
+[data-translatorclick].active .translatorCompactBox:hover {
+    box-shadow: var(--shadow-glass-m), 0 0 10px 0px var(--primaryColor)!important;
+}
+.episodeTranslators {
+    border: none!important;
+}
+.videoPlayerButtons {
+    transition-property: var(--transition) transform!important;
+}
+.videoPlayerButtons:hover {
+    transform: translateY(-1px);
+}
+
+
+
+
+#videoFrame {
+    background: var(--glass-bg)!important;
+    box-shadow: var(--shadow-glass-l)!important;
+}
+.episodeTranslators {
+    background: transparent!important;
+}
+
+
+
+footer {
+    background: var(--glass-bg)!important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    margin-bottom: 0;
+}
+main {
+    padding-bottom: 3rem;
+}
+
+
+
+::selection {
+    background: hsl(from var(--primaryColor) h s l / .5);
+}
+
+
+
+#pageContent>*:has(a[href*="sasirt-beni"]), #pageContent>*:has(a.span[href*="/kategoriler"]), #pageContent>*:has(.categoriesContainer) {
+    background: var(--glass-bg)!important;
+    color: #fffe!important;
+    border: 1px solid #ffffff70!important;
+    backdrop-filter: var(--backdrop-filter);
+    padding: 0 3rem;
+}
+#pageContent>*:has(a[href*="sasirt-beni"]) {
+    border-top-left-radius: 0!important;
+    border-top-right-radius: 0!important;
+    border-top: none!important;
+    padding-bottom: 2rem;
+    box-shadow: inset 0 -2px 2px #ffffff70!important;
+}
+#pageContent>*:nth-last-child(3) {
+    display: none;
+}
+#pageContent>*:has(a.span[href*="/kategoriler"]) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: calc(1127px + 2rem) !important;
+    border-radius: 16px;
+    border-bottom-left-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    border-bottom: none!important;
+    padding-top: 3rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: inset 0 2px 2px #ffffff70 !important;
+}
+#pageContent a.span[href*="/kategoriler"] {
+    display: inline-block;
+    padding: .55rem .75rem;
+    border-radius: 1.5rem;
+    transition-property: var(--transition) transform!important;
+    box-shadow: var(--shadow-glass-m)!important;
+    background: #99999940!important;
+}
+#pageContent a.span[href*="/kategoriler"]:hover {
+    box-shadow: var(--shadow-glass-l)!important;
+    background: #dddddd30 !important;
+    transform: translateY(-.1rem);
+}
+#pageContent>*:has(.categoriesContainer), #pageContent>*:nth-last-child(3) {
+    border-radius: 0!important;
+    border-bottom: none!important;
+    border-top: none!important;
+    padding-top: 2rem;
+    box-shadow: inset 2px 0 2px -2px #ffffff70,
+                inset -2px 0 2px -2px #ffffff70 !important;
+}
+
+
+
+
+#custom-comment-system {
+    background: var(--glass-bg)!important;
+}
+.ck-editor {
+    border: 1px solid #ffffff70!important;
+    box-shadow: var(--shadow-glass-s)!important;
+    border-radius: 16px;
+    overflow: hidden;
+}
+.ck.ck-toolbar {
+    background: #00000099!important;
+}
+.ck.ck-editor__main>.ck-editor__editable {
+    background: #000000DD!important;
+    padding: 1rem;
+}
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline p::spelling-error {
+    text-decoration:underline #e05e5e;
+    text-decoration-thickness: 2px;
+}
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline p {
+    font-size: medium!important;
+    line-height: normal!important;
+}
+.ck.ck-editor__main>.ck-editor__editable.ck-placeholder {
+    color: #ddd!important;
+}
+
+
+
+.episodeTranslatorNote,
+.playerUploader {
+    background: var(--glass-bg)!important;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass-l)!important;
+}
+.episodeTranslatorNote .title {
+    margin: .5rem 0 0 .5rem;
+    background: #dddddd30!important;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+.episodeTranslatorNote>.ui.icon.button,
+.uploaderLittleInfo {
+    background: #dddddd40!important;
+}
+.uploaderLittleInfo {
+    margin: .5rem .5rem 0 0;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+.translatorEncoderWrapper>.translatorName{
+    margin-top: .5rem;
+}
+#fansite {
+    padding-right: 1rem;
+}
+
+
+
+
+.animeDetayKutu a:hover,
+.episodeLine>span[style^="color: yellow"],
+.episodeLine>span[style^="color:yellow"],
+.ui.inverted.mini.statistic .value
+{
+    color: hsl(from var(--primaryColor) h s calc(l + 30) / .85)!important;
+}
+.info_episodeList {
+    overflow: hidden!important;
+    box-sizing: border-box!important;
+    padding: .5rem
+}
+.info_episodeList .anizm_boxTitle {
+    background: #dddddd30!important;
+    box-shadow: var(--shadow-glass-m)!important;
+    margin-bottom: .5rem;
+}
+.episode_searchBox {
+    background: #bbbbbb30!important;
+    overflow: hidden;
+    box-shadow: var(--shadow-glass-m)!important;
+    margin-bottom: .5rem
+}
+.episode_searchBox:has(#episodeFilterInput:focus) {
+    box-shadow: var(--shadow-glass-l)!important;
+    background: #dddddd40!important;
+}
+.episode_searchBox>input {
+    border: none!important;
+}
+.episodeLine {
+    background: #dddddd19!important;
+    padding: .75rem;
+    margin: .25rem;
+}
+.episodeLine:hover {
+    background: #dddddd39!important;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+
+
+
+.posterBlock .posterAlt,
+.slideAnimeEpisodeInfo
+{
+    bottom: .125rem;
+    right: .125rem;
+}
+.posterBlock {
+    height: 100%;
+}
+.posterBlock .content {
+    height: 100%;
+    padding: .5rem 0;
+    box-shadow: var(--shadow-glass-m)!important;
+}
+.posterBlock .content:hover {
+    box-shadow: var(--shadow-glass-l)!important;
+    transform: none;
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
+    .posterBlock .content:hover {
+        transform: translateY(-4px);
+    }
+}
+.posterBlock .poster {
+    border-radius: 16px;
+}
+.posterBlock .poster .flagsContainer {
+    display: none;
+}
+.poster:hover img {
+    transform: none;
+}
+
+.posterBlock .posterAlt {
+    background: #222C!important;
+}
+.posterBlock .dunYuklenenAnime .posterAlt {
+    background: hsl(from var(--dunEklendiColor) h s 20 / .9)!important;
+}
+
+
+
+
+.ui.container:has(.loginForm) .anizm_column:first-child, .loginForm > .pfull {
+    background: var(--glass-bg)!important;
+}
+.ui.container:has(.loginForm) .anizm_column:first-child {
+    padding: 1.5rem;
+}
+.loginForm > .pfull > .pfull > div:first-child,
+.loginForm .fields:not(.checkbox) label {
+    background: #6662!important;
+}
+.social-login-container {
+    border-color: #fffa!important;
+}
+
+
+.content {
+    z-index: auto;
+}
+
+
+
+.gelismisAramaLabel::after, .gelismisAramaLabel::before,
+.ui.tag.label:before, .ui.tag.labels .label:before,
+.ui.tag.label:after, .ui.tag.labels .label:after
+{
+    height: fit-content;
+    display: none!important;
+}
+
+#fin:not(:has(*)) {
+    margin: 0!important;
+}
+
+.gelismisAramaItem {
+    height: fit-content!important;
+}
+
+.ui.grid > .column:not(.row) {
+    padding-bottom: .25rem;
+}
+
+.aramaPuanImgWrapper {
+    margin-left: 15px;
+    padding: 0!important;
+
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+}
+
+.aramaSonucImg {
+    position: relative;
+}
+
+.aramaSonucYil {
+    top: 0;
+    bottom: auto;
+}
+
+.imgWrapperLink {
+    height: min-content;
+}
+
+
+
+.ui.buttons:last-child {
+    padding: 1rem 1rem;
+    display: block;
+    width: fit-content;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ui.buttons:last-child>a{
+    flex: 0;
+}
+
+div.ui.container>div:has(.form) .results {
+    background: transparent!important;
+}
+
+div.ui.container>div:has(.form) .results>a {
+    background: transparent!important;
+    padding: 10px!important;
+    margin: 6px!important;
+    width: calc(33.3% - 12px);
+}
+div.ui.container>div:has(.form) .results>a>img {
+    border-radius: 5px;
+    height: auto;
+    aspect-ratio: 59 / 83;
+}
+
+
+
+
+#reset-filters-button {
+    background: #1117!important;
+}
+#reset-filters-button:hover {
+    background: #222C!important;
+}
+
+
+
+
+.google-login-button, .google-login-button:active {
+    margin: 0 !important;
+}

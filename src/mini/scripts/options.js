@@ -504,6 +504,12 @@ document.addEventListener("change", function (event) {
                 });
                 break;
 
+            case "glass":
+                browserObj.storage.local.set({
+                    glass: el.checked
+                });
+                break;
+
             default:
                 break;
         }
@@ -690,6 +696,7 @@ function applySettings(result) {
     document.getElementById("anime-links").checked = result.animeLinks == undefined ? true : result.animeLinks;
     document.getElementById("watched").checked = result.watched == undefined ? false : result.watched;
     document.getElementById("bottom-controls").checked = result.bottomControls == undefined ? false : result.bottomControls;
+    document.getElementById("glass").checked = result.glass == undefined ? false : result.glass;
 }
 
 
@@ -733,7 +740,8 @@ const dataKeys = [
     "lastSeen",
     "animeLinks",
     "watched",
-    "bottomControls"
+    "bottomControls",
+    "glass"
 ];
 
 const defaultSettings = {
@@ -757,7 +765,8 @@ const defaultSettings = {
     lastSeen: false,
     animeLinks: true,
     watched: false,
-    bottomControls: false
+    bottomControls: false,
+    glass: false
 }
 
 function exportSettingsFile() {

@@ -1,3 +1,7 @@
+# 0.1.1
+- Yeni özellik `Cam teması uygula` eklendi.
+- Küçük hata düzeltmeleri ve iyileştirmeler uygulandı.
+
 # 0.1.0
 - Yeni özellik `Bağlantıları yeni sekmede aç` eklendi.
 - Ana sürümdeki `otomatik fansub seçme`, `otomatik player seçme`, `son görüldü bilgisini engelleme` ve `izlendi bilgisini engelleme` özellikleri uyarlandı.

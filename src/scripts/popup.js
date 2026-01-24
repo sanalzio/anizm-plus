@@ -20,7 +20,7 @@ searchBtn.addEventListener("click", () => {
     if (HOSTNAME) parameters = "hostname=" + HOSTNAME + "&";
     //if (themeId) parameters = "theme=" + themeId + "&";
 
-    window.open(`./arama.html?${parameters}q=${encodeURIComponent(queryInput.value)}`, "_blank");
+    window.open(`/pages/arama.html?${parameters}q=${encodeURIComponent(queryInput.value)}`, "_blank");
 
 });
 

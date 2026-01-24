@@ -382,12 +382,122 @@ img[src*="/upload/assets/defaultavatar.jpg"]{
     background-color: var(--primaryColor) !important;
 }
 
+
+
+/* Ne bu saçma selector çöplüğü? Bazı tarayıcılarda
+inatla bu kural çalışmıyordu bende böyle bir yol denedim.
+Evet belki biraz sinirlenmiş olabilirim ama sorun bununla
+çözüldü. Bu arada muhtemelen sorun seçicilerde değildi
+ama şimdilik dursun böyle. */
+
+
+
 [data-translatorclick].active .translatorCompactBox,
-.translatorCompactBox.active {
+.translatorCompactBox.active,
+
+
+#videoFrame > div.episodeTranslators > div > div > a > div.active,
+#videoFrame > div.episodeTranslators > div > div > a.active > div,
+#videoFrame > div.episodeTranslators > div > div > a > .active,
+#videoFrame > div.episodeTranslators > div > div > .active > div,
+#videoFrame > .episodeTranslators > div > div > a > div.active,
+#videoFrame > .episodeTranslators > div > div > a.active > div,
+#videoFrame > .episodeTranslators > div > div > a > .active,
+#videoFrame > .episodeTranslators > div > div > .active > div,
+#videoFrame > .episodeTranslators > div > div.fansubSecimKutucugu > a > div.active,
+#videoFrame > .episodeTranslators > div > div.fansubSecimKutucugu > a.active > div,
+#videoFrame > .episodeTranslators > div > div.fansubSecimKutucugu > a > .active,
+#videoFrame > .episodeTranslators > div > div.fansubSecimKutucugu > .active > div,
+
+#videoFrame > div.episodeTranslators > div a > div.active,
+#videoFrame > div.episodeTranslators > div a.active > div,
+#videoFrame > div.episodeTranslators > div a > .active,
+#videoFrame > div.episodeTranslators > div > .active > div,
+#videoFrame > .episodeTranslators > div a > div.active,
+#videoFrame > .episodeTranslators > div a.active > div,
+#videoFrame > .episodeTranslators > div a > .active,
+#videoFrame > .episodeTranslators > div > .active > div,
+
+#videoFrame > div.episodeTranslators a > div.active,
+#videoFrame > div.episodeTranslators a.active > div,
+#videoFrame > div.episodeTranslators a > .active,
+#videoFrame > div.episodeTranslators > .active > div,
+#videoFrame > .episodeTranslators a > div.active,
+#videoFrame > .episodeTranslators a.active > div,
+#videoFrame > .episodeTranslators a > .active,
+#videoFrame > .episodeTranslators > .active > div,
+
+
+#videoFrame div.episodeTranslators > div > div > a > div.active,
+#videoFrame div.episodeTranslators > div > div > a.active > div,
+#videoFrame div.episodeTranslators > div > div > a > .active,
+#videoFrame div.episodeTranslators > div > div > .active > div,
+#videoFrame .episodeTranslators > div > div > a > div.active,
+#videoFrame .episodeTranslators > div > div > a.active > div,
+#videoFrame .episodeTranslators > div > div > a > .active,
+#videoFrame .episodeTranslators > div > div > .active > div,
+#videoFrame .episodeTranslators > div > div.fansubSecimKutucugu > a > div.active,
+#videoFrame .episodeTranslators > div > div.fansubSecimKutucugu > a.active > div,
+#videoFrame .episodeTranslators > div > div.fansubSecimKutucugu > a > .active,
+#videoFrame .episodeTranslators > div > div.fansubSecimKutucugu > .active > div,
+
+#videoFrame div.episodeTranslators > div a > div.active,
+#videoFrame div.episodeTranslators > div a.active > div,
+#videoFrame div.episodeTranslators > div a > .active,
+#videoFrame div.episodeTranslators > div > .active > div,
+#videoFrame .episodeTranslators > div a > div.active,
+#videoFrame .episodeTranslators > div a.active > div,
+#videoFrame .episodeTranslators > div a > .active,
+#videoFrame .episodeTranslators > div > .active > div,
+
+#videoFrame div.episodeTranslators a > div.active,
+#videoFrame div.episodeTranslators a.active > div,
+#videoFrame div.episodeTranslators a > .active,
+#videoFrame div.episodeTranslators > .active > div,
+#videoFrame .episodeTranslators a > div.active,
+#videoFrame .episodeTranslators a.active > div,
+#videoFrame .episodeTranslators a > .active,
+#videoFrame .episodeTranslators > .active > div,
+
+
+#videoFrame div.episodeTranslators div div a div.active,
+#videoFrame div.episodeTranslators div div a.active > div,
+#videoFrame div.episodeTranslators div div a .active,
+#videoFrame div.episodeTranslators div div > .active > div,
+#videoFrame .episodeTranslators div div a div.active,
+#videoFrame .episodeTranslators div div a.active > div,
+#videoFrame .episodeTranslators div div a .active,
+#videoFrame .episodeTranslators div div > .active > div,
+#videoFrame .episodeTranslators div div.fansubSecimKutucugu a div.active,
+#videoFrame .episodeTranslators div div.fansubSecimKutucugu a.active > div,
+#videoFrame .episodeTranslators div div.fansubSecimKutucugu a .active,
+#videoFrame .episodeTranslators div div.fansubSecimKutucugu > .active > div,
+
+#videoFrame div.episodeTranslators div a div.active,
+#videoFrame div.episodeTranslators div a.active > div,
+#videoFrame div.episodeTranslators div a .active,
+#videoFrame div.episodeTranslators div > .active > div,
+#videoFrame .episodeTranslators div a div.active,
+#videoFrame .episodeTranslators div a.active > div,
+#videoFrame .episodeTranslators div a .active,
+#videoFrame .episodeTranslators div > .active > div,
+
+#videoFrame div.episodeTranslators a div.active,
+#videoFrame div.episodeTranslators a.active > div,
+#videoFrame div.episodeTranslators a .active,
+#videoFrame div.episodeTranslators > .active > div,
+#videoFrame .episodeTranslators a div.active,
+#videoFrame .episodeTranslators a.active > div,
+#videoFrame .episodeTranslators a .active,
+#videoFrame .episodeTranslators > .active > div
+
+{
     background-color: var(--primaryColor) !important;
+    background: var(--primaryColor) !important;
     border-color: var(--primaryColorLighter) !important;
     box-shadow: 0 0 10px var(--primaryColorDarker) !important;
 }
+
 
 
 

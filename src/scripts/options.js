@@ -481,9 +481,17 @@ document.addEventListener("change", function (event) {
 
             case "theme-select":
             case "custom-theme-input":
+
                 browserObj.storage.local.set({
                     themeId: getThemeSelectValue(themeSelect.value)
                 });
+
+                browserObj.browserAction.setIcon({
+                    path: {
+                        64: browserObj.runtime.getURL(`/assets/favicon/${themeSelect.value == "custom" ? "gray" : themeSelect.value}.png`),
+                    },
+                });
+
                 break;
 
             /* case "rem-bgs":
@@ -519,6 +527,12 @@ document.addEventListener("change", function (event) {
             case "bottom-controls":
                 browserObj.storage.local.set({
                     bottomControls: el.checked
+                });
+                break;
+
+            case "glass":
+                browserObj.storage.local.set({
+                    glass: el.checked
                 });
                 break;
 
@@ -710,6 +724,7 @@ function applySettings(result) {
     document.getElementById("anime-links").checked = result.animeLinks == undefined ? true : result.animeLinks;
     document.getElementById("watched").checked = result.watched == undefined ? false : result.watched;
     document.getElementById("bottom-controls").checked = result.bottomControls == undefined ? false : result.bottomControls;
+    document.getElementById("glass").checked = result.glass == undefined ? false : result.glass;
 }
 
 
@@ -755,7 +770,8 @@ const dataKeys = [
     "lastSeen",
     "animeLinks",
     "watched",
-    "bottomControls"
+    "bottomControls",
+    "glass"
 ];
 
 const defaultSettings = {
@@ -781,7 +797,8 @@ const defaultSettings = {
     lastSeen: false,
     animeLinks: true,
     watched: false,
-    bottomControls: false
+    bottomControls: false,
+    glass: false
 }
 
 function exportSettings() {

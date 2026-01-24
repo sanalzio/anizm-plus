@@ -120,6 +120,12 @@ Bölüm sayfası için arka plan seçeneği.
 - Url gir<br>
   Girilen URL girdisini (örn: `https://...`) arka plan olarak ayarlar.
 
+### Cam teması uygula
+
+Arayüzü camsı hale getirir.
+
+> **! Dikkat !** <br> &emsp;Bu özellik deneyseldir, muhtemelen öyle kalacaktır. Çok fazla pil, cpu, gpu ve kaynak harcıyor o yüzden kullanmanız tavsiye edilmez.
+
 ## Gelişmiş
 
 ### Kullanıcı stili

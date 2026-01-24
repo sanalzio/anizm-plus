@@ -85,7 +85,7 @@ browserObj.storage.local.get(["searchActive", "applyColor", "themeId", "fansubs"
     }
 
     if (data.lastSeen) settings.lastSeen = true;
-    if (data.watched) settings.watched = true;
+    // if (data.watched) settings.watched = true;
 
     if (typeof data.detailedSearch == "undefined" || data.detailedSearch !== false) settings.detailedSearch = true;
     else settings.detailedSearch = false;
@@ -108,7 +108,7 @@ browserObj.storage.onChanged.addListener((changes, area) => {
         } */
         if (changes.themeId) settings.themeId = changes.themeId.newValue.startsWith("$") ? "custom" : changes.themeId.newValue;
         if (changes.lastSeen) settings.lastSeen = changes.lastSeen.newValue;
-        if (changes.watched) settings.watched = changes.watched.newValue;
+        // if (changes.watched) settings.watched = changes.watched.newValue;
         if (changes.detailedSearch) {
             if (changes.detailedSearch.newValue === false) settings.detailedSearch = false;
             else settings.detailedSearch = true;
@@ -123,7 +123,7 @@ browserObj.webRequest.onBeforeRequest.addListener(
         if (
             (blockList.some(el => details.url.includes(el))) ||
 
-            (settings.watched && details.url.includes("/userWatched")) ||
+            // (settings.watched && details.url.includes("/userWatched")) ||
             (settings.lastSeen && details.url.includes("/api/update-last-seen"))
         ) return { cancel: true };
 

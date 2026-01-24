@@ -1,3 +1,8 @@
+# 1.6.1
+- Yeni özellik `Cam teması uygula` eklendi.
+- `İzlenme bilgisini engelle` işlevindeki hata giderildi.
+- Küçük hata düzeltmeleri ve iyileştirmeler uygulandı.
+
 # 1.6.0
 - Yeni özellik `Bağlantıları yeni sekmede aç` eklendi.
 - Gelişmiş arama için filtreleme menüsündeki hatalar giderildi.

@@ -133,7 +133,9 @@ browserObj.storage.local.get([
     "selectPlayer",
     "players",
 
-    "newTab"
+    "newTab",
+
+    "glass"
 
 ], function (result) {
 
@@ -143,10 +145,23 @@ browserObj.storage.local.get([
         document.documentElement.appendChild(baseElement);
     }
 
+    if (result.glass) {
+        injectStyle("styles/design/glass.css");
+    }
+
     if (result.applyColor && result.themeId) {
         if (result.themeId.startsWith("$")) {
 
             const themeArray = result.themeId.slice(1).split(" ");
+
+            fetch(getURL("styles/colors/custom_theme.css"))
+                .then(req => req.text())
+                .then(data => {
+                    const newStyleElement = document.createElement("style");
+                    newStyleElement.innerHTML = themeArray[0].replaceAll(themeArray[0], data);
+                    document.documentElement.appendChild(newStyleElement);
+                });
+
             (async function (callback) {
                 if (document.querySelectorAll("img[alt=\"Logo\"]").length > 1) {
                     callback();
@@ -162,14 +177,6 @@ browserObj.storage.local.get([
                     });
                 }
             })(()=>{
-
-                fetch(getURL("styles/colors/custom_theme.css"))
-                    .then(req => req.text())
-                    .then(data => {
-                        const newStyleElement = document.createElement("style");
-                        newStyleElement.innerHTML = themeArray[0].replaceAll(themeArray[0], data);
-                        document.documentElement.appendChild(newStyleElement);
-                    });
 
                 let arr;
                 (async function (callback) {
@@ -322,7 +329,7 @@ browserObj.storage.local.get([
                 });
             });
         } else {
-            injectStyle("styles/colors/" + result.themeId + "_theme.css");
+            injectStyle(`styles/colors/${result.themeId}_theme.css`);
 
             let arr;
             (async function (callback) {

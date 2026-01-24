@@ -12,6 +12,9 @@ var engTitleByDef = false;
 
 var queryInpClicked = false;
 
+// Tarayıcı uyumluluğu için
+const browserObj = (typeof browser !== "undefined" && browser.runtime && browser.runtime.getURL) ? browser : chrome;
+
 
 /* -- Globals -- */
 
@@ -91,7 +94,7 @@ function showMessage(message, loader=false) {
     else
         loaderElement.style.display = "none";
 
-    messageContainer.style.display = "inline-block";
+    messageContainer.style.display = "flex";
 
     while (messageElement.innerHTML !== message) {
         continue;
