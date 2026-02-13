@@ -49,11 +49,6 @@ function getTitleProp(anime) {
 
 
 async function getAnilistUrl(malId) {
-    const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
-    const data = JSON.stringify({
-        query,
-        variables: { id: malId, type: "ANIME" },
-    });
 
     try {
         const response = await fetch("https://graphql.anilist.co", {
@@ -61,7 +56,7 @@ async function getAnilistUrl(malId) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: data,
+            body: `{"query":"query{Media(idMal: ${malId}, type: ANIME){siteUrl}}"}`,
         });
 
         const responseData = await response.json();
@@ -111,7 +106,7 @@ window.mal2anilistOpen = function (malIdInp) {
         return;
     }
 
-    getAnilistUrl(parseInt(malIdInp))
+    getAnilistUrl(malIdInp)
         .then(url => {
             window.anilistUrls[malIdInp] = url;
             window.open(url, "_blank");
@@ -440,7 +435,7 @@ const getDetailedSearchResults = (animeInfo, searchValue) => {
  <a target="_blank" class="mal-link" href="https://myanimelist.net/anime/${animeInfo.info_malid.toString()}">
   <img class="card-poster mal-img" src="${extensionPath}assets/mal.svg" alt="MAL sayfası">
  </a>
- <span target="_blank" class="anilist-link" onclick="mal2anilistOpen(${animeInfo.info_malid.toString()})">
+ <span class="anilist-link" onclick="mal2anilistOpen(${animeInfo.info_malid})">
   <img class="card-poster anilist-img" src="${extensionPath}assets/anilist.svg" alt="AniList sayfası">
  </span>
 </div>

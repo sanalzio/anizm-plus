@@ -109,7 +109,7 @@ browserObj.storage.local.get(["animeLinks"], async (r) => {
                     return;
                 }
 
-                getAnilistUrl(parseInt(malID))
+                getAnilistUrl(malID)
                     .then((url) => {
                         if (url) {
                             loader.insertAdjacentHTML(
@@ -138,11 +138,6 @@ browserObj.storage.local.get(["animeLinks"], async (r) => {
 
 
             async function getAnilistUrl(malId) {
-                const query = `query($id: Int, $type: MediaType){Media(idMal: $id, type: $type){siteUrl}}`;
-                const data = JSON.stringify({
-                    query,
-                    variables: { id: malId, type: "ANIME" },
-                });
 
                 try {
                     const response = await fetch("https://graphql.anilist.co", {
@@ -150,7 +145,7 @@ browserObj.storage.local.get(["animeLinks"], async (r) => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: data,
+                        body: `{"query":"query{Media(idMal: ${malId}, type: ANIME){siteUrl}}"}`,
                     });
 
                     const responseData = await response.json();

@@ -1,3 +1,6 @@
+# 0.1.2
+- Yeni arayüz değişikliklerine uyum sağlandı.
+
 # 0.1.1
 - Yeni özellik `Cam teması uygula` eklendi.
 - Küçük hata düzeltmeleri ve iyileştirmeler uygulandı.

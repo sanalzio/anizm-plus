@@ -1,3 +1,6 @@
+# 1.6.2
+- Yeni arayüz değişikliklerine uyum sağlandı.
+
 # 1.6.1
 - Yeni özellik `Cam teması uygula` eklendi.
 - `İzlenme bilgisini engelle` işlevindeki hata giderildi.

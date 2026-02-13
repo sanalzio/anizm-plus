@@ -766,3 +766,102 @@ a.animeLink:hover,
     border-color: var(--primaryColor)!important;
     box-shadow: 0 0 0 100px hsl(from var(--primaryColorDarker) h s l/.7) inset!important;
 }
+
+
+
+
+
+
+.auth-page::before, .auth-page::after {
+    display: none;
+}
+
+.auth-badge, .auth-icon {
+    background: hsl(from var(--primaryColor) h s 30 / .5);
+    backdrop-filter: blur(5px);
+}
+
+.auth-badge {
+    background: linear-gradient(43deg, hsl(from var(--primaryColor) h s 20 / .5) 0%, hsl(from var(--primaryColor) h s 30 / .8) 46%, hsl(from var(--primaryColor) h s 25 / .57) 100%);
+}
+
+.auth-social:hover {
+    background: linear-gradient(43deg, hsl(from var(--primaryColor) h s 20 / .4) 0%, hsl(from var(--primaryColor) h s 30 / .5) 46%, hsl(from var(--primaryColor) h s 25 / .4) 100%);
+    border-color: hsl(from var(--primaryColor) h s 45);
+}
+
+.auth-card {
+    backdrop-filter: blur(5px);
+    background: linear-gradient(43deg, hsl(from var(--primaryColor) h 20 8 / .8) 0%, hsl(from var(--primaryColor) h 20 8 / .9) 46%, hsl(from var(--primaryColor) h 20 8 / .85) 100%);
+}
+
+:root {
+    --auth-accent: hsl(from var(--primaryColor) h s 70);
+    --auth-surface: hsl(from var(--primaryColor) h 7 8 / .9);
+    --auth-border: hsl(from var(--primaryColor) h s 70 / .4);
+}
+
+
+
+
+
+
+.trb-page::before {
+    background: radial-gradient(800px 400px at 15% -5%, hsl(from var(--primaryColor) h s 30 / .5), transparent 60%),
+                radial-gradient(600px 300px at 80% 0%, hsl(from var(--primaryColor) h s 30 / .5), transparent 60%);
+}
+
+.ui.primary.button.trb-search {
+    background: linear-gradient(135deg, hsl(from var(--primaryColor) h s 50), hsl(from var(--primaryColor) h s 25)) !important;
+    color: #151515 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 10px 24px hsl(from var(--primaryColor) h s 50 / .3) !important;
+}
+
+.ui.button.trb-clear#btnClear {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: var(--trb-muted) !important;
+}
+
+.trb-panel {
+    background: linear-gradient(160deg, hsl(from var(--primaryColor) h 2 8), hsl(from var(--primaryColor) h 2 9));
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    border-color: hsl(from var(--primaryColor) h s 70 / .4);
+    backdrop-filter: blur(12px);
+}
+
+.trb-tags span {
+    background: var(--trb-panel);
+}
+
+.trb-dropdown {
+    background: var(--trb-panel-2) !important;
+}
+
+.trb-dropdown .menu {
+    background: hsl(from var(--trb-panel-2) h s l / 1) !important;
+}
+
+.trb-dropdown .item:hover {
+    background: hsl(from var(--trb-panel-2) h calc(s + 10) calc(l + 10) / 1) !important;
+}
+
+.ui.selection.dropdown.trb-dropdown .menu>.item {
+    border-color: var(--trb-muted);
+}
+
+.trb-dropdown .label {
+    background: hsl(from var(--primaryColor) h 14 20 / 1) !important;
+}
+
+:root {
+    --trb-bg: hsl(from var(--primaryColor) h 7 8 / .9);
+    --trb-panel: var(--trb-bg);
+    --trb-panel-2: hsl(from var(--primaryColor) h 7 12 / .9);
+    --trb-ink: hsl(from var(--primaryColor) h s 90);
+    --trb-muted: hsl(from var(--primaryColor) h 20 50);
+    --trb-accent: hsl(from var(--primaryColor) h s 70);
+    --trb-accent-2: var(--trb-accent);
+    --trb-ring: var(--trb-accent);
+}
